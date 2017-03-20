@@ -1,0 +1,12 @@
+When I started to think of the level design for the 2.5D sidescroller beat-em-up game I was designing,
+The only level design involved was how deep the level was, where minor obstacles like boxes would go, and where enemies where placed.
+When looking at references, I realized that one of the major appeals of these types of games were the variety and quality of level background designs and the story told in them.
+As I am not able to create detailed background environments each level I would have to use simple repetitive backgrounds or royalty free art. 
+That did not leave much variety and would have resulted in generic levels.
+While considering the combat mechanics, the depth of the level turned out to be irrelevent because 
+there was not a way to attck enemies in front of or behind the player from the camera's point of view. 
+That and the fact I decided to use 2D graphics for their simplicity, resulted in changing the game to be completely 2D.
+So now, the player will not be able to change their depth.
+However the levels felt even more bland and withour variety, so I decided to allow the player to be able to jump vertically.
+This resulted in the entire game becomming a 2D action platformer.
+2D platformers are very common, and the level design was more straightforward as well.
