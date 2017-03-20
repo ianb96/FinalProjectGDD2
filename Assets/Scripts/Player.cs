@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-	public float maxHealth;
-	public float curHealth;
+	public float maxHealth = 5;
+	public float curHealth = 5;
+	public float moveSpeed = 2;
 
-	public float moveSpeed;
-
-	public CharacterController cc;
+	public Rigidbody2D rb;
 
 	void Start () {
 		
@@ -17,8 +16,16 @@ public class Player : MonoBehaviour {
 	
 	void Update () {
 		float vx = Input.GetAxis("Horizontal");
-		float vz = Input.GetAxis("Vertical");
+		float vy = Input.GetAxis("Vertical");
 
-		
+		rb.velocity = new Vector2(vx, vy);
+	}
+
+	void Attack() {
+
+	}
+
+	void Respawn() {
+		curHealth = maxHealth;
 	}
 }
