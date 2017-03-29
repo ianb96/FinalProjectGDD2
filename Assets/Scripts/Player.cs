@@ -185,9 +185,7 @@ public class Player : Damageable
             }
             else if (dot > -0.2f && dot < 0.2f)
             {
-                // hit a wall; prevent clinging
-                Vector2 depenetrationForce = -1 * other.relativeVelocity.x * Vector2.right + Vector2.up * grav * Time.deltaTime;
-                rb.AddForce(depenetrationForce, ForceMode2D.Impulse);
+                // hit a wall
                 walkTimer = walkDur;
             }
         }
