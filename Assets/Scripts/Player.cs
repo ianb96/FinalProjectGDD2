@@ -6,8 +6,10 @@ public class Player : Damageable
 {
 
     public bool canMove = true;
-    public float maxSpeed = 4;
-    public float accelRate = 0.5f;
+    public float walkSpeed = 3;
+    public float runSpeed = 5;
+    public float walkDur = 4;
+    float walkTimer = 0;
     bool grounded = false;
     public int numJumps = 2;
     int curJumps;
@@ -40,7 +42,7 @@ public class Player : Damageable
     /// Uses jumpDist, jumpHeight, and maxSpeed to determine jumpDur, jumpSpeed, and grav
     public void RecalculateJumpArc()
     {
-        jumpDur = 0.5f * jumpDist / maxSpeed;
+        jumpDur = 0.5f * jumpDist / walkSpeed;
         jumpSpeed = 2 * jumpHeight / jumpDur;
         grav = -jumpSpeed / jumpDur;
     }
@@ -68,27 +70,38 @@ public class Player : Damageable
     /// Get input and move the player with rigidbody
     void Move()
     {
-        // left / right
+        // left / right movement
         float hor = Input.GetAxis("Horizontal");
-        // float ver = Input.GetAxis("Vertical");
+        Vector2 desiredSpeed = new Vector2(0, rb.velocity.y);
+        float optimalSpeed = 0;
+        if (walkTimer<=0) {
+            optimalSpeed = runSpeed;
+        } else {
+            optimalSpeed = walkSpeed;
+        }
         if (Mathf.Abs(hor) > 0.05f)
         {
-            if (rb.velocity.x <= maxSpeed && rb.velocity.x >= -maxSpeed)
-            {
-                rb.velocity += Vector2.right * hor * accelRate * (attacking ? 0.2f:1f);
+            if (walkTimer>0) {
+                walkTimer -= Time.deltaTime;
             }
-            else if (rb.velocity.x > maxSpeed)
+            if (desiredSpeed.x <= optimalSpeed)
             {
-                rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
-            }
-            else if (rb.velocity.x < -maxSpeed)
-            {
-                rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);
+                desiredSpeed.x += hor * optimalSpeed * (attacking ? 0.2f:1f);
+            }   
+        } else {
+            if (!Input.GetButton("Horizontal")) {
+                // allow quick turns
+                walkTimer = walkDur;
             }
         }
-        else
+        rb.velocity = Vector2.Lerp(rb.velocity, desiredSpeed, 40 * Time.deltaTime);
+        if (rb.velocity.x > optimalSpeed)
         {
-            rb.velocity = Vector2.Lerp(rb.velocity, new Vector2(0, rb.velocity.y), 100 * accelRate * Time.deltaTime);
+            rb.velocity = new Vector2(optimalSpeed, rb.velocity.y);
+        }
+        else if (rb.velocity.x < -optimalSpeed)
+        {
+            rb.velocity = new Vector2(-optimalSpeed, rb.velocity.y);
         }
         // sprite facing
         if (hor < 0)
@@ -165,16 +178,17 @@ public class Player : Damageable
         {
             float dot = Vector3.Dot(contact.normal, Vector3.up);
             // Debug.Log(dot);
-            if (dot > 0.75f)
+            if (dot > 0.8f)
             {
                 // hit the ground
                 grounded = true;
             }
-            else if (dot > -0.25f && dot < 0.25f)
+            else if (dot > -0.2f && dot < 0.2f)
             {
                 // hit a wall; prevent clinging
                 Vector2 depenetrationForce = -1 * other.relativeVelocity.x * Vector2.right + Vector2.up * grav * Time.deltaTime;
                 rb.AddForce(depenetrationForce, ForceMode2D.Impulse);
+                walkTimer = walkDur;
             }
         }
     }
