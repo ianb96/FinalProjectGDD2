@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class EnemyAI : Damageable {
 
-	
+    
+    public override void Die() {
+        //death anim
+        Debug.Log("hit! "+name);
+    }
 	
 }

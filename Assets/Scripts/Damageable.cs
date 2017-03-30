@@ -13,7 +13,7 @@ public class Damageable : MonoBehaviour {
             Die();
         }
     }
-    public void Die() {
+    public virtual void Die() {
         // nothing
     }
 

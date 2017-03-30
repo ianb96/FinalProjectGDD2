@@ -21,6 +21,15 @@ public class Player : Damageable
 
     bool attacking = false;
     bool inAttackSwing = false;
+    int attackCharge = 0;
+    int maxAttackCharges = 3;
+    public float attackCharge1Radius = 6.5f;
+    public float attackCharge2Radius = 7.5f;
+    public float attackCharge3Radius = 8.5f;
+    public float attackCharge1Damage = 10f;
+    public float attackCharge2Damage = 12f;
+    public float attackCharge3Damage = 15f;
+    
     public SpriteRenderer psprite;
     Rigidbody2D rb;
     Animator anim;
@@ -58,6 +67,7 @@ public class Player : Damageable
         {
             attacking = true;
             anim.SetBool("Attacking", true);
+            attackCharge = 0;
             // StartCoroutine(Attack());
         }
         if (!inAttackSwing && Input.GetButtonUp("Attack"))
@@ -157,13 +167,33 @@ public class Player : Damageable
     public void AttackSwingStart()
     {
         inAttackSwing = true;
+        float attackRadius = attackCharge==0 ? attackCharge1Radius : attackCharge==1 ? attackCharge2Radius : attackCharge3Radius;
+        // Physics2D.CircleCast(transform.position, attackRadius, )
+        
+    }
+    /// Anim will call this to increase the current attack charge level
+    public void NextAttackCharge()
+    {
+        attackCharge++;
+        if (attackCharge > maxAttackCharges)
+        {
+            anim.SetBool("MoreAttackCharges", true);
+        } 
+        else 
+        {
+            anim.SetBool("MoreAttackCharges", false);
+        }
     }
     /// Anim will call this to indicate the attack swing is over
     public void AttackSwingEnd() {
         inAttackSwing = false;
         attacking = false;
         anim.SetBool("Attacking", false);
-        //TODO: combo attacks
+    }
+
+
+    public override void Die() {
+        // respawn
     }
 
     /// <summary>
