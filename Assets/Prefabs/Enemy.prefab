@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4677598315771310}
   - component: {fileID: 61316852700540596}
   - component: {fileID: 114444940673076068}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DamageBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 114301026528102256}
   - component: {fileID: 61214657482133240}
   - component: {fileID: 50413100835309198}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4011964353359954}
   - component: {fileID: 212655467347499916}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,9 +134,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -0.022989273, y: 0.37166584}
+  m_Offset: {x: -0.022989273, y: 0.4596461}
   serializedVersion: 2
-  m_Size: {x: 0.51, y: 1.08}
+  m_Size: {x: 0.51, y: 0.9040394}
 --- !u!61 &61316852700540596
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -148,9 +148,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -0.022989273, y: 0.37166584}
+  m_Offset: {x: -0.022989273, y: 0.4667796}
   serializedVersion: 2
-  m_Size: {x: 0.54, y: 1.1149478}
+  m_Size: {x: 0.54, y: 0.9247203}
 --- !u!114 &114301026528102256
 MonoBehaviour:
   m_ObjectHideFlags: 1
