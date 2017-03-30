@@ -5,23 +5,26 @@ public class Joint2DToggler : MonoBehaviour
 {
     [SerializeField] private Joint2D joint;
     private Rigidbody2D connectedBody;
+    private Rigidbody2D rb;
 
     private void Awake()
     {
         joint = joint ? joint : GetComponent<Joint2D>();
         if (joint) connectedBody = joint.connectedBody;
         else Debug.LogError("No joint found.", this);
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void OnEnable()
     {
-        transform.position = connectedBody.position;
         joint.connectedBody = connectedBody;
+        transform.position = connectedBody.position;
+        rb.WakeUp();
     }
 
     private void OnDisable()
     {
         joint.connectedBody = null;
-        connectedBody.WakeUp();
+        rb.Sleep();
     }
 }

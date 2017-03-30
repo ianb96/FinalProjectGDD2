@@ -2,15 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sword : MonoBehaviour {
+public class TriggerDamage : MonoBehaviour {
 
-	void Start () {
-		
-	}
-	
-	void Update () {
-		
-	}
+	public float damage = 0;
+	public bool destroyAfterHit = false;
+
 	/// <summary>
 	/// Sent when another object enters a trigger collider attached to this
 	/// object (2D physics only).
@@ -18,7 +14,9 @@ public class Sword : MonoBehaviour {
 	/// <param name="other">The other Collider2D involved in this collision.</param>
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		
-		other.SendMessage("TakeDamage", 2, SendMessageOptions.DontRequireReceiver);
+		other.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
+		if (destroyAfterHit) {
+			Destroy(gameObject, 0);
+		}
 	}
 }
