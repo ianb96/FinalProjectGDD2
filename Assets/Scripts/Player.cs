@@ -25,7 +25,7 @@ public class Player : Damageable
     int maxAttackCharges = 3;
     public float[] attackChargeDamages = {8, 10, 12, 15};
     
-    public TriggerDamage swordHB;
+    public TriggerDamage[] swordHBs;
     public SpriteRenderer psprite;
     Rigidbody2D rb;
     Animator anim;
@@ -41,7 +41,9 @@ public class Player : Damageable
     /// any of the Update methods is called the first time.
     void Start()
     {
+        base.Start();
         RecalculateJumpArc();
+        SetSwordDamage();
     }
 
     /// Uses jumpDist, jumpHeight, and maxSpeed to determine jumpDur, jumpSpeed, and grav
@@ -69,6 +71,7 @@ public class Player : Damageable
         }
         if (Input.GetButtonUp("Attack"))
         {
+            // TODO: in-air attacks
             if (!inAttackSwing)
             {
                 attacking = false;
@@ -181,7 +184,7 @@ public class Player : Damageable
         {
             anim.SetBool("MoreAttackCharges", false);
         }
-        swordHB.damage = attackChargeDamages[attackCharge];
+        SetSwordDamage();
     }
     /// Anim will call this to increase the current attack charge level
     public void SetAttackCharge(int num)
@@ -195,7 +198,7 @@ public class Player : Damageable
         {
             anim.SetBool("MoreAttackCharges", false);
         }
-        swordHB.damage = attackChargeDamages[attackCharge];
+        SetSwordDamage();
     }
     /// Anim will call this to indicate the attack swing is over
     public void AttackSwingEnd() {
@@ -203,6 +206,13 @@ public class Player : Damageable
         attacking = false;
         anim.SetBool("Attacking", false);
         walkTimer = walkDur;
+        SetSwordDamage();
+    }
+    public void SetSwordDamage() {
+        foreach (TriggerDamage swordHB in swordHBs)
+        {
+            swordHB.damage = attackChargeDamages[attackCharge];
+        }
     }
 
     public override void OnHit(float amount) {

@@ -136,7 +136,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: -0.022989273, y: 0.37166584}
   serializedVersion: 2
-  m_Size: {x: 0.54, y: 1.1149478}
+  m_Size: {x: 0.51, y: 1.08}
 --- !u!61 &61316852700540596
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -164,6 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   curHealth: 0
+  knockbackForce: {x: 6, y: 4}
 --- !u!114 &114444940673076068
 MonoBehaviour:
   m_ObjectHideFlags: 1
