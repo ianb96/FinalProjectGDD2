@@ -14,7 +14,7 @@ public class EnemyAI : Damageable {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
-    public void Start() {
+    new void Start() {
         base.Start();
     }
 

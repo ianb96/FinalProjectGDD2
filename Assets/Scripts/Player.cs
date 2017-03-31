@@ -9,6 +9,7 @@ public class Player : Damageable
     public float walkSpeed = 3;
     public float runSpeed = 5;
     public float walkDur = 4;
+    float targetSpeed = 0;
     float walkTimer = 0;
     bool grounded = false;
     public int numJumps = 2;
@@ -18,15 +19,17 @@ public class Player : Damageable
     float jumpDur = 2;
     float jumpSpeed = 2;
     float grav = 10;
+    float lastGroundHeight = 0;
 
     bool attacking = false;
     bool inAttackSwing = false;
     int attackCharge = 0;
     int maxAttackCharges = 3;
-    public float[] attackChargeDamages = {8, 10, 12, 15};
-    
-    public TriggerDamage[] swordHBs;
+    public float[] attackChargeDamages = { 2, 10, 12, 15 };
+
+    public TriggerDamage[] swordHbs;
     public SpriteRenderer psprite;
+    public Transform cam;
     Rigidbody2D rb;
     Animator anim;
 
@@ -39,7 +42,7 @@ public class Player : Damageable
 
     /// Start is called on the frame when a script is enabled just before
     /// any of the Update methods is called the first time.
-    void Start()
+    new void Start()
     {
         base.Start();
         RecalculateJumpArc();
@@ -61,13 +64,29 @@ public class Player : Damageable
         {
             Move();
         }
+        // move camera
+        RaycastHit2D downhit = Physics2D.Raycast(transform.position, Vector3.down, 4, 1 << 8);
+        float nCamPosy = !downhit.collider ? transform.position.y : Mathf.Lerp(cam.transform.position.y, lastGroundHeight, 20 * Time.deltaTime);
+        cam.transform.position = new Vector3(transform.position.x, nCamPosy, -10);
+
+        if (transform.position.y < -50)
+        {
+            transform.position = new Vector3(transform.position.x, 0, 0);
+        }
+
         if (Input.GetButtonDown("Attack"))
         {
-            attacking = true;
-            anim.SetBool("Attacking", true);
-            anim.SetBool("Swing", false);
-            attackCharge = 0;
-            // StartCoroutine(Attack());
+            //if (grounded)
+           // {
+                attacking = true;
+                anim.SetBool("Attacking", true);
+                anim.SetBool("Swing", false);
+                attackCharge = 0;
+           // }
+           // else
+           // {
+                //anim.SetTrigger("AirAttack");
+           // }
         }
         if (Input.GetButtonUp("Attack"))
         {
@@ -76,7 +95,9 @@ public class Player : Damageable
             {
                 attacking = false;
                 anim.SetBool("Attacking", false);
-            } else {
+            }
+            else
+            {
                 anim.SetBool("Swing", true);
             }
         }
@@ -88,35 +109,34 @@ public class Player : Damageable
         // left / right movement
         float hor = Input.GetAxis("Horizontal");
         Vector2 desiredSpeed = new Vector2(0, rb.velocity.y);
-        float optimalSpeed = 0;
-        if (walkTimer<=0) {
-            optimalSpeed = runSpeed;
-        } else {
-            optimalSpeed = walkSpeed;
-        }
+        targetSpeed = Mathf.Lerp(targetSpeed, walkTimer <= 0 ? runSpeed : walkSpeed, 10 * Time.deltaTime);
         if (Mathf.Abs(hor) > 0.05f)
         {
-            if (walkTimer>0) {
+            if (walkTimer > 0)
+            {
                 walkTimer -= Time.deltaTime;
             }
-            if (desiredSpeed.x <= optimalSpeed)
+            if (desiredSpeed.x <= targetSpeed)
             {
-                desiredSpeed.x += hor * optimalSpeed * (attacking ? 0.2f:1f);
-            }   
-        } else {
-            if (!Input.GetButton("Horizontal")) {
+                desiredSpeed.x += hor * targetSpeed * (attacking ? 0.3f : 1f);
+            }
+        }
+        else
+        {
+            if (!Input.GetButton("Horizontal"))
+            {
                 // allow quick turns
                 walkTimer = walkDur;
             }
         }
-        rb.velocity = Vector2.Lerp(rb.velocity, desiredSpeed, 40 * Time.deltaTime);
-        if (rb.velocity.x > optimalSpeed)
+        rb.velocity = Vector2.Lerp(rb.velocity, desiredSpeed, 30 * Time.deltaTime);
+        if (rb.velocity.x > targetSpeed)
         {
-            rb.velocity = new Vector2(optimalSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(targetSpeed, rb.velocity.y);
         }
-        else if (rb.velocity.x < -optimalSpeed)
+        else if (rb.velocity.x < -targetSpeed)
         {
-            rb.velocity = new Vector2(-optimalSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(-targetSpeed, rb.velocity.y);
         }
         // sprite facing
         if (hor < 0)
@@ -179,8 +199,8 @@ public class Player : Damageable
         if (attackCharge < maxAttackCharges)
         {
             anim.SetBool("MoreAttackCharges", true);
-        } 
-        else 
+        }
+        else
         {
             anim.SetBool("MoreAttackCharges", false);
         }
@@ -193,34 +213,38 @@ public class Player : Damageable
         if (attackCharge < maxAttackCharges)
         {
             anim.SetBool("MoreAttackCharges", true);
-        } 
-        else 
+        }
+        else
         {
             anim.SetBool("MoreAttackCharges", false);
         }
         SetSwordDamage();
     }
     /// Anim will call this to indicate the attack swing is over
-    public void AttackSwingEnd() {
+    public void AttackSwingEnd()
+    {
         inAttackSwing = false;
         attacking = false;
         anim.SetBool("Attacking", false);
         walkTimer = walkDur;
         SetSwordDamage();
     }
-    public void SetSwordDamage() {
-        foreach (TriggerDamage swordHB in swordHBs)
+    public void SetSwordDamage()
+    {
+        foreach (TriggerDamage swordHB in swordHbs)
         {
             swordHB.damage = attackChargeDamages[attackCharge];
         }
     }
 
-    public override void OnHit(float amount) {
+    public override void OnHit(float amount)
+    {
         anim.SetTrigger("Hit");
         walkTimer = walkDur;
     }
 
-    public override void Die() {
+    public override void Die()
+    {
         // respawn
     }
 
@@ -240,6 +264,7 @@ public class Player : Damageable
             {
                 // hit the ground
                 grounded = true;
+                lastGroundHeight = transform.position.y;
             }
             else if (dot > -0.2f && dot < 0.2f)
             {
