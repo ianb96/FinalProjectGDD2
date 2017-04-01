@@ -19,6 +19,7 @@ public class Joint2DToggler : MonoBehaviour
     {
         joint.connectedBody = connectedBody;
         transform.position = connectedBody.position;
+        transform.rotation = Quaternion.identity;
         rb.WakeUp();
     }
 

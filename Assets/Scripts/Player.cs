@@ -29,23 +29,26 @@ public class Player : Damageable
     bool attacking = false;
     bool inAttackSwing = false;
     int attackCharge = 0;
-    int maxAttackCharges = 3;
+    public int maxAttackCharges = 3;
     public float[] attackChargeDamages = { 2, 10, 12, 15 };
     public float hitInvincibilityDur = 0.2f;
+    public Vector2 knockbackForce = new Vector2(3, 2);
 
     public TriggerDamage[] swordHbs;
     public SpriteRenderer psprite;
     public Transform cam;
     public Transform swordAnim;
-	public Transform swordPhys;
+    public Transform swordPhys;
     Rigidbody2D rb;
     Animator anim;
+    PlayerSound playerSound;
 
     /// Awake is called when the script instance is being loaded.
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        playerSound = GetComponent<PlayerSound>();
     }
 
     /// Start is called on the frame when a script is enabled just before
@@ -86,10 +89,10 @@ public class Player : Damageable
 
         // move camera
         RaycastHit2D downhit = Physics2D.Raycast(transform.position, Vector3.down, 8, 1 << 8);
-        float nCamPosy = transform.position.y;
+        float nCamPosy = transform.position.y + 2;
         if (downhit.collider && transform.position.y - downhit.point.y < 4)
         {
-            nCamPosy = Mathf.Lerp(cam.transform.position.y, lastGroundHeight, 20 * Time.deltaTime);
+            nCamPosy = Mathf.Lerp(cam.transform.position.y, lastGroundHeight + 2, 20 * Time.deltaTime);
         }
         cam.transform.position = new Vector3(transform.position.x, nCamPosy, -10);
 
@@ -108,9 +111,10 @@ public class Player : Damageable
                 attacking = true;
                 anim.SetBool("Attacking", true);
                 anim.SetBool("Swing", false);
-                CopySwordRotation(1.5f);
+                StartCoroutine(CopySwordRotation(1.5f));
                 attackCharge = 0;
                 // if running increase speed / damage ?
+                // walkTimer = walkDur;
             }
             else if (!downhit.collider)
             {
@@ -127,6 +131,8 @@ public class Player : Damageable
             else
             {
                 anim.SetBool("Swing", true);
+                rb.velocity = Vector3.zero;
+                walkTimer = walkDur;
             }
         }
     }
@@ -146,7 +152,8 @@ public class Player : Damageable
             }
             if (desiredSpeed.x <= targetSpeed)
             {
-                desiredSpeed.x += hor * targetSpeed * (attacking ? 0.3f : 1f);
+                float attackModifier = ((hor<0 && attacking) || anim.GetBool("Swing") ? 0.4f : 1f);
+                desiredSpeed.x += hor * targetSpeed * attackModifier;
             }
         }
         else
@@ -184,7 +191,7 @@ public class Player : Damageable
             psprite.flipX = false;
         }
         float speed = Mathf.Abs(rb.velocity.x);
-        anim.SetFloat("Speed", speed > 0.05 ? speed : 0); 
+        anim.SetFloat("Speed", speed > 0.05 ? speed : 0);
 
         // falling 
         if (grounded)
@@ -201,7 +208,7 @@ public class Player : Damageable
         }
 
         // dodge
-        if (dodgeTimer<=0)
+        if (dodgeTimer <= 0)
         {
             if (grounded && Input.GetButtonDown("Dodge"))// && rb.velocity.x<0)
             {
@@ -213,8 +220,9 @@ public class Player : Damageable
                 Invoke("GiveControl", 1f); // backup give control
             }
         }
-        else {
-            dodgeTimer-=Time.deltaTime;
+        else
+        {
+            dodgeTimer -= Time.deltaTime;
         }
 
         // jumping
@@ -226,38 +234,36 @@ public class Player : Damageable
         }
     }
 
-	public IEnumerator CopySwordRotation(float dur)
-	{
-		float targetRotation = swordAnim.localEulerAngles.z;
-		float progress = 0;
-		swordPhys.localEulerAngles = new Vector3(0,0,targetRotation);
-		while(progress<1)
-		{
-			progress += Time.deltaTime / dur;
-			swordPhys.localEulerAngles = new Vector3(0,0,Mathf.Lerp(swordPhys.localEulerAngles.z, 0, progress));
-			yield return null;
-		}
-		swordPhys.localEulerAngles = new Vector3(0,0,0);
-	}
+    public IEnumerator CopySwordRotation(float dur)
+    {
+        float targetRotation = swordPhys.localEulerAngles.z;
+        if (targetRotation > 180)
+            targetRotation -= 360;
+        float progress = 0;
+        swordAnim.localEulerAngles = new Vector3(0, 0, targetRotation);
+        yield return null;
+        while (attacking && progress < 1)
+        {
+            progress += Time.deltaTime / dur;
+            float nAngle = Mathf.Lerp(targetRotation, 0, progress);
+            swordAnim.localEulerAngles = new Vector3(0, 0, nAngle);
+            yield return null;
+        }
+        swordAnim.localEulerAngles = new Vector3(0, 0, 0);
+    }
 
     /// Anim will call this to indicate the point of no return for the attack swing
     public void AttackSwingStart()
     {
         inAttackSwing = true;
-        if (attackCharge < maxAttackCharges)
-        {
-            anim.SetBool("MoreAttackCharges", true);
-        }
-        else
-        {
-            anim.SetBool("MoreAttackCharges", false);
-        }
-        SetSwordDamage();
     }
     /// Anim will call this to increase the current attack charge level
     public void SetAttackCharge(int num)
     {
+        if (num >= attackChargeDamages.Length)
+            Debug.LogError("atack charge too high!");
         attackCharge = num;
+        playerSound.PlayAttackChargeUp();
         if (attackCharge < maxAttackCharges)
         {
             anim.SetBool("MoreAttackCharges", true);
@@ -275,6 +281,7 @@ public class Player : Damageable
         attacking = false;
         anim.SetBool("Attacking", false);
         walkTimer = walkDur;
+        attackCharge = 0;
         SetSwordDamage();
     }
     public void SetSwordDamage()
@@ -327,6 +334,8 @@ public class Player : Damageable
     /// <param name="other">The Collision2D data associated with this collision.</param>
     void OnCollisionStay2D(Collision2D other)
     {
+        if (other.collider.gameObject.layer == 1 << LayerMask.NameToLayer("Sword"))
+            return;
         //grounded = false;
         foreach (ContactPoint2D contact in other.contacts)
         {

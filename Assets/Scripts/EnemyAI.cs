@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyAI : Damageable {
 
 
-    public Vector2 knockbackForce = new Vector2(10, 10);
+    public Vector2 knockbackForce = new Vector2(6, 4);
     Rigidbody2D rb;
     Player player;
 
@@ -22,7 +22,7 @@ public class EnemyAI : Damageable {
         Debug.Log("hit! "+name+" for "+amount);
         Vector2 knockBackDir = new Vector2( (transform.position.x>player.transform.position.x ? 1:-1) * knockbackForce.x, knockbackForce.y);
         rb.AddForce(knockBackDir, ForceMode2D.Impulse);
-        gameObject.layer = LayerMask.NameToLayer("NoPlayer");
+        gameObject.layer = LayerMask.NameToLayer("DmgProof");
         Invoke("DefLayer", 1);
     }
     public override void Die() {
