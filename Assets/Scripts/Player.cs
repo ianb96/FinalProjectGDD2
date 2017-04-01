@@ -13,23 +13,31 @@ public class Player : Damageable
     float walkTimer = 0;
     bool grounded = false;
     public int numJumps = 2;
-    int curJumps;
     public float jumpHeight = 5;
     public float jumpDist = 4;
+    int curJumps;
     float jumpDur = 2;
     float jumpSpeed = 2;
     float grav = 10;
     float lastGroundHeight = 0;
 
+    public Vector2 dodgeVel = new Vector2(-2, 4);
+    public float dodgeDelay = 1;
+    float dodgeTimer = 0;
+
+    public bool canAttack = true;
     bool attacking = false;
     bool inAttackSwing = false;
     int attackCharge = 0;
     int maxAttackCharges = 3;
     public float[] attackChargeDamages = { 2, 10, 12, 15 };
+    public float hitInvincibilityDur = 0.2f;
 
     public TriggerDamage[] swordHbs;
     public SpriteRenderer psprite;
     public Transform cam;
+    public Transform swordAnim;
+	public Transform swordPhys;
     Rigidbody2D rb;
     Animator anim;
 
@@ -64,9 +72,25 @@ public class Player : Damageable
         {
             Move();
         }
+
+        // gravity
+        if (grounded)
+        {
+            rb.AddForce(-0.05f * Vector2.up, ForceMode2D.Force);
+        }
+        else
+        {
+            rb.AddForce(grav * Vector2.up, ForceMode2D.Force);
+            anim.SetBool("Falling", true);
+        }
+
         // move camera
-        RaycastHit2D downhit = Physics2D.Raycast(transform.position, Vector3.down, 4, 1 << 8);
-        float nCamPosy = !downhit.collider ? transform.position.y : Mathf.Lerp(cam.transform.position.y, lastGroundHeight, 20 * Time.deltaTime);
+        RaycastHit2D downhit = Physics2D.Raycast(transform.position, Vector3.down, 8, 1 << 8);
+        float nCamPosy = transform.position.y;
+        if (downhit.collider && transform.position.y - downhit.point.y < 4)
+        {
+            nCamPosy = Mathf.Lerp(cam.transform.position.y, lastGroundHeight, 20 * Time.deltaTime);
+        }
         cam.transform.position = new Vector3(transform.position.x, nCamPosy, -10);
 
         if (transform.position.y < -50)
@@ -74,23 +98,27 @@ public class Player : Damageable
             transform.position = new Vector3(transform.position.x, 0, 0);
         }
 
+        if (!canAttack)
+            return;
+
         if (Input.GetButtonDown("Attack"))
         {
-            //if (grounded)
-           // {
+            if (grounded)
+            {
                 attacking = true;
                 anim.SetBool("Attacking", true);
                 anim.SetBool("Swing", false);
+                CopySwordRotation(1.5f);
                 attackCharge = 0;
-           // }
-           // else
-           // {
-                //anim.SetTrigger("AirAttack");
-           // }
+                // if running increase speed / damage ?
+            }
+            else if (!downhit.collider)
+            {
+                anim.SetTrigger("DownwardStrike");
+            }
         }
         if (Input.GetButtonUp("Attack"))
         {
-            // TODO: in-air attacks
             if (!inAttackSwing)
             {
                 attacking = false;
@@ -156,41 +184,61 @@ public class Player : Damageable
             psprite.flipX = false;
         }
         float speed = Mathf.Abs(rb.velocity.x);
-        anim.SetFloat("Speed", speed > 0.05 ? speed : 0);
+        anim.SetFloat("Speed", speed > 0.05 ? speed : 0); 
 
         // falling 
         if (grounded)
         {
-            anim.SetBool("Jumping", false);
             anim.SetBool("Falling", false);
             curJumps = 0;
-            rb.AddForce(-0.05f * Vector2.up, ForceMode2D.Force);
         }
         else
         {
-            rb.AddForce(grav * Vector2.up, ForceMode2D.Force);
-            if (rb.velocity.y < 0)
+            if (rb.velocity.y < -1f)
             {
                 anim.SetBool("Falling", true);
             }
+        }
+
+        // dodge
+        if (dodgeTimer<=0)
+        {
+            if (grounded && Input.GetButtonDown("Dodge"))// && rb.velocity.x<0)
+            {
+                rb.velocity = dodgeVel;
+                anim.SetBool("Dodging", true);
+                invincible = true;
+                canMove = false;
+                canAttack = false;
+                Invoke("GiveControl", 1f); // backup give control
+            }
+        }
+        else {
+            dodgeTimer-=Time.deltaTime;
         }
 
         // jumping
         if (curJumps < numJumps && Input.GetButtonDown("Jump"))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
-            anim.SetBool("Jumping", true);
+            anim.SetTrigger("Jumping");
             curJumps++;
         }
     }
 
-    // start the attack sequence
-    // IEnumerator Attack()
-    // {
-    //     // while
-    //     yield return null;
-
-    // }
+	public IEnumerator CopySwordRotation(float dur)
+	{
+		float targetRotation = swordAnim.localEulerAngles.z;
+		float progress = 0;
+		swordPhys.localEulerAngles = new Vector3(0,0,targetRotation);
+		while(progress<1)
+		{
+			progress += Time.deltaTime / dur;
+			swordPhys.localEulerAngles = new Vector3(0,0,Mathf.Lerp(swordPhys.localEulerAngles.z, 0, progress));
+			yield return null;
+		}
+		swordPhys.localEulerAngles = new Vector3(0,0,0);
+	}
 
     /// Anim will call this to indicate the point of no return for the attack swing
     public void AttackSwingStart()
@@ -237,10 +285,34 @@ public class Player : Damageable
         }
     }
 
+    public void FinishDodge()
+    {
+        SetNotInvincible();
+        GiveControl();
+        anim.SetBool("Dodging", false);
+        rb.velocity = new Vector2(0, rb.velocity.y);
+        walkTimer = walkDur;
+        dodgeTimer = dodgeDelay;
+    }
+
+
+    public void GiveControl()
+    {
+        canMove = true;
+        canAttack = true;
+    }
+
     public override void OnHit(float amount)
     {
         anim.SetTrigger("Hit");
         walkTimer = walkDur;
+        invincible = true;
+        Invoke("NotInvincible", hitInvincibilityDur);
+    }
+
+    void SetNotInvincible()
+    {
+        invincible = false;
     }
 
     public override void Die()

@@ -19,14 +19,14 @@ AnimationClip:
       - serializedVersion: 2
         time: 0
         value: {x: 0, y: 0, z: 0}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
+        inSlope: {x: 0, y: 0, z: 1.940242}
+        outSlope: {x: 0, y: 0, z: 1.940242}
         tangentMode: 0
       - serializedVersion: 2
         time: 2.0166667
         value: {x: 0, y: 0, z: -70}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
+        inSlope: {x: 0, y: 0, z: -4.9093804}
+        outSlope: {x: 0, y: 0, z: -4.9093804}
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -219,15 +219,15 @@ AnimationClip:
       - serializedVersion: 2
         time: 0
         value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        inSlope: 1.940242
+        outSlope: 1.940242
+        tangentMode: 0
       - serializedVersion: 2
         time: 2.0166667
         value: -70
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        inSlope: -4.9093804
+        outSlope: -4.9093804
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -387,7 +387,7 @@ AnimationClip:
   m_GenerateMotionCurves: 0
   m_IsEmpty: 0
   m_Events:
-  - time: 1.55
+  - time: 1.5
     functionName: AttackSwingStart
     data: 
     objectReferenceParameter: {fileID: 0}

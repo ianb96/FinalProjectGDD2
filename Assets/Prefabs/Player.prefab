@@ -77,6 +77,7 @@ GameObject:
   - component: {fileID: 50601948880186654}
   - component: {fileID: 95948037243535992}
   - component: {fileID: 212290935709309568}
+  - component: {fileID: 114295982257836224}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -481,6 +482,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114295982257836224
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1346408456669340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180b5ec93bfc36d4592397fe37060243, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114343604437666798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -534,6 +546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   curHealth: 0
+  invincible: 0
   canMove: 1
   walkSpeed: 3
   runSpeed: 8
@@ -541,16 +554,21 @@ MonoBehaviour:
   numJumps: 2
   jumpHeight: 2
   jumpDist: 4
+  dodgeVel: {x: -10, y: 2}
+  canAttack: 1
   attackChargeDamages:
   - 8
   - 10
   - 12
   - 15
+  hitInvincibilityDur: 0.2
   swordHbs:
   - {fileID: 114410026551625104}
   - {fileID: 114788768923988024}
   psprite: {fileID: 212729698969947462}
   cam: {fileID: 0}
+  swordAnim: {fileID: 4078287014704724}
+  swordPhys: {fileID: 4326152445003692}
 --- !u!212 &212290935709309568
 SpriteRenderer:
   m_ObjectHideFlags: 1
