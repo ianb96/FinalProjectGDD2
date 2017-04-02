@@ -23,6 +23,7 @@ public class Player : Damageable
     public Vector2 dodgeVel = new Vector2(-2, 4);
     public float dodgeDelay = 1;
     float dodgeTimer = 0;
+    public Vector2 knockbackVel = new Vector2(-2f, 0.5f);
 
     public bool canAttack = true;
     bool attacking = false;
@@ -341,7 +342,8 @@ public class Player : Damageable
         anim.SetTrigger("Hit");
         walkTimer = walkDur;
         invincible = true;
-        Invoke("NotInvincible", hitInvincibilityDur);
+        rb.AddForce(knockbackVel, ForceMode2D.Impulse);
+        Invoke("SetNotInvincible", hitInvincibilityDur);
     }
 
     void SetNotInvincible()

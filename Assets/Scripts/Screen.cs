@@ -4,12 +4,24 @@ using UnityEngine;
 
 public class Screen : MonoBehaviour {
 
+	[ContextMenuItemAttribute("Show Screen", "Show")]
+	public bool rcToShow;
+	[ContextMenuItemAttribute("Hide Screen", "Hide")]
+	public bool rcToHide;
+	
 	Animator anim;
 	CanvasGroup cg;
-
-	void Start () {
+	
+	/// <summary>
+	/// Awake is called when the script instance is being loaded.
+	/// </summary>
+	void Awake()
+	{
 		cg = GetComponent<CanvasGroup>();
 		anim = GetComponent<Animator>();
+	}
+
+	void Start () {
 		Hide();
 		// reset offset?
 	}
