@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4097768734995412}
   - component: {fileID: 212379800409825852}
   - component: {fileID: 60739086306649434}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4123782261708300}
   - component: {fileID: 212963466518085580}
   - component: {fileID: 60957920939466012}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: arml
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4459071983779478}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: bossgiant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 114054156223739844}
   - component: {fileID: 95877011200155322}
   - component: {fileID: 66522117050615694}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BossGiant
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 4217327789513226}
   - component: {fileID: 212576818800505108}
   - component: {fileID: 60317095043126162}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: legl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 4145690326469396}
   - component: {fileID: 61396087231758486}
   - component: {fileID: 114372204161152040}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: stompHB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 4131555774265562}
   - component: {fileID: 61526565792125930}
   - component: {fileID: 114907296225299614}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: stomplHB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4135275227252748}
   - component: {fileID: 212166371350502182}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: leye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 4181040177272958}
   - component: {fileID: 212106087806818418}
   - component: {fileID: 60487421914572874}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 4331399033452874}
   - component: {fileID: 61506690902150326}
   - component: {fileID: 114190360315013846}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: fistHB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 4536468770200680}
   - component: {fileID: 212608816163405848}
   - component: {fileID: 60382012436311010}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 4606075537223874}
   - component: {fileID: 212960681342004438}
   - component: {fileID: 60754006792309080}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4065776328919176}
   - component: {fileID: 212241657193024360}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: reye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -390,7 +390,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1101487306367624}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30, y: 0, z: 0}
+  m_LocalPosition: {x: 30, y: 1, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children:
   - {fileID: 4459071983779478}
@@ -734,7 +734,7 @@ CompositeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -970,7 +970,7 @@ MonoBehaviour:
   invincible: 0
   showGUI: 0
   healthSlider: {fileID: 0}
-  aggro: 1
+  aggro: 0
   phase: 0
   hitboxes:
   - {fileID: 114372204161152040}
@@ -1048,7 +1048,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1945379395
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300006, guid: b43e7c4079fa9f94eacf2321f3d6630d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1088,7 +1088,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1945379395
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300002, guid: b43e7c4079fa9f94eacf2321f3d6630d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1128,7 +1128,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1945379395
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300004, guid: b43e7c4079fa9f94eacf2321f3d6630d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1168,7 +1168,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1945379395
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: b43e7c4079fa9f94eacf2321f3d6630d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1208,7 +1208,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1945379395
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300010, guid: b43e7c4079fa9f94eacf2321f3d6630d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1248,7 +1248,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1945379395
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300010, guid: b43e7c4079fa9f94eacf2321f3d6630d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1288,7 +1288,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1945379395
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300008, guid: b43e7c4079fa9f94eacf2321f3d6630d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1328,7 +1328,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1945379395
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300012, guid: b43e7c4079fa9f94eacf2321f3d6630d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

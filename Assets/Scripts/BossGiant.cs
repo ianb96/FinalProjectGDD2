@@ -40,7 +40,7 @@ public class BossGiant : Damageable {
 			}
 			else if (phase == 1)
 			{
-
+				anim.SetFloat("Speed", 0);
 			}
 		}
 	}
