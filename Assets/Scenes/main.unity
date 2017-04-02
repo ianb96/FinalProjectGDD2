@@ -155,6 +155,11 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!4 &106500819 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4232227129222522, guid: 7b36630e2fd332849b9ad9754f38d4de,
+    type: 2}
+  m_PrefabInternal: {fileID: 2139847907}
 --- !u!1001 &251154456
 Prefab:
   m_ObjectHideFlags: 0
@@ -1144,6 +1149,7 @@ GameObject:
   - component: {fileID: 1881554972}
   - component: {fileID: 1881554971}
   - component: {fileID: 1881554970}
+  - component: {fileID: 1881554974}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1220,6 +1226,22 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
+--- !u!114 &1881554974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1881554968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 092ef83908bf9324ab930826ec9ad260, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  follow: 1
+  target: {fileID: 106500819}
+  groundDetachHeight: 4
+  vOffset: 2
+  lastGroundHeight: 0
 --- !u!1 &2032508988 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1101487306367624, guid: 55680066035aba14ea6647c764e6f4c6,
@@ -1405,7 +1427,7 @@ Prefab:
         type: 2}
       propertyPath: cam
       value: 
-      objectReference: {fileID: 1881554969}
+      objectReference: {fileID: 1881554974}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b36630e2fd332849b9ad9754f38d4de, type: 2}
   m_IsPrefabParent: 0

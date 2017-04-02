@@ -19,7 +19,6 @@ public class Player : Damageable
     float jumpDur = 2;
     float jumpSpeed = 2;
     float grav = 10;
-    float lastGroundHeight = 0;
 
     public Vector2 dodgeVel = new Vector2(-2, 4);
     public float dodgeDelay = 1;
@@ -36,7 +35,7 @@ public class Player : Damageable
 
     public TriggerDamage[] swordHbs;
     public SpriteRenderer psprite;
-    public Transform cam;
+    public CameraMove cam;
     public Transform swordAnim;
     public Transform swordPhys;
     Rigidbody2D rb;
@@ -87,15 +86,6 @@ public class Player : Damageable
             anim.SetBool("Falling", true);
         }
 
-        // move camera
-        RaycastHit2D downhit = Physics2D.Raycast(transform.position, Vector3.down, 8, 1 << 8);
-        float nCamPosy = transform.position.y + 2;
-        if (downhit.collider && transform.position.y - downhit.point.y < 4)
-        {
-            nCamPosy = Mathf.Lerp(cam.transform.position.y, lastGroundHeight + 2, 20 * Time.deltaTime);
-        }
-        cam.transform.position = new Vector3(transform.position.x, nCamPosy, -10);
-
         if (transform.position.y < -50)
         {
             transform.position = new Vector3(transform.position.x, 0, 0);
@@ -116,10 +106,10 @@ public class Player : Damageable
                 // if running increase speed / damage ?
                 // walkTimer = walkDur;
             }
-            else if (!downhit.collider)
-            {
-                anim.SetTrigger("DownwardStrike");
-            }
+            // else if (!downhit.collider)
+            // {
+            //     anim.SetTrigger("DownwardStrike");
+            // }
         }
         if (Input.GetButtonUp("Attack"))
         {
@@ -274,6 +264,10 @@ public class Player : Damageable
         }
         SetSwordDamage();
     }
+    public void AttackSwingHit()
+    {
+        cam.StartCameraShake(0.2f, 0.2f);
+    }
     /// Anim will call this to indicate the attack swing is over
     public void AttackSwingEnd()
     {
@@ -346,7 +340,7 @@ public class Player : Damageable
             {
                 // hit the ground
                 grounded = true;
-                lastGroundHeight = transform.position.y;
+                cam.lastGroundHeight = transform.position.y;
             }
             else if (dot > -0.2f && dot < 0.2f)
             {
