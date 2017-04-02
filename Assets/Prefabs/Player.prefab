@@ -77,7 +77,8 @@ GameObject:
   - component: {fileID: 50601948880186654}
   - component: {fileID: 95948037243535992}
   - component: {fileID: 212290935709309568}
-  - component: {fileID: 114295982257836224}
+  - component: {fileID: 82315000829052084}
+  - component: {fileID: 114883370203803038}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -125,7 +126,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4078287014704724}
   - component: {fileID: 212633107404207808}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SwordAnim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +159,7 @@ GameObject:
   - component: {fileID: 4954719702427986}
   - component: {fileID: 70539156416273946}
   - component: {fileID: 114410026551625104}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SwordHB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -465,6 +466,86 @@ CapsuleCollider2D:
   m_Offset: {x: -1.91, y: 0}
   m_Size: {x: 3.29, y: 0.69}
   m_Direction: 1
+--- !u!82 &82315000829052084
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1346408456669340}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95948037243535992
 Animator:
   serializedVersion: 3
@@ -482,17 +563,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114295982257836224
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1346408456669340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 180b5ec93bfc36d4592397fe37060243, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114343604437666798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -547,22 +617,27 @@ MonoBehaviour:
   maxHealth: 10
   curHealth: 0
   invincible: 0
+  showGUI: 0
+  healthSlider: {fileID: 0}
   canMove: 1
   walkSpeed: 3
   runSpeed: 8
   walkDur: 3.5
   numJumps: 2
-  jumpHeight: 2
+  jumpHeight: 2.2
   jumpDist: 4
   dodgeVel: {x: -10, y: 2}
   dodgeDelay: 1
   canAttack: 1
+  maxAttackCharges: 3
   attackChargeDamages:
   - 2
   - 10
   - 20
   - 25
+  - 50
   hitInvincibilityDur: 0.2
+  knockbackForce: {x: 3, y: 2}
   swordHbs:
   - {fileID: 114410026551625104}
   - {fileID: 114788768923988024}
@@ -570,6 +645,20 @@ MonoBehaviour:
   cam: {fileID: 0}
   swordAnim: {fileID: 4078287014704724}
   swordPhys: {fileID: 4326152445003692}
+--- !u!114 &114883370203803038
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1346408456669340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63b94dcf25f6b59488bedd000adf3632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSound: {fileID: 0}
+  swingSound: {fileID: 0}
+  attackChargeUpSound: {fileID: 0}
 --- !u!212 &212290935709309568
 SpriteRenderer:
   m_ObjectHideFlags: 1

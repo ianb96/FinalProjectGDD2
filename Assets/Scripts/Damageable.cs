@@ -20,7 +20,10 @@ public class Damageable : MonoBehaviour
     public void Start()
     {
         curHealth = maxHealth;
-        healthSlider.value = 1;
+        if (showGUI)
+        {
+            healthSlider.value = 1;
+        }
     }
 
     public void TakeDamage(float amount)

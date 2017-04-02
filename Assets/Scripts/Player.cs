@@ -280,6 +280,7 @@ public class Player : Damageable
         inAttackSwing = false;
         attacking = false;
         anim.SetBool("Attacking", false);
+        anim.SetBool("Swing", false);
         walkTimer = walkDur;
         attackCharge = 0;
         SetSwordDamage();
