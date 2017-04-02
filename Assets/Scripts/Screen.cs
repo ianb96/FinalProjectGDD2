@@ -9,6 +9,7 @@ public class Screen : MonoBehaviour {
 	[ContextMenuItemAttribute("Hide Screen", "Hide")]
 	public bool rcToHide;
 	
+	public bool isInteractable = false;
 	Animator anim;
 	CanvasGroup cg;
 	
@@ -27,8 +28,8 @@ public class Screen : MonoBehaviour {
 	}
 	public void Show()
 	{
-		cg.interactable = true;
-		cg.blocksRaycasts = true;
+		cg.interactable = isInteractable;
+		cg.blocksRaycasts = isInteractable;
 		if (anim)
 			anim.SetBool("Open", true);
 		else

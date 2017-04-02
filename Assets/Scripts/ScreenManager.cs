@@ -28,6 +28,7 @@ public class ScreenManager : MonoBehaviour {
 	public void ShowScreen(Screen newScreen)
 	{
 		newScreen.Show();
+		newScreen.transform.SetAsLastSibling();
 		// add to list?
 	}
 	public void HideScreen(Screen newScreen)

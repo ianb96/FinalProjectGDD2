@@ -265,6 +265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rcToShow: 0
   rcToHide: 0
+  isInteractable: 1
 --- !u!225 &109891115
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1365,6 +1366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rcToShow: 0
   rcToHide: 0
+  isInteractable: 0
 --- !u!1 &916394138
 GameObject:
   m_ObjectHideFlags: 0
@@ -1973,6 +1975,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rcToShow: 0
   rcToHide: 0
+  isInteractable: 0
 --- !u!225 &1892225806
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2033,6 +2036,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rcToShow: 0
   rcToHide: 0
+  isInteractable: 0
 --- !u!225 &1970601507
 CanvasGroup:
   m_ObjectHideFlags: 0
