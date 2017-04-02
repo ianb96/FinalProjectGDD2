@@ -1,20 +1,34 @@
 fileFormatVersion: 2
 guid: c1e65fc7c6b34834a97667434e336b78
-timeCreated: 1490837391
+timeCreated: 1491158144
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: playerw_0
+    21300000: playerw_stand
     21300002: playerw_1
     21300004: playerw_2
     21300006: playerw_3
     21300008: playerw_4
-    21300010: playerw_5
-    21300012: playerw_6
-    21300014: playerw_7
-    21300016: playerw_8
-    21300018: playerw_9
-    21300020: playerw_10
+    21300010: playerw_stand2
+    21300012: playerw_up
+    21300014: playerw_down
+    21300016: playerw_land
+    21300018: playerw_hit
+    21300020: playerw_dodge
+    21300022: playerw_arms1
+    21300024: playerw_arms2
+    21300026: playerw_arms3
+    21300028: playerw_walk1
+    21300030: playerw_walk2
+    21300032: playerw_walk3
+    21300034: playerw_walk4
+    21300036: playerw_run1
+    21300038: playerw_run2
+    21300040: playerw_run3
+    21300042: playerw_run4
+    21300044: playerw_run5
+    21300046: playerw_run6
+    21300048: playerw_24
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -89,11 +103,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: playerw_0
+      name: playerw_stand
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
+        y: 384
         width: 128
         height: 128
       alignment: 7
@@ -106,7 +120,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 128
+        y: 384
         width: 128
         height: 128
       alignment: 7
@@ -119,7 +133,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 128
+        y: 384
         width: 128
         height: 128
       alignment: 7
@@ -132,7 +146,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 384
-        y: 128
+        y: 384
         width: 128
         height: 128
       alignment: 7
@@ -145,7 +159,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 512
-        y: 128
+        y: 384
         width: 128
         height: 128
       alignment: 7
@@ -154,11 +168,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: playerw_5
+      name: playerw_stand2
       rect:
         serializedVersion: 2
         x: 640
-        y: 128
+        y: 384
         width: 128
         height: 128
       alignment: 7
@@ -167,11 +181,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: playerw_6
+      name: playerw_up
       rect:
         serializedVersion: 2
         x: 768
-        y: 128
+        y: 384
         width: 128
         height: 128
       alignment: 7
@@ -180,10 +194,114 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: playerw_7
+      name: playerw_down
       rect:
         serializedVersion: 2
         x: 896
+        y: 384
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: playerw_land
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: playerw_hit
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: playerw_dodge
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: playerw_arms1
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: playerw_arms2
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: playerw_arms3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: playerw_walk1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 127
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: playerw_walk2
+      rect:
+        serializedVersion: 2
+        x: 128
         y: 128
         width: 128
         height: 128
@@ -193,7 +311,33 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: playerw_8
+      name: playerw_walk3
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: playerw_walk4
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: playerw_run1
       rect:
         serializedVersion: 2
         x: 0
@@ -206,7 +350,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: playerw_9
+      name: playerw_run2
       rect:
         serializedVersion: 2
         x: 128
@@ -219,10 +363,62 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: playerw_10
+      name: playerw_run3
       rect:
         serializedVersion: 2
         x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: playerw_run4
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: playerw_run5
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: playerw_run6
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: playerw_24
+      rect:
+        serializedVersion: 2
+        x: 768
         y: 0
         width: 128
         height: 128

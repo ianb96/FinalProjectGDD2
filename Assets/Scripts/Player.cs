@@ -38,6 +38,7 @@ public class Player : Damageable
     public CameraMove cam;
     public Transform swordAnim;
     public Transform swordPhys;
+    int levelLayer;
     Rigidbody2D rb;
     Animator anim;
     PlayerSound playerSound;
@@ -57,6 +58,7 @@ public class Player : Damageable
         base.Start();
         RecalculateJumpArc();
         SetSwordDamage();
+        levelLayer = 1 << LayerMask.NameToLayer("Level");
     }
 
     /// Uses jumpDist, jumpHeight, and maxSpeed to determine jumpDur, jumpSpeed, and grav
@@ -93,6 +95,12 @@ public class Player : Damageable
 
         if (!canAttack)
             return;
+
+        RaycastHit2D uhit = Physics2D.Raycast(transform.position, Vector3.up, 6, levelLayer);
+        if (uhit.collider)
+        {
+            return;
+        }
 
         if (Input.GetButtonDown("Attack"))
         {
@@ -133,7 +141,8 @@ public class Player : Damageable
         // left / right movement
         float hor = Input.GetAxis("Horizontal");
         Vector2 desiredSpeed = new Vector2(0, rb.velocity.y);
-        targetSpeed = Mathf.Lerp(targetSpeed, walkTimer <= 0 ? runSpeed : walkSpeed, 10 * Time.deltaTime);
+
+        targetSpeed = Mathf.Lerp(targetSpeed, walkTimer <= 0 ? runSpeed : walkSpeed, 2 * Time.deltaTime);
         if (Mathf.Abs(hor) > 0.05f)
         {
             if (walkTimer > 0)
@@ -142,19 +151,21 @@ public class Player : Damageable
             }
             if (desiredSpeed.x <= targetSpeed)
             {
-                float attackModifier = ((hor<0 && attacking) || anim.GetBool("Swing") ? 0.4f : 1f);
+                float attackModifier = ((hor < 0 && attacking) || anim.GetBool("Swing") ? 0.4f : 1f);
                 desiredSpeed.x += hor * targetSpeed * attackModifier;
             }
         }
         else
         {
-            if (!Input.GetButton("Horizontal"))
+            if (!Input.GetButton("Horizontal") && walkTimer<=0)
             {
                 // allow quick turns
                 walkTimer = walkDur;
             }
         }
-        rb.velocity = Vector2.Lerp(rb.velocity, desiredSpeed, 30 * Time.deltaTime);
+        rb.velocity = desiredSpeed;
+        //rb.AddForce(desiredSpeed,ForceMode2D.Force);
+        // = Vector2.Lerp(rb.velocity, desiredSpeed, 30 * Time.deltaTime);
         if (rb.velocity.x > targetSpeed)
         {
             rb.velocity = new Vector2(targetSpeed, rb.velocity.y);
@@ -163,17 +174,30 @@ public class Player : Damageable
         {
             rb.velocity = new Vector2(-targetSpeed, rb.velocity.y);
         }
+        // if (rb.velocity.x < 0 && !attacking)
+        // {
+        //     RaycastHit2D lhit = Physics2D.Raycast(transform.position, new Vector2(-1, 0.0f), 7.4f, levelLayer);
+        //     RaycastHit2D lhit1 = Physics2D.Raycast(transform.position, new Vector2(-1, 1f), 10f, levelLayer);
+        //     RaycastHit2D lhit2 = Physics2D.Raycast(transform.position, new Vector2(-1, 0.4f), 8f, levelLayer);
+        //     if (lhit.collider && lhit1.collider && lhit2.collider && lhit.collider == lhit1.collider && lhit.collider == lhit2.collider)
+        //     {
+        //         rb.velocity = new Vector2(-0.01f, rb.velocity.y);
+        //         walkTimer = walkDur;
+        //     }
+        // }
+        // swordPhys.GetComponent<Rigidbody2D>().Distance()
         // sprite facing
         if (hor < 0)
         {
             psprite.flipX = true;
         }
-        else if (hor > 0 || rb.velocity.x > 0.01)
+        else if (hor > 0 || rb.velocity.x > 0.01f)
         {
             psprite.flipX = false;
         }
-        else if (rb.velocity.x < 0) // its like this to fix edge cases
+        else if (rb.velocity.x < 0)
         {
+            // its like this to fix edge cases
             psprite.flipX = true;
         }
         if (inAttackSwing)
@@ -181,7 +205,14 @@ public class Player : Damageable
             psprite.flipX = false;
         }
         float speed = Mathf.Abs(rb.velocity.x);
-        anim.SetFloat("Speed", speed > 0.05 ? speed : 0);
+        if (speed < 0.01f)
+            speed = 0;
+        if (hor < 0 && attacking)
+        {
+            walkTimer = walkDur;
+            speed *= -1;
+        }
+        anim.SetFloat("Speed", speed);
 
         // falling 
         if (grounded)
@@ -208,6 +239,7 @@ public class Player : Damageable
                 canMove = false;
                 canAttack = false;
                 Invoke("GiveControl", 1f); // backup give control
+                psprite.flipX = false;
             }
         }
         else
@@ -329,8 +361,8 @@ public class Player : Damageable
     /// <param name="other">The Collision2D data associated with this collision.</param>
     void OnCollisionStay2D(Collision2D other)
     {
-        if (other.collider.gameObject.layer == 1 << LayerMask.NameToLayer("Sword"))
-            return;
+        // if (other.collider.gameObject.layer == 1 << LayerMask.NameToLayer("Sword"))
+        //     return;
         //grounded = false;
         foreach (ContactPoint2D contact in other.contacts)
         {

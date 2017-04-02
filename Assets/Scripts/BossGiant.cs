@@ -7,21 +7,24 @@ public class BossGiant : Damageable {
 
 	public bool aggro = true;
 	public int phase;
+	public TriggerDamage[] hitboxes;
 
 	Rigidbody2D rb;
 	Animator anim;
     Player player;
+	CameraMove cam;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+		cam = Camera.main.GetComponent<CameraMove>();
     }
 
     new void Start() {
         base.Start();
-		aggro = false;
+		//aggro = false;
     }
 
 	/// <summary>
@@ -33,7 +36,7 @@ public class BossGiant : Damageable {
 		{
 			if (phase==0)
 			{
-
+				anim.SetFloat("Speed", 1);
 			}
 			else if (phase == 1)
 			{
@@ -55,4 +58,8 @@ public class BossGiant : Damageable {
         //death anim and stuff
         Debug.Log("killed "+name);
     }
+	public void CameraShake()
+	{
+		cam.StartCameraShake(0.3f, 0.3f);
+	}
 }
