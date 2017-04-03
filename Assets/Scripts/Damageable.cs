@@ -27,13 +27,14 @@ public class Damageable : MonoBehaviour
         }
     }
 
+    /// Call this to attack this game object
     /// reduces current health by amount, and handles UI
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, GameObject attacker)
     {
         if (invincible || maxHealth < 0)
             return;
         curHealth -= amount;
-        OnHit(amount);
+        OnHit(amount, attacker);
         if (curHealth <= 0)
         {
             curHealth = 0;
@@ -48,7 +49,7 @@ public class Damageable : MonoBehaviour
     {
         // nothing
     }
-    public virtual void OnHit(float amount)
+    public virtual void OnHit(float amount, GameObject attacker)
     {
         // nothing
     }

@@ -16,12 +16,14 @@ public class TriggerDamage : MonoBehaviour
     /// <param name="other">The other Collider2D involved in this collision.</param>
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<Damageable>())
+        Damageable dam = other.GetComponent<Damageable>();
+        if (dam)
         {
-            other.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
+            dam.TakeDamage(damage, transform.root.gameObject);
+            // other.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
             if (destroyAfterHit)
             {
-                Destroy(gameObject, 0);
+                StartCoroutine(FadeOut());
             }
 			if (hitStop)
 			{
@@ -34,4 +36,17 @@ public class TriggerDamage : MonoBehaviour
 	{
 		Time.timeScale = 1f;
 	}
+    IEnumerator FadeOut()
+    {
+        float progress = 0;
+        float duration = 1;
+        SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
+        while (progress < 1)
+        {
+            progress += Time.deltaTime / duration;
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1.0f - progress);
+            yield return null;
+        }
+        Destroy(gameObject);
+    }
 }

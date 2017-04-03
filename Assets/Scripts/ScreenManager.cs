@@ -27,7 +27,7 @@ public class ScreenManager : MonoBehaviour {
 
 	public void ShowScreen(Screen newScreen)
 	{
-		newScreen.Show();
+		newScreen.SMShow();
 		newScreen.transform.SetAsLastSibling();
 		// add to list?
 	}

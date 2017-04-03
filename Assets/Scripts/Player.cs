@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : Damageable
 {
+    public Screen playerScreen;
     [HeaderAttribute("Movement")]
     public bool canMove = true;
     public float walkSpeed = 3;
@@ -64,6 +65,8 @@ public class Player : Damageable
         RecalculateJumpArc();
         SetSwordDamage();
         levelLayer = 1 << LayerMask.NameToLayer("Level");
+        if (showGUI)
+            playerScreen.Show();
     }
 
     /// Uses jumpDist, jumpHeight, and maxSpeed to determine jumpDur, jumpSpeed, and grav
@@ -82,6 +85,7 @@ public class Player : Damageable
             Move();
         }
         isInWater = Physics2D.OverlapCircle(transform.position, 0.2f, 1<<LayerMask.NameToLayer("Water"));
+        
         // gravity
         if (grounded)
         {
@@ -109,7 +113,7 @@ public class Player : Damageable
 
         if (Input.GetButtonDown("Attack"))
         {
-            if (grounded || isInWater)
+            //if (grounded || isInWater)
             {
                 attacking = true;
                 anim.SetBool("Attacking", true);
@@ -339,8 +343,9 @@ public class Player : Damageable
         canAttack = true;
     }
 
-    public override void OnHit(float amount)
+    public override void OnHit(float amount, GameObject attacker)
     {
+        Debug.Log("hit by "+attacker.name+" for "+amount);
         anim.SetTrigger("Hit");
         walkTimer = walkDur;
         invincible = true;

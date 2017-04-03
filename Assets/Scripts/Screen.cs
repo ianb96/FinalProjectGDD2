@@ -13,20 +13,16 @@ public class Screen : MonoBehaviour {
 	Animator anim;
 	CanvasGroup cg;
 	
-	/// <summary>
-	/// Awake is called when the script instance is being loaded.
-	/// </summary>
 	void Awake()
 	{
 		cg = GetComponent<CanvasGroup>();
 		anim = GetComponent<Animator>();
-	}
-
-	void Start () {
 		Hide();
 		// reset offset?
 	}
-	public void Show()
+
+	/// Only screen manager should call this
+	public void SMShow()
 	{
 		cg.interactable = isInteractable;
 		cg.blocksRaycasts = isInteractable;
@@ -35,6 +31,7 @@ public class Screen : MonoBehaviour {
 		else
 			cg.alpha = 1;
 	}
+	/// Hide this screen
 	public void Hide()
 	{
 		cg.interactable = false;
@@ -43,5 +40,10 @@ public class Screen : MonoBehaviour {
 			anim.SetBool("Open", false);
 		else 
 			cg.alpha = 0;
+	}
+	/// Tells the SceneManager to show this scene
+	public void Show()
+	{
+		GameObject.FindGameObjectWithTag("ScreenManager").GetComponent<ScreenManager>().ShowScreen(this);
 	}
 }
