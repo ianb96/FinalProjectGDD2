@@ -48,6 +48,12 @@ TagManager:
   - name: Enemies
     uniqueID: 1945379395
     locked: 0
+  - name: BehindEffects
+    uniqueID: 2377783877
+    locked: 0
   - name: Player
     uniqueID: 2086148855
+    locked: 0
+  - name: Effects
+    uniqueID: 2244699751
     locked: 0

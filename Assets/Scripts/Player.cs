@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : Damageable
 {
-
+    [HeaderAttribute("Movement")]
     public bool canMove = true;
     public float walkSpeed = 3;
     public float runSpeed = 5;
@@ -18,8 +18,10 @@ public class Player : Damageable
     int curJumps;
     float jumpDur = 2;
     float jumpSpeed = 2;
-    float grav = 10;
+    float grav = -10;
+    bool isInWater = false;
 
+    [HeaderAttribute("Combat")]
     public Vector2 dodgeVel = new Vector2(-2, 4);
     public float dodgeDelay = 1;
     float dodgeTimer = 0;
@@ -33,12 +35,14 @@ public class Player : Damageable
     public float[] attackChargeDamages = { 2, 10, 12, 15 };
     public float hitInvincibilityDur = 0.2f;
     public Vector2 knockbackForce = new Vector2(3, 2);
-
     public TriggerDamage[] swordHbs;
+    
+    [HeaderAttribute("Other")]
     public SpriteRenderer psprite;
     public CameraMove cam;
     public Transform swordAnim;
     public Transform swordPhys;
+    public ParticleSystem doubleJumpEffect;
     int levelLayer;
     Rigidbody2D rb;
     Animator anim;
@@ -77,7 +81,7 @@ public class Player : Damageable
         {
             Move();
         }
-
+        isInWater = Physics2D.OverlapCircle(transform.position, 0.2f, 1<<LayerMask.NameToLayer("Water"));
         // gravity
         if (grounded)
         {
@@ -86,7 +90,6 @@ public class Player : Damageable
         else
         {
             rb.AddForce(grav * Vector2.up, ForceMode2D.Force);
-            anim.SetBool("Falling", true);
         }
 
         if (transform.position.y < -50)
@@ -97,15 +100,16 @@ public class Player : Damageable
         if (!canAttack)
             return;
 
-        RaycastHit2D uhit = Physics2D.Raycast(transform.position, Vector3.up, 6, levelLayer);
-        if (uhit.collider)
-        {
-            return;
-        }
+        // don't swing sword if not enough room
+        // RaycastHit2D uhit = Physics2D.Raycast(transform.position, Vector3.up, 4, levelLayer);
+        // if (uhit.collider)
+        // {
+        //     return;
+        // }
 
         if (Input.GetButtonDown("Attack"))
         {
-            if (grounded)
+            if (grounded || isInWater)
             {
                 attacking = true;
                 anim.SetBool("Attacking", true);
@@ -115,6 +119,7 @@ public class Player : Damageable
                 // if running increase speed / damage ?
                 // walkTimer = walkDur;
             }
+            // TODO: in-air attack
             // else if (!downhit.collider)
             // {
             //     anim.SetTrigger("DownwardStrike");
@@ -165,28 +170,16 @@ public class Player : Damageable
             }
         }
         rb.velocity = desiredSpeed;
-        //rb.AddForce(desiredSpeed,ForceMode2D.Force);
+        //rb.AddForce(desiredSpeed, ForceMode2D.Force);
         // = Vector2.Lerp(rb.velocity, desiredSpeed, 30 * Time.deltaTime);
-        if (rb.velocity.x > targetSpeed)
-        {
-            rb.velocity = new Vector2(targetSpeed, rb.velocity.y);
-        }
-        else if (rb.velocity.x < -targetSpeed)
-        {
-            rb.velocity = new Vector2(-targetSpeed, rb.velocity.y);
-        }
-        // if (rb.velocity.x < 0 && !attacking)
+        // if (rb.velocity.x > targetSpeed)
         // {
-        //     RaycastHit2D lhit = Physics2D.Raycast(transform.position, new Vector2(-1, 0.0f), 7.4f, levelLayer);
-        //     RaycastHit2D lhit1 = Physics2D.Raycast(transform.position, new Vector2(-1, 1f), 10f, levelLayer);
-        //     RaycastHit2D lhit2 = Physics2D.Raycast(transform.position, new Vector2(-1, 0.4f), 8f, levelLayer);
-        //     if (lhit.collider && lhit1.collider && lhit2.collider && lhit.collider == lhit1.collider && lhit.collider == lhit2.collider)
-        //     {
-        //         rb.velocity = new Vector2(-0.01f, rb.velocity.y);
-        //         walkTimer = walkDur;
-        //     }
+        //     rb.velocity = new Vector2(targetSpeed, rb.velocity.y);
         // }
-        // swordPhys.GetComponent<Rigidbody2D>().Distance()
+        // else if (rb.velocity.x < -targetSpeed)
+        // {
+        //     rb.velocity = new Vector2(-targetSpeed, rb.velocity.y);
+        // }
         // sprite facing
         if (hor < 0)
         {
@@ -216,7 +209,7 @@ public class Player : Damageable
         anim.SetFloat("Speed", speed);
 
         // falling 
-        if (grounded)
+        if (grounded && rb.velocity.y<=0)
         {
             anim.SetBool("Falling", false);
             curJumps = 0;
@@ -249,11 +242,15 @@ public class Player : Damageable
         }
 
         // jumping
-        if (curJumps < numJumps && Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && (curJumps < numJumps - (grounded?1:0) || isInWater))
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+            if (!isInWater)
+                curJumps++;
+            rb.velocity = new Vector2(rb.velocity.x, jumpSpeed * (isInWater ? 0.4f:1));
             anim.SetTrigger("Jumping");
-            curJumps++;
+            anim.SetBool("Falling", false);
+            if (!grounded)
+                doubleJumpEffect.Play();
         }
     }
 
@@ -330,7 +327,12 @@ public class Player : Damageable
         dodgeTimer = dodgeDelay;
     }
 
-
+    public void TakeControl()
+    {
+        anim.SetFloat("Speed", 0);
+        canMove = false;
+        canAttack = false;
+    }
     public void GiveControl()
     {
         canMove = true;
@@ -342,6 +344,8 @@ public class Player : Damageable
         anim.SetTrigger("Hit");
         walkTimer = walkDur;
         invincible = true;
+        TakeControl();
+        Invoke("GiveControl", 0.4f);
         rb.AddForce(knockbackVel, ForceMode2D.Impulse);
         Invoke("SetNotInvincible", hitInvincibilityDur);
     }

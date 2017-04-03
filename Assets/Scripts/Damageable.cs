@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class Damageable : MonoBehaviour
 {
-
-    public float maxHealth = 10;// negative for perma-invinciblity
-    public float curHealth;
-    public bool invincible = false;
-
-    public bool showGUI = false;
+    [HeaderAttribute("Health")]
+    [SerializeField]
+    protected float maxHealth = 10;// negative for perma-invinciblity
+    protected float curHealth;
+    protected bool invincible = false;
+    [SerializeField]
+    protected bool showGUI = false;
     public Slider healthSlider;
 
     /// <summary>
@@ -26,6 +27,7 @@ public class Damageable : MonoBehaviour
         }
     }
 
+    /// reduces current health by amount, and handles UI
     public void TakeDamage(float amount)
     {
         if (invincible || maxHealth < 0)
