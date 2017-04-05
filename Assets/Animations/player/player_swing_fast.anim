@@ -23,25 +23,25 @@ AnimationClip:
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
       - serializedVersion: 2
-        time: 0.13333334
-        value: {x: 62.070004, y: 7.2060003, z: -33.695}
-        inSlope: {x: 209.67534, y: 0, z: 0}
-        outSlope: {x: 209.67534, y: 0, z: 0}
+        time: 0.033333335
+        value: {x: 58.212, y: 0.65800005, z: -17.734001}
+        inSlope: {x: 1212.165, y: 0, z: 0}
+        outSlope: {x: 1212.165, y: 0, z: 0}
         tangentMode: 0
       - serializedVersion: 2
-        time: 0.28333333
-        value: {x: 76.922005, y: -16.869001, z: 30.696001}
-        inSlope: {x: 0, y: 0, z: 702.44727}
-        outSlope: {x: 0, y: 0, z: 702.44727}
+        time: 0.06666667
+        value: {x: 80.811005, y: -13.832001, z: 33.628002}
+        inSlope: {x: 0, y: 0, z: 648.78326}
+        outSlope: {x: 0, y: 0, z: 648.78326}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.35
+        value: {x: 67.032005, y: 8.031, z: 331.77}
+        inSlope: {x: -127.190765, y: 0, z: 260.58475}
+        outSlope: {x: -127.190765, y: 0, z: 260.58475}
         tangentMode: 0
       - serializedVersion: 2
         time: 0.5
-        value: {x: 74.11301, y: -6.9550004, z: 317.602}
-        inSlope: {x: -26.966383, y: 40.485603, z: 407.02097}
-        outSlope: {x: -26.966383, y: 40.485603, z: 407.02097}
-        tangentMode: 0
-      - serializedVersion: 2
-        time: 0.7
         value: {x: 0, y: 0, z: 360}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
@@ -52,7 +52,39 @@ AnimationClip:
     path: Sword/playerarms_0
   m_PositionCurves: []
   m_ScaleCurves: []
-  m_FloatCurves: []
+  m_FloatCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Sword/playerarms_0/SwordPhys
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Sword/playerarms_0/SwordAnim
+    classID: 1
+    script: {fileID: 0}
   m_PPtrCurves: []
   m_SampleRate: 60
   m_WrapMode: 0
@@ -68,13 +100,27 @@ AnimationClip:
       typeID: 4
       customType: 14
       isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 2611342819
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 3342896793
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
+      isPPtrCurve: 0
     pptrCurveMapping: []
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.7
+    m_StopTime: 0.5
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -100,25 +146,25 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.13333334
-        value: 62.070004
-        inSlope: 209.67534
-        outSlope: 209.67534
+        time: 0.033333335
+        value: 58.212
+        inSlope: 1212.165
+        outSlope: 1212.165
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.28333333
-        value: 76.922005
+        time: 0.06666667
+        value: 80.811005
         inSlope: 0
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.5
-        value: 74.11301
-        inSlope: -26.966383
-        outSlope: -26.966383
+        time: 0.35
+        value: 67.032005
+        inSlope: -127.190765
+        outSlope: -127.190765
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.7
+        time: 0.5
         value: 0
         inSlope: 0
         outSlope: 0
@@ -140,25 +186,25 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.13333334
-        value: 7.2060003
+        time: 0.033333335
+        value: 0.65800005
         inSlope: 0
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.28333333
-        value: -16.869001
+        time: 0.06666667
+        value: -13.832001
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.35
+        value: 8.031
         inSlope: 0
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
         time: 0.5
-        value: -6.9550004
-        inSlope: 40.485603
-        outSlope: 40.485603
-        tangentMode: 136
-      - serializedVersion: 2
-        time: 0.7
         value: 0
         inSlope: 0
         outSlope: 0
@@ -180,25 +226,25 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.13333334
-        value: -33.695
+        time: 0.033333335
+        value: -17.734001
         inSlope: 0
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.28333333
-        value: 30.696001
-        inSlope: 702.44727
-        outSlope: 702.44727
+        time: 0.06666667
+        value: 33.628002
+        inSlope: 648.78326
+        outSlope: 648.78326
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.35
+        value: 331.77
+        inSlope: 260.58475
+        outSlope: 260.58475
         tangentMode: 136
       - serializedVersion: 2
         time: 0.5
-        value: 317.602
-        inSlope: 407.02097
-        outSlope: 407.02097
-        tangentMode: 136
-      - serializedVersion: 2
-        time: 0.7
         value: 360
         inSlope: 0
         outSlope: 0
@@ -209,6 +255,38 @@ AnimationClip:
     attribute: localEulerAnglesRaw.z
     path: Sword/playerarms_0
     classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Sword/playerarms_0/SwordPhys
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Sword/playerarms_0/SwordAnim
+    classID: 1
     script: {fileID: 0}
   m_EulerEditorCurves:
   - curve:
@@ -244,4 +322,18 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.11666667
+    functionName: AttackSwingSpin
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.48333332
+    functionName: AttackSwingEnd
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

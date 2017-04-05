@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 95436094033588390}
   - component: {fileID: 114524227072334364}
   m_Layer: 9
-  m_Name: Enemy
+  m_Name: RangedEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,7 +142,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1762056863780330}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.55, y: 0.5, z: 0}
+  m_LocalPosition: {x: -0.34, y: 2.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4180979706286178}
@@ -263,6 +263,7 @@ MonoBehaviour:
   damage: 1
   destroyAfterHit: 0
   hitStop: 0
+  hitStopTime: 0.05
 --- !u!114 &114524227072334364
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -279,11 +280,12 @@ MonoBehaviour:
   healthSlider: {fileID: 0}
   isRangedType: 1
   movementSpeed: 2.5
-  attackRate: 4
+  attackRate: 3
   damage: 1
   attackRange: 8
   followRange: 5
   knockbackForce: {x: 6, y: 4}
+  hitboxes: []
   projectileSpawnPos: {fileID: 4745634631682254}
   projectilePrefab: {fileID: 1528577635308828, guid: 5552578f0c400ed45bb0c75d73d3927c,
     type: 2}

@@ -7,11 +7,13 @@ public class SwordRepulser : MonoBehaviour {
 	// Rigidbody2D rb;
 	// Rigidbody2D playerRb;
 	Collider2D col;
+	Player player;
 	// / <summary>
 	// / Awake is called when the script instance is being loaded.
 	// / </summary>
 	void Awake()
 	{
+		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		col = GetComponent<Collider2D>();
 		// rb = GetComponent<Rigidbody2D>();
 		// playerRb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
@@ -46,6 +48,8 @@ public class SwordRepulser : MonoBehaviour {
 	/// </summary>
 	void Update()
 	{
+		if (!player.grounded)
+			return;
 		Collider2D sword = Physics2D.OverlapCircle((Vector2)transform.position + col.offset, 0.2f, 1<<LayerMask.NameToLayer("Sword"));
 		col.enabled = sword;
 	}

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class TriggerDamage : MonoBehaviour
 {
-
     public float damage = 0;
     public bool destroyAfterHit = false;
 	public bool hitStop = false;
+    public float hitStopTime = 0.05f;
 
     /// <summary>
     /// Sent when another object enters a trigger collider attached to this
@@ -16,6 +16,8 @@ public class TriggerDamage : MonoBehaviour
     /// <param name="other">The other Collider2D involved in this collision.</param>
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (damage==0)
+            return;
         Damageable dam = other.GetComponent<Damageable>();
         if (dam)
         {
@@ -26,17 +28,16 @@ public class TriggerDamage : MonoBehaviour
                 StartCoroutine(FadeOut());
             }
 			if (hitStop)
-			{
-				Time.timeScale = 0.1f;
-				Invoke("ResetTime", 0.025f);
-			}
+                StartCoroutine(HitStop());
         }
     }
-	void ResetTime()
-	{
-		Time.timeScale = 1f;
-	}
-    IEnumerator FadeOut()
+    public IEnumerator HitStop()
+    {
+        Time.timeScale = 0.1f;
+        yield return new WaitForSecondsRealtime(hitStopTime);
+        Time.timeScale = 1f;
+    }
+    public IEnumerator FadeOut()
     {
         float progress = 0;
         float duration = 1;

@@ -12,7 +12,7 @@ public class Player : Damageable
     public float walkDur = 4;
     float targetSpeed = 0;
     float walkTimer = 0;
-    bool grounded = false;
+    public bool grounded = false;
     public int numJumps = 2;
     public float jumpHeight = 5;
     public float jumpDist = 4;
@@ -27,6 +27,8 @@ public class Player : Damageable
     public float dodgeDelay = 1;
     float dodgeTimer = 0;
     public Vector2 knockbackVel = new Vector2(-2f, 0.5f);
+    int spinLoops = 0;
+    public int spinsToFly = 20;
 
     public bool canAttack = true;
     bool attacking = false;
@@ -37,7 +39,7 @@ public class Player : Damageable
     public float hitInvincibilityDur = 0.2f;
     public Vector2 knockbackForce = new Vector2(3, 2);
     public TriggerDamage[] swordHbs;
-    
+
     [HeaderAttribute("Other")]
     public SpriteRenderer psprite;
     public CameraMove cam;
@@ -84,8 +86,8 @@ public class Player : Damageable
         {
             Move();
         }
-        isInWater = Physics2D.OverlapCircle(transform.position, 0.2f, 1<<LayerMask.NameToLayer("Water"));
-        
+        isInWater = Physics2D.OverlapCircle(transform.position, 0.2f, 1 << LayerMask.NameToLayer("Water"));
+
         // gravity
         if (grounded)
         {
@@ -131,15 +133,15 @@ public class Player : Damageable
         }
         if (Input.GetButtonUp("Attack"))
         {
-            if (!inAttackSwing)
-            {
-                attacking = false;
-                anim.SetBool("Attacking", false);
-            }
-            else
+            // if (!inAttackSwing)
+            // {
+            //     attacking = false;
+            //     anim.SetBool("Attacking", false);
+            // }
+            // else
             {
                 anim.SetBool("Swing", true);
-                rb.velocity = Vector3.zero;
+                //rb.velocity = Vector3.zero;
                 walkTimer = walkDur;
             }
         }
@@ -167,7 +169,7 @@ public class Player : Damageable
         }
         else
         {
-            if (!Input.GetButton("Horizontal") && walkTimer<=0)
+            if (!Input.GetButton("Horizontal") && walkTimer <= 0)
             {
                 // allow quick turns
                 walkTimer = walkDur;
@@ -213,7 +215,7 @@ public class Player : Damageable
         anim.SetFloat("Speed", speed);
 
         // falling 
-        if (grounded && rb.velocity.y<=0)
+        if (grounded && rb.velocity.y <= 0)
         {
             anim.SetBool("Falling", false);
             curJumps = 0;
@@ -246,11 +248,11 @@ public class Player : Damageable
         }
 
         // jumping
-        if (Input.GetButtonDown("Jump") && (curJumps < numJumps - (grounded?1:0) || isInWater))
+        if (Input.GetButtonDown("Jump") && (curJumps < numJumps - (grounded ? 1 : 0) || isInWater))
         {
             if (!isInWater)
                 curJumps++;
-            rb.velocity = new Vector2(rb.velocity.x, jumpSpeed * (isInWater ? 0.4f:1));
+            rb.velocity = new Vector2(rb.velocity.x, jumpSpeed * (isInWater ? 0.4f : 1));
             anim.SetTrigger("Jumping");
             anim.SetBool("Falling", false);
             if (!grounded)
@@ -300,6 +302,7 @@ public class Player : Damageable
     }
     public void AttackSwingHit()
     {
+        rb.velocity = Vector3.zero;
         cam.StartCameraShake(0.2f, 0.2f);
     }
     /// Anim will call this to indicate the attack swing is over
@@ -311,7 +314,22 @@ public class Player : Damageable
         anim.SetBool("Swing", false);
         walkTimer = walkDur;
         attackCharge = 0;
+        spinLoops = 0;
         SetSwordDamage();
+    }
+    /// Anim will call this to indicate the attack swing can spin again
+    public void AttackSwingSpin()
+    {
+        anim.SetBool("Swing", false);
+        spinLoops++;
+        if (spinLoops > 5)
+        {
+            // rb.velocity += Vector2.up;
+        }
+        else if (spinLoops == 5)
+        {
+            Debug.Log("flying!");
+        }
     }
     public void SetSwordDamage()
     {
@@ -345,7 +363,7 @@ public class Player : Damageable
 
     public override void OnHit(float amount, GameObject attacker)
     {
-        Debug.Log("hit by "+attacker.name+" for "+amount);
+        Debug.Log("hit by " + attacker.name + " for " + amount);
         anim.SetTrigger("Hit");
         walkTimer = walkDur;
         invincible = true;
