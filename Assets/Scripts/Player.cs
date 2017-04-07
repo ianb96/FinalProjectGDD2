@@ -27,15 +27,14 @@ public class Player : Damageable
     public float dodgeDelay = 1;
     float dodgeTimer = 0;
     public Vector2 knockbackVel = new Vector2(-2f, 0.5f);
-    int spinLoops = 0;
-    public int spinsToFly = 20;
-
+    
     public bool canAttack = true;
     bool attacking = false;
     bool inAttackSwing = false;
     int attackCharge = 0;
     public int maxAttackCharges = 3;
     public float[] attackChargeDamages = { 2, 10, 12, 15 };
+    public float movingSwordDamage = 6;
     public float hitInvincibilityDur = 0.2f;
     public Vector2 knockbackForce = new Vector2(3, 2);
     public TriggerDamage[] swordHbs;
@@ -115,13 +114,15 @@ public class Player : Damageable
 
         if (Input.GetButtonDown("Attack"))
         {
+            anim.SetBool("Charging", true);
+            attacking = true;
+            anim.SetBool("Attacking", true);
+            anim.ResetTrigger("Swing");
+            StartCoroutine(CopySwordRotation(1.5f));
+            attackCharge = 0;
+            
             //if (grounded || isInWater)
             {
-                attacking = true;
-                anim.SetBool("Attacking", true);
-                anim.SetBool("Swing", false);
-                StartCoroutine(CopySwordRotation(1.5f));
-                attackCharge = 0;
                 // if running increase speed / damage ?
                 // walkTimer = walkDur;
             }
@@ -133,6 +134,9 @@ public class Player : Damageable
         }
         if (Input.GetButtonUp("Attack"))
         {
+            anim.SetBool("Charging", false);
+            anim.SetTrigger("Swing");
+            //walkTimer = walkDur;
             // if (!inAttackSwing)
             // {
             //     attacking = false;
@@ -140,9 +144,8 @@ public class Player : Damageable
             // }
             // else
             {
-                anim.SetBool("Swing", true);
+                // anim.SetBool("Swing", true);
                 //rb.velocity = Vector3.zero;
-                walkTimer = walkDur;
             }
         }
     }
@@ -213,6 +216,13 @@ public class Player : Damageable
             speed *= -1;
         }
         anim.SetFloat("Speed", speed);
+        if (attackCharge==0){ 
+            if (rb.velocity.sqrMagnitude>1)
+                SetSwordDamage(movingSwordDamage);
+            else 
+                SetSwordDamage();
+        }
+
 
         // falling 
         if (grounded && rb.velocity.y <= 0)
@@ -311,31 +321,19 @@ public class Player : Damageable
         inAttackSwing = false;
         attacking = false;
         anim.SetBool("Attacking", false);
-        anim.SetBool("Swing", false);
+        anim.ResetTrigger("Swing");
         walkTimer = walkDur;
         attackCharge = 0;
-        spinLoops = 0;
         SetSwordDamage();
     }
-    /// Anim will call this to indicate the attack swing can spin again
-    public void AttackSwingSpin()
-    {
-        anim.SetBool("Swing", false);
-        spinLoops++;
-        if (spinLoops > 5)
-        {
-            // rb.velocity += Vector2.up;
-        }
-        else if (spinLoops == 5)
-        {
-            Debug.Log("flying!");
-        }
-    }
-    public void SetSwordDamage()
+    public void SetSwordDamage(float amount = -1)
     {
         foreach (TriggerDamage swordHB in swordHbs)
         {
-            swordHB.damage = attackChargeDamages[attackCharge];
+            if (amount == -1)
+                swordHB.damage = attackChargeDamages[attackCharge];
+            else
+                swordHB.damage = amount;
         }
     }
 

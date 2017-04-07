@@ -1034,8 +1034,8 @@ GameObject:
   m_PrefabParentObject: {fileID: 1678849940778418, guid: 7b36630e2fd332849b9ad9754f38d4de,
     type: 2}
   m_PrefabInternal: {fileID: 2139847907}
---- !u!68 &541179015
-EdgeCollider2D:
+--- !u!58 &541179014
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -1046,11 +1046,9 @@ EdgeCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -4, y: -0.02}
-  - {x: -4, y: -0.46}
+  m_Offset: {x: -3.9, y: -0.2}
+  serializedVersion: 2
+  m_Radius: 0.2
 --- !u!1001 &620174707
 Prefab:
   m_ObjectHideFlags: 0
@@ -3931,7 +3929,7 @@ Prefab:
     - target: {fileID: 50636815306871770, guid: 7b36630e2fd332849b9ad9754f38d4de,
         type: 2}
       propertyPath: m_Mass
-      value: 7.0318365
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114825856443809030, guid: 7b36630e2fd332849b9ad9754f38d4de,
         type: 2}
@@ -3961,14 +3959,6 @@ Prefab:
       propertyPath: m_Radius
       value: 0.15
       objectReference: {fileID: 0}
-    - target: {fileID: 4078287014704724, guid: 7b36630e2fd332849b9ad9754f38d4de, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4078287014704724, guid: 7b36630e2fd332849b9ad9754f38d4de, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 58365437963945316, guid: 7b36630e2fd332849b9ad9754f38d4de,
         type: 2}
       propertyPath: m_UsedByEffector
@@ -3983,6 +3973,34 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078287014704724, guid: 7b36630e2fd332849b9ad9754f38d4de, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078287014704724, guid: 7b36630e2fd332849b9ad9754f38d4de, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114825856443809030, guid: 7b36630e2fd332849b9ad9754f38d4de,
+        type: 2}
+      propertyPath: jumpHeight
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114825856443809030, guid: 7b36630e2fd332849b9ad9754f38d4de,
+        type: 2}
+      propertyPath: jumpDist
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 233480626043417208, guid: 7b36630e2fd332849b9ad9754f38d4de,
+        type: 2}
+      propertyPath: m_EnableCollision
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 233480626043417208, guid: 7b36630e2fd332849b9ad9754f38d4de,
+        type: 2}
+      propertyPath: m_AngleLimits.m_LowerAngle
+      value: -85
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 58365437963945316, guid: 7b36630e2fd332849b9ad9754f38d4de, type: 2}
