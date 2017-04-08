@@ -40,6 +40,7 @@ public class Player : Damageable
     public float hitInvincibilityDur = 0.2f;
     public Vector2 knockbackForce = new Vector2(3, 2);
     public TriggerDamage[] swordHbs;
+    public Screen deadScreen;
 
     [HeaderAttribute("Other")]
     public SpriteRenderer psprite;
@@ -47,10 +48,11 @@ public class Player : Damageable
     public Transform swordAnim;
     public Transform swordPhys;
     public ParticleSystem doubleJumpEffect;
-    int levelLayer;
+    // int levelLayer;
     Rigidbody2D rb;
     Animator anim;
     PlayerSound playerSound;
+    LevelManager lm;
 
     /// Awake is called when the script instance is being loaded.
     void Awake()
@@ -58,6 +60,7 @@ public class Player : Damageable
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         playerSound = GetComponent<PlayerSound>();
+        lm = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
     }
 
     /// Start is called on the frame when a script is enabled just before
@@ -67,10 +70,9 @@ public class Player : Damageable
         base.Start();
         RecalculateJumpArc();
         SetSwordDamage();
-        levelLayer = 1 << LayerMask.NameToLayer("Level");
+        // levelLayer = 1 << LayerMask.NameToLayer("Level");
         if (showGUI)
             playerScreen.Show();
-        
     }
 
     /// Uses jumpDist, jumpHeight, and maxSpeed to determine jumpDur, jumpSpeed, and grav
@@ -84,6 +86,8 @@ public class Player : Damageable
     /// Update is called every frame, if the MonoBehaviour is enabled.
     void Update()
     {
+        if (Time.timeScale == 0)
+            return;
         isInWater = Physics2D.OverlapCircle(transform.position, 0.2f, 1 << LayerMask.NameToLayer("Water"));
 
         // gravity
@@ -105,13 +109,6 @@ public class Player : Damageable
         if (!canAttack)
             return;
 
-        // don't swing sword if not enough room
-        // RaycastHit2D uhit = Physics2D.Raycast(transform.position, Vector3.up, 4, levelLayer);
-        // if (uhit.collider)
-        // {
-        //     return;
-        // }
-
         if (Input.GetButtonDown("Attack"))
         {
             anim.SetBool("Charging", true);
@@ -121,12 +118,9 @@ public class Player : Damageable
             StartCoroutine(CopySwordRotation(1.5f));
             attackCharge = 0;
 
-            //if (grounded || isInWater)
-            {
-                // if running increase speed / damage ?
-                // walkTimer = walkDur;
-            }
             // TODO: in-air attack
+            // if running increase speed / damage ?
+            //if (grounded || isInWater)
             // else if (!downhit.collider)
             // {
             //     anim.SetTrigger("DownwardStrike");
@@ -146,6 +140,8 @@ public class Player : Damageable
     /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
     void FixedUpdate()
     {
+        if (Time.timeScale == 0)
+            return;
         if (canMove)
         {
             Move();
@@ -272,6 +268,7 @@ public class Player : Damageable
         }
     }
 
+    /// Help anim sword and phys sword align when switching
     public IEnumerator CopySwordRotation(float dur)
     {
         float targetRotation = swordPhys.localEulerAngles.z;
@@ -380,13 +377,22 @@ public class Player : Damageable
 
     public override void Die()
     {
-        // respawn
+        anim.SetBool("Dead", true);
+        deadScreen.Show();
     }
+    /// move back to last checkpoint with full health
     public void Respawn()
     {
-        
+        FullHeal();
+        // full heal effect?
+        anim.SetBool("Dead", false);
+        transform.position = lm.GetCheckpoint().position;
+        // animation?
     }
-
+    public void ActivatedCheckpoint()
+    {
+        FullHeal();
+    }
     /// <summary>
     /// Sent when an incoming collider makes contact with this object's
     /// collider (2D physics only).

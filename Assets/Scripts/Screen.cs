@@ -17,8 +17,10 @@ public class Screen : MonoBehaviour {
 	{
 		cg = GetComponent<CanvasGroup>();
 		anim = GetComponent<Animator>();
+		// reset offset
+		GetComponent<RectTransform>().offsetMin = new Vector2(0,0);
+		GetComponent<RectTransform>().offsetMax = new Vector2(1,1);
 		Hide();
-		// reset offset?
 	}
 
 	/// Only screen manager should call this

@@ -12,7 +12,7 @@ public class ScreenManager : MonoBehaviour
 
     void Start()
     {
-        DontDestroyOnLoad(gameObject);
+		// time starts at 0?
         if (initialScreen)
             ShowScreen(initialScreen);
     }

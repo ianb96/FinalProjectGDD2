@@ -8,11 +8,12 @@ public class CameraMove : MonoBehaviour {
 	public Transform target;
 	public float groundDetachHeight = 4;
 	public float vOffset = 2;
+	public float hOffset = 2;
 	[HideInInspector]
 	public float lastGroundHeight;
 	bool isShaking = false;
 	int levelLayer;
-
+	// TODO: dynamic zoom
 	void Start () {
 		levelLayer = 1 << LayerMask.NameToLayer("Level");
 		lastGroundHeight = target.transform.position.y;
@@ -30,7 +31,7 @@ public class CameraMove : MonoBehaviour {
         {
             nCamPosy = Mathf.Lerp(transform.position.y, lastGroundHeight + vOffset, 20 * Time.deltaTime);
         }
-        transform.position = new Vector3(target.transform.position.x, nCamPosy, -10);
+        transform.position = new Vector3(target.transform.position.x + hOffset, nCamPosy, -10);
 	}
 	public void StartCameraShake(float magnitude = 0.25f, float duration = 0.25f)
 	{

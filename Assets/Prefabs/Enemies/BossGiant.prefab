@@ -831,6 +831,7 @@ MonoBehaviour:
   curHealth: 0
   showGUI: 1
   healthSlider: {fileID: 0}
+  canTakeDamage: 1
   bossName: Hammer Giant
   aggroScreen: {fileID: 0}
   aggro: 0
@@ -852,6 +853,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   destroyAfterHit: 0
+  disableInstead: 0
+  duration: 1
   hitStop: 1
   hitStopTime: 0.05
 --- !u!114 &114452070126563344
@@ -881,6 +884,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   destroyAfterHit: 0
+  disableInstead: 0
+  duration: 1
   hitStop: 1
   hitStopTime: 0.05
 --- !u!212 &212106087806818418
