@@ -192,8 +192,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4760377604240078}
-  - component: {fileID: 50922633617677566}
-  - component: {fileID: 66730892490630906}
   m_Layer: 0
   m_Name: bosssnake
   m_TagString: Untagged
@@ -273,7 +271,7 @@ Transform:
   m_GameObject: {fileID: 1762835065798162}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.10800004, y: 0.05599997, z: 0}
-  m_LocalScale: {x: 0.015625, y: 0.016220715, z: 1.0381286}
+  m_LocalScale: {x: 0.015625, y: 0.018, z: 1.0381286}
   m_Children:
   - {fileID: 4041952066953602}
   m_Father: {fileID: 4808634981250862}
@@ -313,7 +311,7 @@ Transform:
   m_GameObject: {fileID: 1673353092997890}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.157, y: 0.047999952, z: 0}
-  m_LocalScale: {x: 0.015625, y: 0.015920054, z: 1.0188845}
+  m_LocalScale: {x: 0.015625, y: 0.018, z: 1.0188845}
   m_Children:
   - {fileID: 4455777629094398}
   m_Father: {fileID: 4420489213344138}
@@ -326,7 +324,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1682344377026856}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -90.3, y: -37, z: 0}
+  m_LocalPosition: {x: -49.5, y: -5.4, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 4895179306540140}
@@ -426,7 +424,7 @@ Transform:
   m_GameObject: {fileID: 1383446801488504}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.025, y: 0.055, z: 0}
-  m_LocalScale: {x: 0.015625, y: 0.015625, z: 1}
+  m_LocalScale: {x: 0.015625, y: 0.018, z: 1}
   m_Children:
   - {fileID: 4424783103046434}
   m_Father: {fileID: 4394101752965146}
@@ -447,26 +445,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50922633617677566
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1783230036121594}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1000000
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!58 &58096178978024470
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -523,7 +501,7 @@ PolygonCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 1
+  m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -553,7 +531,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 1
+  m_UsedByComposite: 0
   m_Offset: {x: 0.2042042, y: 0.0060106814}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -665,7 +643,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 10.79}
+  m_Size: {x: 1.76, y: 10.79}
   m_EdgeRadius: 0
 --- !u!61 &61544156076241104
 BoxCollider2D:
@@ -728,7 +706,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 1
+  m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.0043372214}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -765,7 +743,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 10.79}
+  m_Size: {x: 1.76, y: 10.79}
   m_EdgeRadius: 0
 --- !u!61 &61687257978695268
 BoxCollider2D:
@@ -790,7 +768,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 10.79}
+  m_Size: {x: 1.76, y: 10.79}
   m_EdgeRadius: 0
 --- !u!61 &61823998697149098
 BoxCollider2D:
@@ -803,7 +781,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 1
+  m_UsedByComposite: 0
   m_Offset: {x: 0.39427796, y: 0.10960537}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -817,88 +795,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.074189246, y: 0.15872192}
   m_EdgeRadius: 0
---- !u!66 &66730892490630906
-CompositeCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1783230036121594}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_GeometryType: 1
-  m_GenerationType: 0
-  m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 61600884253863220}
-    m_ColliderPaths:
-    - - X: 312500000
-        Y: 43142880
-      - X: -312500000
-        Y: 43142880
-      - X: -312500000
-        Y: -37592084
-      - X: 312500000
-        Y: -37592084
-  - m_Collider: {fileID: 61101209576932174}
-    m_ColliderPaths:
-    - - X: 607090688
-        Y: 43037248
-      - X: 307090688
-        Y: 43037248
-      - X: 307090688
-        Y: -36624500
-      - X: 607090688
-        Y: -36624500
-  - m_Collider: {fileID: 61823998697149098}
-    m_ColliderPaths:
-    - - X: 602478464
-        Y: 120280160
-      - X: 554997312
-        Y: 120280160
-      - X: 554997312
-        Y: 18713598
-      - X: 602478464
-        Y: 18713598
-  - m_Collider: {fileID: 60321973372881720}
-    m_ColliderPaths:
-    - - X: -531527712
-        Y: 36891984
-      - X: -609202624
-        Y: 16296376
-      - X: -611949056
-        Y: -28850048
-      - X: -301343360
-        Y: -32693882
-      - X: -297662912
-        Y: 43839256
-      - X: -300244768
-        Y: 45691796
-  m_CompositePaths:
-    m_Paths:
-    - - {x: 31.25, y: -3.66245}
-      - {x: 60.70907, y: -3.66245}
-      - {x: 60.70907, y: 4.303725}
-      - {x: 60.24785, y: 4.303725}
-      - {x: 60.24785, y: 12.028016}
-      - {x: 55.499733, y: 12.028016}
-      - {x: 55.499733, y: 4.303725}
-      - {x: 31.25, y: 4.303725}
-      - {x: 31.25, y: 4.314288}
-      - {x: -29.769638, y: 4.314288}
-      - {x: -29.76629, y: 4.3839254}
-      - {x: -30.024477, y: 4.5691795}
-      - {x: -53.15277, y: 3.6891985}
-      - {x: -60.92026, y: 1.6296376}
-      - {x: -61.19491, y: -2.8850048}
-      - {x: -31.25, y: -3.2555816}
-      - {x: -31.25, y: -3.7592084}
-      - {x: 31.25, y: -3.7592084}
-  m_VertexDistance: 0.0005
 --- !u!95 &95148742670525324
 Animator:
   serializedVersion: 3

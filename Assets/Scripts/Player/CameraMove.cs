@@ -15,6 +15,7 @@ public class CameraMove : MonoBehaviour {
 
 	void Start () {
 		levelLayer = 1 << LayerMask.NameToLayer("Level");
+		lastGroundHeight = target.transform.position.y;
 	}
 	
 	void Update () {

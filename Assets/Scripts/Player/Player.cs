@@ -11,6 +11,7 @@ public class Player : Damageable
     public float runSpeed = 5;
     public float walkDur = 4;
     float targetSpeed = 0;
+    public float maxSpeed = 10;
     float walkTimer = 0;
     public bool grounded = false;
     public int numJumps = 2;
@@ -69,6 +70,7 @@ public class Player : Damageable
         levelLayer = 1 << LayerMask.NameToLayer("Level");
         if (showGUI)
             playerScreen.Show();
+        
     }
 
     /// Uses jumpDist, jumpHeight, and maxSpeed to determine jumpDur, jumpSpeed, and grav
@@ -82,10 +84,6 @@ public class Player : Damageable
     /// Update is called every frame, if the MonoBehaviour is enabled.
     void Update()
     {
-        if (canMove)
-        {
-            Move();
-        }
         isInWater = Physics2D.OverlapCircle(transform.position, 0.2f, 1 << LayerMask.NameToLayer("Water"));
 
         // gravity
@@ -101,7 +99,7 @@ public class Player : Damageable
 
         if (transform.position.y < -50)
         {
-            transform.position = new Vector3(transform.position.x, 0, 0);
+            transform.position = new Vector3(transform.position.x, 20, 0);
         }
 
         if (!canAttack)
@@ -138,17 +136,6 @@ public class Player : Damageable
         {
             anim.SetBool("Charging", false);
             anim.SetTrigger("Swing");
-            //walkTimer = walkDur;
-            // if (!inAttackSwing)
-            // {
-            //     attacking = false;
-            //     anim.SetBool("Attacking", false);
-            // }
-            // else
-            {
-                // anim.SetBool("Swing", true);
-                //rb.velocity = Vector3.zero;
-            }
         }
         if (!Input.GetButton("Attack"))
         {
@@ -156,6 +143,15 @@ public class Player : Damageable
         }
     }
 
+    /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
+    void FixedUpdate()
+    {
+        if (canMove)
+        {
+            Move();
+        }
+    }
+    
     /// Get input and move the player with rigidbody
     void Move()
     {
@@ -184,17 +180,16 @@ public class Player : Damageable
                 walkTimer = walkDur;
             }
         }
-        rb.velocity = desiredSpeed;
+        rb.velocity = Vector2.Lerp(rb.velocity, desiredSpeed, 30 * Time.deltaTime);
         //rb.AddForce(desiredSpeed, ForceMode2D.Force);
-        // = Vector2.Lerp(rb.velocity, desiredSpeed, 30 * Time.deltaTime);
-        // if (rb.velocity.x > targetSpeed)
-        // {
-        //     rb.velocity = new Vector2(targetSpeed, rb.velocity.y);
-        // }
-        // else if (rb.velocity.x < -targetSpeed)
-        // {
-        //     rb.velocity = new Vector2(-targetSpeed, rb.velocity.y);
-        // }
+        if (rb.velocity.x > maxSpeed)
+        {
+            rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
+        }
+        else if (rb.velocity.x < -maxSpeed)
+        {
+            rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);
+        }
         // sprite facing
         if (hor < 0)
         {
@@ -214,7 +209,7 @@ public class Player : Damageable
             psprite.flipX = false;
         }
         float speed = Mathf.Abs(rb.velocity.x);
-        if (speed < 0.01f)
+        if (speed < 0.1f)
             speed = 0;
         if (hor < 0 && attacking)
         {
@@ -386,6 +381,10 @@ public class Player : Damageable
     public override void Die()
     {
         // respawn
+    }
+    public void Respawn()
+    {
+        
     }
 
     /// <summary>
