@@ -2,15 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossSnake : MonoBehaviour {
+public class BossSnake : Boss
+{
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    [HeaderAttribute("Snake")]
+	public float moveSpeed = 4; 
+	// only move at beginning to get player on top, then just have a moving background and wind effects
+	bool isPlayerOn = false;
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (aggro)
+        {
+            if (phase == 0)
+            {
+
+            }
+            anim.SetFloat("Speed", 1);
+            // anim.SetInteger("Turning", 0);
+        } else {
+			// just fly around, try to get player on
+		}
+    }
+
+    public override void OnHit(float amount, GameObject attacker)
+    {
+        Debug.Log("hit! " + name + " for " + amount);
+        if (curHealth / maxHealth < 0.75f)
+        {
+            phase = 1;
+            //...
+        }
+    }
+    public void BulbDestroyed()
+    {
+        phase++;
+    }
 }

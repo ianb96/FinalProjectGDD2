@@ -14,7 +14,7 @@ public class Player : Damageable
     float walkTimer = 0;
     public bool grounded = false;
     public int numJumps = 2;
-    [ContextMenuItemAttribute("RecalculateJumpArc","RecalculateJumpArc")]
+    [ContextMenuItemAttribute("RecalculateJumpArc", "RecalculateJumpArc")]
     public float jumpHeight = 5;
     public float jumpDist = 4;
     int curJumps;
@@ -28,7 +28,7 @@ public class Player : Damageable
     public float dodgeDelay = 1;
     float dodgeTimer = 0;
     public Vector2 knockbackVel = new Vector2(-2f, 0.5f);
-    
+
     public bool canAttack = true;
     bool attacking = false;
     bool inAttackSwing = false;
@@ -121,7 +121,7 @@ public class Player : Damageable
             anim.ResetTrigger("Swing");
             StartCoroutine(CopySwordRotation(1.5f));
             attackCharge = 0;
-            
+
             //if (grounded || isInWater)
             {
                 // if running increase speed / damage ?
@@ -217,10 +217,11 @@ public class Player : Damageable
             speed *= -1;
         }
         anim.SetFloat("Speed", speed);
-        if (!attacking && attackCharge==0){ 
-            if (rb.velocity.sqrMagnitude>1)
+        if (!attacking && attackCharge == 0)
+        {
+            if (rb.velocity.sqrMagnitude > 1)
                 SetSwordDamage(movingSwordDamage);
-            else 
+            else
                 SetSwordDamage();
         }
 

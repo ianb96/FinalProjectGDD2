@@ -831,6 +831,7 @@ MonoBehaviour:
   curHealth: 0
   showGUI: 1
   healthSlider: {fileID: 0}
+  bossName: Hammer Giant
   aggroScreen: {fileID: 0}
   aggro: 0
   phase: 0
