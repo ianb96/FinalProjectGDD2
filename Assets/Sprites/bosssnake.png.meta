@@ -1,19 +1,18 @@
 fileFormatVersion: 2
-guid: b43e7c4079fa9f94eacf2321f3d6630d
-timeCreated: 1491608845
+guid: a27e106a8ef364942be634908f55448e
+timeCreated: 1491617910
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: bossgiant_head
-    21300002: bossgiant_leye
-    21300004: bossgiant_reye
-    21300006: bossgiant_body
-    21300008: bossgiant_arm2
-    21300010: bossgiant_leg
-    21300012: bossgiant_arm_down
-    21300014: bossgiant_arm_up
-    21300016: bossgiant_fist
-    21300018: bossgiant_hammer
+    21300000: bosssnake_wing
+    21300002: bosssnake_bulb
+    21300004: bosssnake_spot1
+    21300006: bosssnake_spot5
+    21300008: bosssnake_spot2
+    21300010: bosssnake_spot3
+    21300012: bosssnake_body
+    21300014: bosssnake_head
+    21300016: bosssnake_tail
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -45,9 +44,9 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
+  spriteExtrude: 0
   spriteMeshType: 1
-  alignment: 7
+  alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 128
@@ -88,38 +87,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bossgiant_head
+      name: bosssnake_wing
       rect:
         serializedVersion: 2
-        x: 5
-        y: 191
-        width: 72
-        height: 61
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 6
+        y: 39
+        width: 87
+        height: 85
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: bossgiant_leye
+      name: bosssnake_bulb
       rect:
         serializedVersion: 2
-        x: 89
-        y: 224
-        width: 15
-        height: 14
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 96
+        y: 59
+        width: 32
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: bossgiant_reye
+      name: bosssnake_spot1
       rect:
         serializedVersion: 2
-        x: 114
-        y: 224
+        x: 128
+        y: 96
         width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: bosssnake_spot5
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 107
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: bosssnake_spot2
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 76
+        width: 9
         height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -127,54 +152,54 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: bossgiant_body
+      name: bosssnake_spot3
       rect:
         serializedVersion: 2
-        x: 142
-        y: 100
-        width: 110
-        height: 152
+        x: 153
+        y: 81
+        width: 11
+        height: 13
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: bossgiant_leg
+      name: bosssnake_body
       rect:
         serializedVersion: 2
-        x: 205
+        x: 64
         y: 2
-        width: 45
-        height: 90
-      alignment: 9
-      pivot: {x: 0.53416747, y: 0.8929262}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: bossgiant_fist
-      rect:
-        serializedVersion: 2
-        x: 151
-        y: 5
-        width: 32
-        height: 32
+        width: 125
+        height: 18
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: bossgiant_hammer
+      name: bosssnake_head
       rect:
         serializedVersion: 2
-        x: 14
-        y: 9
-        width: 125
-        height: 154
+        x: 3
+        y: 3
+        width: 63
+        height: 17
       alignment: 9
-      pivot: {x: 0.4629717, y: 0.9098467}
+      pivot: {x: 0.9596342, y: 0.51507366}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: bosssnake_tail
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 2
+        width: 60
+        height: 33
+      alignment: 9
+      pivot: {x: 0.064364366, y: 0.26703966}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

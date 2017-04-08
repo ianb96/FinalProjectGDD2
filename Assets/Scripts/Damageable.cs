@@ -8,6 +8,9 @@ public class Damageable : MonoBehaviour
     [HeaderAttribute("Health")]
     [SerializeField]
     protected float maxHealth = 10;// negative for perma-invinciblity
+    [SerializeField]
+    [ContextMenuItemAttribute("Restore HP", "FullHeal")]
+    [ContextMenuItemAttribute("Kill", "Die")]
     protected float curHealth;
     protected bool invincible = false;
     [SerializeField]
@@ -20,11 +23,7 @@ public class Damageable : MonoBehaviour
     /// </summary>
     public void Start()
     {
-        curHealth = maxHealth;
-        if (showGUI)
-        {
-            healthSlider.value = 1;
-        }
+        FullHeal();
     }
 
     /// Call this to attack this game object
@@ -43,6 +42,14 @@ public class Damageable : MonoBehaviour
         if (showGUI)
         {
             healthSlider.value = curHealth / maxHealth;
+        }
+    }
+    public void FullHeal()
+    {
+        curHealth = maxHealth;
+        if (showGUI)
+        {
+            healthSlider.value = 1;
         }
     }
     public virtual void Die()

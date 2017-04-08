@@ -14,6 +14,7 @@ public class Player : Damageable
     float walkTimer = 0;
     public bool grounded = false;
     public int numJumps = 2;
+    [ContextMenuItemAttribute("RecalculateJumpArc","RecalculateJumpArc")]
     public float jumpHeight = 5;
     public float jumpDist = 4;
     int curJumps;
@@ -216,7 +217,7 @@ public class Player : Damageable
             speed *= -1;
         }
         anim.SetFloat("Speed", speed);
-        if (attackCharge==0){ 
+        if (!attacking && attackCharge==0){ 
             if (rb.velocity.sqrMagnitude>1)
                 SetSwordDamage(movingSwordDamage);
             else 

@@ -40,11 +40,11 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BG
+    uniqueID: 2550200191
+    locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Level
-    uniqueID: 1137692155
     locked: 0
   - name: Enemies
     uniqueID: 1945379395
@@ -54,6 +54,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2086148855
+    locked: 0
+  - name: Level
+    uniqueID: 1137692155
     locked: 0
   - name: Effects
     uniqueID: 2244699751
