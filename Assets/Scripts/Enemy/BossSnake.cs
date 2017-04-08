@@ -29,11 +29,7 @@ public class BossSnake : Boss
     public override void OnHit(float amount, GameObject attacker)
     {
         Debug.Log("hit! " + name + " for " + amount);
-        if (curHealth / maxHealth < 0.75f)
-        {
-            phase = 1;
-            //...
-        }
+        
     }
     public void BulbDestroyed()
     {

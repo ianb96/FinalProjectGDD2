@@ -16,6 +16,7 @@ public class Damageable : MonoBehaviour
     [SerializeField]
     protected bool showGUI = false;
     public Slider healthSlider;
+    public bool canTakeDamage = true;
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -30,8 +31,11 @@ public class Damageable : MonoBehaviour
     /// reduces current health by amount, and handles UI
     public void TakeDamage(float amount, GameObject attacker)
     {
+        if (!canTakeDamage)
+            return;
         if (invincible || maxHealth < 0)
             return;
+        
         curHealth -= amount;
         OnHit(amount, attacker);
         if (curHealth <= 0)

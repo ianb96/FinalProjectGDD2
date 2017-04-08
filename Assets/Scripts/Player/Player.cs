@@ -97,6 +97,7 @@ public class Player : Damageable
         {
             rb.AddForce(grav * Vector2.up, ForceMode2D.Force);
         }
+        anim.SetBool("Grounded", grounded);
 
         if (transform.position.y < -50)
         {
@@ -148,6 +149,10 @@ public class Player : Damageable
                 // anim.SetBool("Swing", true);
                 //rb.velocity = Vector3.zero;
             }
+        }
+        if (!Input.GetButton("Attack"))
+        {
+            anim.SetBool("Charging", false);
         }
     }
 

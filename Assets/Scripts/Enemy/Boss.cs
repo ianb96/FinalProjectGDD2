@@ -77,4 +77,11 @@ public class Boss : Damageable
             aggroScreen.Hide();
 		}
     }
+	/// <summary>
+	/// This function is called when the behaviour becomes disabled or inactive.
+	/// </summary>
+	public void OnDisable()
+	{
+		DeAggro();
+	}
 }

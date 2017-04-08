@@ -6,6 +6,8 @@ public class TriggerDamage : MonoBehaviour
 {
     public float damage = 0;
     public bool destroyAfterHit = false;
+    public bool disableInstead = false;
+    public float duration = 1;
 	public bool hitStop = false;
     public float hitStopTime = 0.05f;
 
@@ -28,7 +30,9 @@ public class TriggerDamage : MonoBehaviour
                 StartCoroutine(FadeOut());
             }
 			if (hitStop)
+            {
                 StartCoroutine(HitStop());
+            }
         }
     }
     public IEnumerator HitStop()
@@ -37,10 +41,16 @@ public class TriggerDamage : MonoBehaviour
         yield return new WaitForSecondsRealtime(hitStopTime);
         Time.timeScale = 1f;
     }
+    /// <summary>
+    /// This function is called when the behaviour becomes disabled or inactive.
+    /// </summary>
+    void OnDisable()
+    {
+        Time.timeScale = 1f;
+    }
     public IEnumerator FadeOut()
     {
         float progress = 0;
-        float duration = 1;
         SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
         while (progress < 1)
         {
@@ -48,6 +58,14 @@ public class TriggerDamage : MonoBehaviour
             sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1.0f - progress);
             yield return null;
         }
-        Destroy(gameObject);
+        if (disableInstead)
+        {
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            Destroy(gameObject);
+        }
     }
 }
