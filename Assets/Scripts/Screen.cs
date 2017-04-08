@@ -28,6 +28,10 @@ public class Screen : MonoBehaviour {
 	{
 		cg.interactable = isInteractable;
 		cg.blocksRaycasts = isInteractable;
+		if (isInteractable)
+		{
+			Time.timeScale = 0;
+		}
 		if (anim)
 			anim.SetBool("Open", true);
 		else
@@ -36,6 +40,10 @@ public class Screen : MonoBehaviour {
 	/// Hide this screen
 	public void Hide()
 	{
+		if (isInteractable)
+		{
+			Time.timeScale = 1;
+		}
 		cg.interactable = false;
 		cg.blocksRaycasts = false;
 		if (anim)

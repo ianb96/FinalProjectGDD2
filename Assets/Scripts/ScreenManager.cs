@@ -12,9 +12,10 @@ public class ScreenManager : MonoBehaviour
 
     void Start()
     {
-		// time starts at 0?
         if (initialScreen)
+        {
             ShowScreen(initialScreen);
+        }
     }
 
     void Update()

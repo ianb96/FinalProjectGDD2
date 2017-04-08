@@ -71,6 +71,7 @@ public class Player : Damageable
         RecalculateJumpArc();
         SetSwordDamage();
         // levelLayer = 1 << LayerMask.NameToLayer("Level");
+        Respawn();
         if (showGUI)
             playerScreen.Show();
     }
@@ -120,6 +121,7 @@ public class Player : Damageable
 
             // TODO: in-air attack
             // if running increase speed / damage ?
+            anim.SetFloat("SwingModifier", walkTimer<0?2:1);
             //if (grounded || isInWater)
             // else if (!downhit.collider)
             // {

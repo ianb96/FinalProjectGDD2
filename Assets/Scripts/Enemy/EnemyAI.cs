@@ -79,7 +79,7 @@ public class EnemyAI : Damageable
 
     public override void OnHit(float amount, GameObject attacker)
     {
-        Debug.Log("hit! " + name + " for " + amount + " by " + attacker.name);
+        // Debug.Log("hit! " + name + " for " + amount + " by " + attacker.name);
         Vector2 knockBackDir = new Vector2((transform.position.x > player.transform.position.x ? 1 : -1) * knockbackForce.x, knockbackForce.y);
         rb.AddForce(knockBackDir, ForceMode2D.Impulse);
         gameObject.layer = LayerMask.NameToLayer("DmgProof");
@@ -105,7 +105,7 @@ public class EnemyAI : Damageable
     {
         //death anim
         DestroyGO(); // anim should call this
-        Debug.Log("killed " + name);
+        // Debug.Log("killed " + name);
     }
 
     /// called by anim when death anim finishes

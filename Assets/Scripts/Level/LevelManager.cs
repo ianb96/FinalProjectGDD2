@@ -24,7 +24,16 @@ public class LevelManager : MonoBehaviour
         if (loadSceneImmediately>0)
             LoadLevel(loadSceneImmediately);
     }
-
+	/// <summary>
+	/// Update is called every frame, if the MonoBehaviour is enabled.
+	/// </summary>
+	void Update()
+	{
+		if(Input.GetKeyDown("`"))
+		{
+			NextLevel();
+		}
+	}
     public void NextLevel()
     {
         LoadLevel(curSceneIndex + 1);
@@ -41,6 +50,7 @@ public class LevelManager : MonoBehaviour
             return;
         }
         Debug.Log("Loading scene " + index);
+		curCheckpoint = 0;
         if (curSceneIndex != 0)
         {
             SceneManager.UnloadSceneAsync(curSceneIndex);
@@ -77,9 +87,10 @@ public class LevelManager : MonoBehaviour
     public Transform GetCheckpoint()
     {
         Level curLevel = GameObject.FindGameObjectWithTag("Level").GetComponent<Level>();
-        if (curLevel.checkpoints.Count <= curCheckpoint)
+        if (curCheckpoint >= curLevel.checkpoints.Count)
         {
             Debug.LogError("Loaded incorrect checkpoint! " + curCheckpoint);
+			return null;
         }
         return curLevel.checkpoints[curCheckpoint].spawnPosition;
     }

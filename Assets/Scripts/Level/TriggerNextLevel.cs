@@ -5,13 +5,27 @@ using UnityEngine;
 public class TriggerNextLevel : MonoBehaviour
 {
 
+    public bool activated = true;
+    public float delay = 5f;
+    public float delayTimer = 0;
     LevelManager lm;
 
 
     void Awake()
     {
-
         lm = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
+        // activated = false;
+        delayTimer = delay;
+    }
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    void Update()
+    {
+        if (delayTimer > 0)
+        {
+            delayTimer -= Time.deltaTime;
+        }
     }
 
     /// <summary>
@@ -19,8 +33,15 @@ public class TriggerNextLevel : MonoBehaviour
     /// object (2D physics only).
     /// </summary>
     /// <param name="other">The other Collider2D involved in this collision.</param>
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
-        lm.NextLevel();
+        if (activated && delayTimer <= 0)
+        {
+            if (other.CompareTag("Player"))
+            {
+                lm.NextLevel();
+                delayTimer = delay;
+            }
+        }
     }
 }
