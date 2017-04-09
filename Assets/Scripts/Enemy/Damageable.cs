@@ -31,6 +31,8 @@ public class Damageable : MonoBehaviour
     /// reduces current health by amount, and handles UI
     public void TakeDamage(float amount, GameObject attacker)
     {
+        if (attacker == gameObject)
+            return;
         if (!canTakeDamage)
             return;
         if (invincible || maxHealth < 0)

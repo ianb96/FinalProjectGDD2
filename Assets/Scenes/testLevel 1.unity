@@ -704,6 +704,33 @@ Prefab:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 107082225}
+    - target: {fileID: 4520646804470268, guid: 55680066035aba14ea6647c764e6f4c6, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.8958053
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520646804470268, guid: 55680066035aba14ea6647c764e6f4c6, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.44444674
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520646804470268, guid: 55680066035aba14ea6647c764e6f4c6, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 127.22401
+      objectReference: {fileID: 0}
+    - target: {fileID: 50620617141226360, guid: 55680066035aba14ea6647c764e6f4c6,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50620617141226360, guid: 55680066035aba14ea6647c764e6f4c6,
+        type: 2}
+      propertyPath: m_UseAutoMass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50620617141226360, guid: 55680066035aba14ea6647c764e6f4c6,
+        type: 2}
+      propertyPath: m_Mass
+      value: 130.40685
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 55680066035aba14ea6647c764e6f4c6, type: 2}
   m_IsPrefabParent: 0

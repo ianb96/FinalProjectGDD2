@@ -48,6 +48,7 @@ public class Player : Damageable
     public Transform swordAnim;
     public Transform swordPhys;
     public ParticleSystem doubleJumpEffect;
+    public SpriteRenderer lightHalo;
     // int levelLayer;
     Rigidbody2D rb;
     Animator anim;
@@ -363,6 +364,7 @@ public class Player : Damageable
     public override void OnHit(float amount, GameObject attacker)
     {
         Debug.Log("hit by " + attacker.name + " for " + amount);
+        UpdateHaloA();
         anim.SetTrigger("Hit");
         walkTimer = walkDur;
         invincible = true;
@@ -370,6 +372,10 @@ public class Player : Damageable
         Invoke("GiveControl", 0.4f);
         rb.AddForce(knockbackVel, ForceMode2D.Impulse);
         Invoke("SetNotInvincible", hitInvincibilityDur);
+    }
+    public void UpdateHaloA()
+    {
+        lightHalo.color = new Color(lightHalo.color.r, lightHalo.color.g, lightHalo.color.b, curHealth / maxHealth / 2f);
     }
 
     void SetNotInvincible()
@@ -386,9 +392,11 @@ public class Player : Damageable
     public void Respawn()
     {
         FullHeal();
+        UpdateHaloA();
         // full heal effect?
         anim.SetBool("Dead", false);
         transform.position = lm.GetCheckpoint().position;
+        grounded = false;
         // animation?
     }
     public void ActivatedCheckpoint()

@@ -74,6 +74,7 @@ public class LevelManager : MonoBehaviour
     public void ActivateCheckpoint(int index)
     {
         curCheckpoint = index;
+        curSceneIndex = SceneManager.GetSceneAt(1).buildIndex;
         player.ActivatedCheckpoint();
     }
     /// save player progress to playerprefs
