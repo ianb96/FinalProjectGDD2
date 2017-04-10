@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: a27e106a8ef364942be634908f55448e
-timeCreated: 1491622641
+timeCreated: 1491835127
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -13,6 +13,7 @@ TextureImporter:
     21300012: bosssnake_body
     21300014: bosssnake_head
     21300016: bosssnake_tail
+    21300018: bosssnake_jaw
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -200,6 +201,19 @@ TextureImporter:
         height: 33
       alignment: 9
       pivot: {x: 0.064364366, y: 0.26703966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: bosssnake_jaw
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 36
+        width: 28
+        height: 8
+      alignment: 9
+      pivot: {x: 0.99812424, y: 0.8636503}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

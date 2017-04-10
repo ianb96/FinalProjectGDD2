@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: b43e7c4079fa9f94eacf2321f3d6630d
-timeCreated: 1491694662
+timeCreated: 1491832611
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -91,10 +91,10 @@ TextureImporter:
       name: bossgiant_head
       rect:
         serializedVersion: 2
-        x: 5
-        y: 191
-        width: 72
-        height: 61
+        x: 4
+        y: 189
+        width: 75
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -104,10 +104,10 @@ TextureImporter:
       name: bossgiant_leye
       rect:
         serializedVersion: 2
-        x: 89
-        y: 224
-        width: 15
-        height: 14
+        x: 88
+        y: 223
+        width: 17
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,10 +117,10 @@ TextureImporter:
       name: bossgiant_reye
       rect:
         serializedVersion: 2
-        x: 114
-        y: 224
-        width: 16
-        height: 15
+        x: 111
+        y: 223
+        width: 18
+        height: 17
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,10 +130,10 @@ TextureImporter:
       name: bossgiant_body
       rect:
         serializedVersion: 2
-        x: 142
-        y: 100
-        width: 110
-        height: 152
+        x: 130
+        y: 94
+        width: 125
+        height: 159
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,10 +143,10 @@ TextureImporter:
       name: bossgiant_leg
       rect:
         serializedVersion: 2
-        x: 205
-        y: 2
-        width: 45
-        height: 90
+        x: 204
+        y: 1
+        width: 44
+        height: 92
       alignment: 9
       pivot: {x: 0.53416747, y: 0.8929262}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,12 +156,12 @@ TextureImporter:
       name: bossgiant_fist
       rect:
         serializedVersion: 2
-        x: 151
-        y: 5
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 157
+        y: 0
+        width: 24
+        height: 90
+      alignment: 9
+      pivot: {x: 0.4999993, y: 0.8969578}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -169,8 +169,8 @@ TextureImporter:
       name: bossgiant_hammer
       rect:
         serializedVersion: 2
-        x: 12
-        y: 9
+        x: 0
+        y: 0
         width: 127
         height: 154
       alignment: 9
