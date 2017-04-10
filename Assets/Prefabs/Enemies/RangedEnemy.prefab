@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 4872214621572206}
   - component: {fileID: 212340631664281652}
   m_Layer: 0
-  m_Name: enemy_eye
+  m_Name: enemy_eye1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 61214657482133240}
   - component: {fileID: 50413100835309198}
   - component: {fileID: 95436094033588390}
-  - component: {fileID: 114524227072334364}
+  - component: {fileID: 114413126570586514}
   m_Layer: 9
   m_Name: RangedEnemy
   m_TagString: Enemy
@@ -331,7 +331,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1896862641519510}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.32, y: 3.657, z: 0}
+  m_LocalPosition: {x: 16.32, y: 4.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4785882722430664}
@@ -605,6 +605,34 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114413126570586514
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1896862641519510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf852e00229fb844aace9c042a2d6c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  curHealth: 0
+  showGUI: 0
+  healthSlider: {fileID: 0}
+  canTakeDamage: 1
+  movementSpeed: 2.5
+  attackRate: 3
+  damage: 1
+  attackRange: 13
+  knockbackForce: {x: 6, y: 4}
+  hitboxes:
+  - {fileID: 114444940673076068}
+  fliper: {fileID: 4785882722430664}
+  projectileSpawnPos: {fileID: 4745634631682254}
+  gunRoter: {fileID: 4274007057525902}
+  projectilePrefab: {fileID: 1528577635308828, guid: 5552578f0c400ed45bb0c75d73d3927c,
+    type: 2}
 --- !u!114 &114444940673076068
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -622,36 +650,6 @@ MonoBehaviour:
   duration: 1
   hitStop: 0
   hitStopTime: 0.05
---- !u!114 &114524227072334364
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1896862641519510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3614a637e6594674faf8bc2d06519f90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 10
-  curHealth: 0
-  showGUI: 0
-  healthSlider: {fileID: 0}
-  canTakeDamage: 1
-  isRangedType: 1
-  movementSpeed: 2.5
-  attackRate: 3
-  damage: 1
-  attackRange: 8
-  followRange: 5
-  knockbackForce: {x: 6, y: 4}
-  hitboxes:
-  - {fileID: 114444940673076068}
-  projectileSpawnPos: {fileID: 4745634631682254}
-  gunRoter: {fileID: 4274007057525902}
-  projectilePrefab: {fileID: 1528577635308828, guid: 5552578f0c400ed45bb0c75d73d3927c,
-    type: 2}
-  fliper: {fileID: 4785882722430664}
 --- !u!212 &212075154428387226
 SpriteRenderer:
   m_ObjectHideFlags: 1

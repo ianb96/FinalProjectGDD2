@@ -23,7 +23,8 @@ public class SwordFlipper : MonoBehaviour
             {
                 if (transform.position.x > player.transform.position.x)
                 {
-                    if (transform.position.y < player.transform.position.y + 2)
+                    if (transform.position.y < player.transform.position.y + 2 && 
+                        transform.position.y > player.transform.position.y - 1)
                     {
                         anim.SetTrigger("FlipSword");
                         turningTimer = 2;

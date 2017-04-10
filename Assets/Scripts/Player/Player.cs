@@ -228,9 +228,10 @@ public class Player : Damageable
 
 
         // falling 
-        if (grounded && rb.velocity.y <= 0)
+        if (grounded && rb.velocity.y <= 0) // TODO: use wasGrounded to fix?
         {
             anim.SetBool("Falling", false);
+            anim.SetBool("Jumping", false);
             curJumps = 0;
         }
         else
@@ -260,19 +261,27 @@ public class Player : Damageable
             dodgeTimer -= Time.deltaTime;
         }
 
+        bool canJump = (curJumps < numJumps - (grounded ? 1 : 0) || isInWater);
         // jumping
-        if (Input.GetButtonDown("Jump") && (curJumps < numJumps - (grounded ? 1 : 0) || isInWater))
+        if (Input.GetButtonDown("Jump") && canJump)
         {
-            if (!isInWater)
-                curJumps++;
-            rb.velocity = new Vector2(rb.velocity.x, jumpSpeed * (isInWater ? 0.4f : 1));
-            anim.SetTrigger("Jumping");
-            anim.SetBool("Falling", false);
-            if (!grounded)
-                doubleJumpEffect.Play();
+            Jump();    
+        }
+        if (canJump && Input.GetButton("Jump") && !anim.GetBool("Jumping"))
+        {
+            Jump();
         }
     }
-
+    void Jump()
+    {
+        if (!isInWater)
+            curJumps++;
+        rb.velocity = new Vector2(rb.velocity.x, jumpSpeed * (isInWater ? 0.4f : 1));
+        anim.SetBool("Jumping", true);
+        anim.SetBool("Falling", false);
+        if (!grounded)
+            doubleJumpEffect.Play();
+    }
     /// Help anim sword and phys sword align when switching
     public IEnumerator CopySwordRotation(float dur)
     {
@@ -394,6 +403,7 @@ public class Player : Damageable
 
     public override void Die()
     {
+        rb.velocity = Vector3.zero;
         anim.SetBool("Dead", true);
         deadScreen.Show();
     }
