@@ -23,8 +23,11 @@ public class SwordFlipper : MonoBehaviour
             {
                 if (transform.position.x > player.transform.position.x)
                 {
-                    anim.SetTrigger("FlipSword");
-                    turningTimer = 2;
+                    if (transform.position.y < player.transform.position.y + 2)
+                    {
+                        anim.SetTrigger("FlipSword");
+                        turningTimer = 2;
+                    }
                 }
             }
         }

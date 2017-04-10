@@ -6,21 +6,19 @@ public class Checkpoint : MonoBehaviour
 {
 
 	public Transform spawnPosition;
+	public GameObject levelBoundary;
     LevelManager lm;
 	int checkpointIndex;
-	Animation anin;
+	Animator anim;
 
     void Awake()
     {
+		anim = GetComponent<Animator>();
         lm = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
 		if (!spawnPosition)
 			spawnPosition = transform.GetChild(0);
     }
 
-    void Update()
-    {
-
-    }
 	/// <summary>
 	/// Sent when another object enters a trigger collider attached to this
 	/// object (2D physics only).
@@ -32,6 +30,7 @@ public class Checkpoint : MonoBehaviour
 		{
 			lm.ActivateCheckpoint(checkpointIndex);
 			// play animation
+			anim.SetBool("Light", true);
 		}
 	}
 	// public override void OnHit(float amount, GameObject attacker)

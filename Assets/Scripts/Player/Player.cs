@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : Damageable
 {
@@ -49,6 +50,7 @@ public class Player : Damageable
     public Transform swordPhys;
     public ParticleSystem doubleJumpEffect;
     public SpriteRenderer lightHalo;
+    public Image vignette;
     // int levelLayer;
     Rigidbody2D rb;
     Animator anim;
@@ -373,9 +375,16 @@ public class Player : Damageable
         rb.AddForce(knockbackVel, ForceMode2D.Impulse);
         Invoke("SetNotInvincible", hitInvincibilityDur);
     }
+    public override void FullHeal()
+    {
+        base.FullHeal();
+        UpdateHaloA();
+    }
     public void UpdateHaloA()
     {
-        lightHalo.color = new Color(lightHalo.color.r, lightHalo.color.g, lightHalo.color.b, curHealth / maxHealth / 2f);
+        float ratio = curHealth / maxHealth;
+        lightHalo.color = new Color(1,1,1, ratio * 0.5f);
+        vignette.color = new Color(0,0,0,1 - ratio * 0.75f);
     }
 
     void SetNotInvincible()

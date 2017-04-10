@@ -50,7 +50,7 @@ public class Damageable : MonoBehaviour
             healthSlider.value = curHealth / maxHealth;
         }
     }
-    public void FullHeal()
+    public virtual void FullHeal()
     {
         curHealth = maxHealth;
         if (showGUI)

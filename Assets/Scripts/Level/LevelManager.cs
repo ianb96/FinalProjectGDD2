@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
 
+    [ContextMenuItemAttribute("MoveToNextCheckpoint","MoveToNextCheckpoint")]
+    public bool RCToNextCP;
     public int loadSceneImmediately = -1;
     public Screen loadingScreen;
     int curSceneIndex = 0;
@@ -94,5 +96,10 @@ public class LevelManager : MonoBehaviour
 			return null;
         }
         return curLevel.checkpoints[curCheckpoint].spawnPosition;
+    }
+    public void MoveToNextCheckpoint()
+    {
+        curCheckpoint++;
+        player.Respawn();
     }
 }

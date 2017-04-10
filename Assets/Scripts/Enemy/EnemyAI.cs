@@ -15,6 +15,7 @@ public class EnemyAI : Damageable
     public Vector2 knockbackForce = new Vector2(6, 4);
     public List<TriggerDamage> hitboxes = new List<TriggerDamage>();
     public Transform projectileSpawnPos;
+    public Transform gunRoter;
     public GameObject projectilePrefab;
     public Transform fliper;
     bool facingRight = true;
@@ -32,6 +33,8 @@ public class EnemyAI : Damageable
         base.Start();
         attackTimer = Random.Range(0f, attackRate);
         hitboxes.ForEach((hb)=>hb.damage = damage);
+        if (isRangedType)
+            anim.SetFloat("Speed", attackRate);
     }
     
     /// <summary>
@@ -41,6 +44,8 @@ public class EnemyAI : Damageable
     {
         if (attackTimer > 0)
         {
+            if (isRangedType)
+                gunRoter.right = transform.position - player.transform.position;
             attackTimer -= Time.deltaTime;
         }
         float playerDist = Mathf.Abs(player.transform.position.x - transform.position.x);

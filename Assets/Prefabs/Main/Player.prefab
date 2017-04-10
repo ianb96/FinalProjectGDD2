@@ -102,8 +102,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4326152445003692}
   - component: {fileID: 50636815306871770}
-  - component: {fileID: 70089116279859398}
-  - component: {fileID: 70406048420190780}
   - component: {fileID: 114343604437666798}
   - component: {fileID: 233480626043417208}
   - component: {fileID: 60638889160729088}
@@ -797,36 +795,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!70 &70089116279859398
-CapsuleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1246493772776420}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -1.24, y: 0}
-  m_Size: {x: 2, y: 0.68}
-  m_Direction: 1
---- !u!70 &70406048420190780
-CapsuleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1246493772776420}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -2.89, y: 0}
-  m_Size: {x: 1.26, y: 0.19}
-  m_Direction: 1
 --- !u!70 &70419222778477218
 CapsuleCollider2D:
   m_ObjectHideFlags: 1
@@ -1107,6 +1075,7 @@ MonoBehaviour:
   swordPhys: {fileID: 4326152445003692}
   doubleJumpEffect: {fileID: 198695896310893744}
   lightHalo: {fileID: 212227406512145852}
+  vignette: {fileID: 0}
 --- !u!114 &114883370203803038
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4584,7 +4553,7 @@ HingeJoint2D:
   m_Motor:
     m_MotorSpeed: 2
     m_MaximumMotorForce: 10000
-  m_UseLimits: 1
+  m_UseLimits: 0
   m_AngleLimits:
     m_LowerAngle: -80
     m_UpperAngle: 75

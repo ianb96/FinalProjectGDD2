@@ -22,6 +22,7 @@ public class Level : MonoBehaviour {
 	void Start()
 	{
 		Debug.ClearDeveloperConsole();
+		checkpoints[0].levelBoundary.SetActive(true);
 		for (int i = 0; i < checkpoints.Count; i++)
 		{
 			checkpoints[i].SetCheckpointIndex(i);
