@@ -37,6 +37,7 @@ public class Boss : Damageable
         base.Start();
         aggro = false;
         SetDamage(damage);
+        phase = 0;
     }
 	/// set our hitboxes to the damage amount
     public void SetDamage(float dam = -1)

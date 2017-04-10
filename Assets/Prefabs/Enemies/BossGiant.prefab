@@ -1016,6 +1016,8 @@ MonoBehaviour:
   - {fileID: 114372204161152040}
   - {fileID: 114907296225299614}
   - {fileID: 114836217143932136}
+  attackRange: 16
+  Range: 6
 --- !u!114 &114372204161152040
 MonoBehaviour:
   m_ObjectHideFlags: 1

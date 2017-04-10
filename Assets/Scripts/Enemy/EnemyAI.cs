@@ -17,7 +17,7 @@ public class EnemyAI : Damageable
     protected Rigidbody2D rb;
     protected Player player;
     protected Animator anim;
-
+    Vector3 defScale;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -29,6 +29,7 @@ public class EnemyAI : Damageable
         base.Start();
         attackTimer = Random.Range(0f, attackRate);
         hitboxes.ForEach((hb)=>hb.damage = damage);
+        defScale = fliper.localScale;
     }
     
     public virtual void Update()
@@ -42,7 +43,7 @@ public class EnemyAI : Damageable
         {
             if (facingRight)
             {
-                fliper.localScale = new Vector3(-1, 1, 1);
+                fliper.localScale = new Vector3(-defScale.x, defScale.y, defScale.z);
                 facingRight = false;
             }
         }
@@ -50,7 +51,7 @@ public class EnemyAI : Damageable
         {
             if (!facingRight)
             {
-                fliper.localScale = new Vector3(1, 1, 1);
+                fliper.localScale = new Vector3(defScale.x, defScale.y, defScale.z);
                 facingRight = true;
             }
         }

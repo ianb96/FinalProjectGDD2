@@ -6,8 +6,8 @@ public class BossGiant : Boss
 {
 
     //[HeaderAttribute("Giant")]
-
-
+    public float attackRange = 6;
+    public float Range = 6;
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
@@ -15,24 +15,40 @@ public class BossGiant : Boss
     {
         if (aggro)
         {
-            if (phase == 0)
+            float playerDist = transform.position.x - player.transform.position.x;
+            anim.SetFloat("Dist", playerDist);
+            anim.SetFloat("Speed", 0);
+            // anim.SetInteger("AttackType", 0);
+            if (playerDist < 0)
+            {
+                anim.SetTrigger("JumpBack");
+                anim.SetBool("Attack", false);
+            }
+            else if (playerDist <= attackRange)
+            {
+                // anim.SetInteger("AttackType", phase+1);
+                anim.SetBool("Attack", true);
+            }
+            else
             {
                 anim.SetFloat("Speed", 1);
+                anim.SetBool("Attack", false);
             }
-            else if (phase == 1)
-            {
-                anim.SetFloat("Speed", 0);
-            }
+            // if (phase == 0)
+            // if (phase == 1)
         }
     }
 
     public override void OnHit(float amount, GameObject attacker)
     {
         Debug.Log("hit! " + name + " for " + amount);
-        if (curHealth / maxHealth < 0.75f)
+        if (curHealth / maxHealth < 0.5f)
+        {
+            phase = 2;
+        }
+        else if (curHealth / maxHealth < 0.75f)
         {
             phase = 1;
-            //...
         }
     }
 }

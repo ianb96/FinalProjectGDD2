@@ -540,7 +540,7 @@ MonoBehaviour:
   hitboxes:
   - {fileID: 114949539764983820}
   - {fileID: 114557491637749712}
-  fliper: {fileID: 4104679168663228}
+  fliper: {fileID: 4518873956779988}
   followRange: 9.5
 --- !u!114 &114557491637749712
 MonoBehaviour:
