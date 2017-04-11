@@ -9,7 +9,6 @@ using UnityEditor.SceneManagement;
 public class Level : MonoBehaviour {
 
 	public List<Checkpoint> checkpoints = new List<Checkpoint>();
-	public TriggerNextLevel nextLevelTrigger;
 	LevelManager lm;
 
 	void Awake() {
@@ -27,6 +26,6 @@ public class Level : MonoBehaviour {
 		{
 			checkpoints[i].SetCheckpointIndex(i);
 		}
-		// nextLevelTrigger.activated = true;
 	}
+	// deactivate other checkpoints when another is activated ?
 }

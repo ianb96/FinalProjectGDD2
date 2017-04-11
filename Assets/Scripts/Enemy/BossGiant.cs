@@ -42,13 +42,16 @@ public class BossGiant : Boss
     public override void OnHit(float amount, GameObject attacker)
     {
         Debug.Log("hit! " + name + " for " + amount);
-        if (curHealth / maxHealth < 0.5f)
+        if (phase != 2 && curHealth / maxHealth < 0.5f)
         {
             phase = 2;
+            anim.SetTrigger("Mad");
+            // play sound
+            anim.SetFloat("MultSpeed", 1.5f);
         }
-        else if (curHealth / maxHealth < 0.75f)
-        {
-            phase = 1;
-        }
+        // else if (curHealth / maxHealth < 0.75f)
+        // {
+        //     phase = 1;
+        // }
     }
 }

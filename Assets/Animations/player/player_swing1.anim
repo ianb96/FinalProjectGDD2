@@ -620,6 +620,13 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_Events:
+  - time: 0.11666667
+    functionName: SetSwordDamage
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 10
+    intParameter: 0
+    messageOptions: 0
   - time: 0.33333334
     functionName: AttackSwingHit
     data: 

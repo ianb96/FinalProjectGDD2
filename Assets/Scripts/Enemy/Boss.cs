@@ -85,4 +85,9 @@ public class Boss : Damageable
 	{
 		DeAggro();
 	}
+    /// called by anim when death anim finishes
+    public void DestroyGO()
+    {
+        Destroy(gameObject, 0);
+    }
 }

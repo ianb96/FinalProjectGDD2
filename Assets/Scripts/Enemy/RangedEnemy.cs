@@ -19,7 +19,7 @@ public class RangedEnemy : EnemyAI {
 		base.Update();
 		if (attackTimer > 0)
         {
-			gunRoter.right = transform.position - player.transform.position;
+			gunRoter.right = (transform.position - player.transform.position) * (facingRight?1:-1);
 		}
 		float playerDist = Mathf.Abs(player.transform.position.x - transform.position.x);
         if (playerDist <= attackRange)
