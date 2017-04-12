@@ -76,7 +76,7 @@ public class EnemyAI : Damageable
         // Debug.Log("killed " + name);
     }
 
-    /// called by anim when death anim finishes
+    /// Called by anim when death anim finishes
     public void DestroyGO()
     {
         Destroy(gameObject, 0);

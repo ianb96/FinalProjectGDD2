@@ -34,10 +34,12 @@ public class BossSnake : Boss
         if (phase != 1 && curHealth / maxHealth > 0.5f)
         {
             phase = 1;
+            anim.SetInteger("Turning", 1); // turn up
         }
         else if (phase != 2 && curHealth / maxHealth > 0.25f)
         {
             phase = 2;
+            anim.SetInteger("Turning", 2); // turn down
         }
         else if (phase != 3 && curHealth / maxHealth > 0.0f)
         {

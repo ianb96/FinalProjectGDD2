@@ -121,13 +121,6 @@ public class Player : Damageable
         isInWater = Physics2D.OverlapCircle(transform.position, 0.2f, 1 << LayerMask.NameToLayer("Water"));
 
         // gravity
-        // if (grounded)
-        // {
-        //     // rb.AddForce(-0.1f * Vector2.up, ForceMode2D.Force);
-        // }
-        // else
-        // {
-        // }
         rb.AddForce(grav * Vector2.up, ForceMode2D.Force);
         anim.SetBool("Grounded", grounded);
 
@@ -236,7 +229,7 @@ public class Player : Damageable
         {
             psprite.flipX = false;
         }
-        float speed = Mathf.Abs(rb.velocity.x);
+        float speed = Mathf.Abs(desiredSpeed.x);// rb.velocity.x
         if (speed < 0.1f)
             speed = 0;
         if (hor < 0 && attacking)
@@ -252,7 +245,6 @@ public class Player : Damageable
             else
                 SetSwordDamage();
         }
-
 
         // falling 
         if (grounded && rb.velocity.y <= 0) // TODO: use wasGrounded to fix?
@@ -296,13 +288,8 @@ public class Player : Damageable
         }
         if (Input.GetButton("Jump"))
         {
-            // if (canJump && jumpTimer == 0)
-            // {
-            //     StartJump();
-            // }
             if (transform.position.y - jumpBaseHeight < holdJumpHeight )
             {
-                // Debug.Log("Holding jump");
                 rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + holdJumpSpeed * Time.deltaTime);
             }
         }

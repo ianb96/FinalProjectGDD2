@@ -9,7 +9,7 @@ public class BossSnakeBulb : Destructable {
 	
     public override void OnHit(float amount, GameObject attacker)
     {
-        // do something
+        // do something?
     }
 	public override void Die()
 	{

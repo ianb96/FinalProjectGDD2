@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 61544156076241104}
   - component: {fileID: 61459663437328528}
   - component: {fileID: 114491335204785376}
+  - component: {fileID: 114686815896359168}
   m_Layer: 0
   m_Name: Bulb
   m_TagString: Untagged
@@ -173,6 +174,7 @@ GameObject:
   - component: {fileID: 61310833261052020}
   - component: {fileID: 61687257978695268}
   - component: {fileID: 114577695969182568}
+  - component: {fileID: 114897155215332976}
   m_Layer: 0
   m_Name: Bulb (1)
   m_TagString: Untagged
@@ -209,6 +211,7 @@ GameObject:
   - component: {fileID: 61557859774779626}
   - component: {fileID: 61615051659640354}
   - component: {fileID: 114595049679792014}
+  - component: {fileID: 114392165804778744}
   m_Layer: 0
   m_Name: Bulb (2)
   m_TagString: Untagged
@@ -943,6 +946,23 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114392165804778744
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1762835065798162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb211af6848ab1a419cee26614763ab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  curHealth: 0
+  showGUI: 0
+  healthSlider: {fileID: 0}
+  canTakeDamage: 1
+  boss: {fileID: 114441485321703722}
 --- !u!114 &114441485321703722
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -993,6 +1013,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb211af6848ab1a419cee26614763ab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 10
+  curHealth: 0
+  showGUI: 0
+  healthSlider: {fileID: 0}
+  canTakeDamage: 1
+  boss: {fileID: 114441485321703722}
 --- !u!114 &114595049679792014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1023,6 +1049,40 @@ MonoBehaviour:
   targets:
   - {fileID: 1064632987930544}
   disableAfter: 1
+--- !u!114 &114686815896359168
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1383446801488504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb211af6848ab1a419cee26614763ab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  curHealth: 0
+  showGUI: 0
+  healthSlider: {fileID: 0}
+  canTakeDamage: 1
+  boss: {fileID: 114441485321703722}
+--- !u!114 &114897155215332976
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1673353092997890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb211af6848ab1a419cee26614763ab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  curHealth: 0
+  showGUI: 0
+  healthSlider: {fileID: 0}
+  canTakeDamage: 1
+  boss: {fileID: 0}
 --- !u!212 &212030275376957570
 SpriteRenderer:
   m_ObjectHideFlags: 1

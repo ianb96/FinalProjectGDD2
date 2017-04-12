@@ -3558,7 +3558,20 @@ Prefab:
       propertyPath: aggroScreen
       value: 
       objectReference: {fileID: 1906589787}
-    m_RemovedComponents: []
+    - target: {fileID: 114441485321703722, guid: 4b7d358e9901e564ba680c4bae637746,
+        type: 2}
+      propertyPath: bossName
+      value: Flying Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 114441485321703722, guid: 4b7d358e9901e564ba680c4bae637746,
+        type: 2}
+      propertyPath: maxHealth
+      value: 30
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114897155215332976, guid: 4b7d358e9901e564ba680c4bae637746, type: 2}
+    - {fileID: 114595049679792014, guid: 4b7d358e9901e564ba680c4bae637746, type: 2}
+    - {fileID: 114491335204785376, guid: 4b7d358e9901e564ba680c4bae637746, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 4b7d358e9901e564ba680c4bae637746, type: 2}
   m_IsPrefabParent: 0
 --- !u!114 &1906589787 stripped
