@@ -21,7 +21,7 @@ public class RangedEnemy : EnemyAI {
         {
 			gunRoter.right = (transform.position - player.transform.position) * (facingRight?1:-1);
 		}
-		float playerDist = Mathf.Abs(player.transform.position.x - transform.position.x);
+		float playerDist = (player.transform.position - transform.position).magnitude;
         if (playerDist <= attackRange)
         {
             anim.SetBool("Charging", true);

@@ -66,7 +66,7 @@ public class LevelManager : MonoBehaviour
     }
     public void LoadLevel(int sceneIndex)
     {
-        if (sceneIndex > SceneManager.sceneCount)
+        if (sceneIndex > SceneManager.sceneCountInBuildSettings)
         {
             Debug.LogWarning("No scene " + sceneIndex);
             return;

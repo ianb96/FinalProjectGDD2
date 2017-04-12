@@ -18,10 +18,13 @@ public class Player : Damageable
     public int numJumps = 2;
     [ContextMenuItemAttribute("RecalculateJumpArc", "RecalculateJumpArc")]
     public float jumpHeight = 5;
+    public float holdJumpHeight = 5;
     public float jumpDist = 4;
     int curJumps;
-    float jumpDur = 2;
-    float jumpSpeed = 2;
+    float jumpDur = 0;
+    float jumpSpeed = 0;
+    float holdJumpSpeed = 0;
+    float jumpBaseHeight = 0;
     float grav = -10;
     bool isInWater = false;
 
@@ -86,11 +89,33 @@ public class Player : Damageable
         jumpDur = 0.5f * jumpDist / walkSpeed;
         jumpSpeed = 2 * jumpHeight / jumpDur;
         grav = -jumpSpeed / jumpDur;
+        holdJumpSpeed = 2 * holdJumpHeight / jumpDur;
     }
 
     /// Update is called every frame, if the MonoBehaviour is enabled.
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Keypad5))
+        {
+            TakeDamage(1000, gameObject);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad6))
+        {
+            numJumps = numJumps==200?2:200;
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad7))
+        {
+            movingSwordDamage = 200;
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad8))
+        {
+            Time.timeScale = Time.timeScale < 1 ? 1 : 0.2f;
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad9))
+        {
+            maxHealth = -2;
+        }
+
         if (Time.timeScale == 0)
             return;
         isInWater = Physics2D.OverlapCircle(transform.position, 0.2f, 1 << LayerMask.NameToLayer("Water"));
@@ -267,18 +292,27 @@ public class Player : Damageable
         // jumping
         if (Input.GetButtonDown("Jump") && canJump)
         {
-            Jump();    
+            StartJump();
         }
-        if (canJump && Input.GetButton("Jump") && !anim.GetBool("Jumping"))
+        if (Input.GetButton("Jump"))
         {
-            Jump();
+            // if (canJump && jumpTimer == 0)
+            // {
+            //     StartJump();
+            // }
+            if (transform.position.y - jumpBaseHeight < holdJumpHeight )
+            {
+                // Debug.Log("Holding jump");
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + holdJumpSpeed * Time.deltaTime);
+            }
         }
     }
-    void Jump()
+    void StartJump()
     {
         if (!isInWater)
             curJumps++;
         rb.velocity = new Vector2(rb.velocity.x, jumpSpeed * (isInWater ? 0.4f : 1));
+        jumpBaseHeight = transform.position.y;
         anim.SetBool("Jumping", true);
         anim.SetBool("Falling", false);
         if (!grounded)

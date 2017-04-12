@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour {
 
+	public bool loop = true;
 	public Transform fromPos;
 	public Transform toPos;
 	public float movementSpeed = 3;
@@ -16,9 +17,15 @@ public class MovingPlatform : MonoBehaviour {
 	}
 	
 	void FixedUpdate () {
+		if (!loop && Mathf.Approximately(progressTo, 1))
+			return;
 		progressTo = Mathf.Sin(Time.timeSinceLevelLoad*movementSpeed + startOffset)*0.5f+0.5f;
 		deltaMovement = -transform.position;
 		transform.position = Vector3.Lerp(fromPos.position, toPos.position, progressTo);
 		deltaMovement += transform.position;
+	}
+	public void ResetProgress()
+	{
+		progressTo = 0;
 	}
 }
