@@ -292,6 +292,116 @@ Prefab:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114291970190183166, guid: 456a11db52f4c50478e6da1c1b008f80,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ecdd8da5158930646b2a8705c6f8401b,
+        type: 3}
+    - target: {fileID: 114291970190183166, guid: 456a11db52f4c50478e6da1c1b008f80,
+        type: 2}
+      propertyPath: m_FillCenter
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114964137310432504, guid: 456a11db52f4c50478e6da1c1b008f80,
+        type: 2}
+      propertyPath: m_Transition
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114964137310432504, guid: 456a11db52f4c50478e6da1c1b008f80,
+        type: 2}
+      propertyPath: m_SpriteState.m_DisabledSprite
+      value: 
+      objectReference: {fileID: 21300006, guid: 48d8e347cdf7c0d428c78a0f8bd395d0,
+        type: 3}
+    - target: {fileID: 114964137310432504, guid: 456a11db52f4c50478e6da1c1b008f80,
+        type: 2}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300004, guid: 48d8e347cdf7c0d428c78a0f8bd395d0,
+        type: 3}
+    - target: {fileID: 114964137310432504, guid: 456a11db52f4c50478e6da1c1b008f80,
+        type: 2}
+      propertyPath: m_SpriteState.m_HighlightedSprite
+      value: 
+      objectReference: {fileID: 21300002, guid: 48d8e347cdf7c0d428c78a0f8bd395d0,
+        type: 3}
+    - target: {fileID: 114506731454699404, guid: 456a11db52f4c50478e6da1c1b008f80,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 48d8e347cdf7c0d428c78a0f8bd395d0,
+        type: 3}
+    - target: {fileID: 114712527793923106, guid: 456a11db52f4c50478e6da1c1b008f80,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.9338235
+      objectReference: {fileID: 0}
+    - target: {fileID: 114712527793923106, guid: 456a11db52f4c50478e6da1c1b008f80,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0.9338235
+      objectReference: {fileID: 0}
+    - target: {fileID: 114712527793923106, guid: 456a11db52f4c50478e6da1c1b008f80,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0.9338235
+      objectReference: {fileID: 0}
+    - target: {fileID: 114712527793923106, guid: 456a11db52f4c50478e6da1c1b008f80,
+        type: 2}
+      propertyPath: m_FontData.m_BestFit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114712527793923106, guid: 456a11db52f4c50478e6da1c1b008f80,
+        type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 52
+      objectReference: {fileID: 0}
+    - target: {fileID: 114712527793923106, guid: 456a11db52f4c50478e6da1c1b008f80,
+        type: 2}
+      propertyPath: m_FontData.m_MinSize
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114712527793923106, guid: 456a11db52f4c50478e6da1c1b008f80,
+        type: 2}
+      propertyPath: m_FontData.m_RichText
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224290483397525614, guid: 456a11db52f4c50478e6da1c1b008f80,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 224290483397525614, guid: 456a11db52f4c50478e6da1c1b008f80,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114712527793923106, guid: 456a11db52f4c50478e6da1c1b008f80,
+        type: 2}
+      propertyPath: m_FontData.m_MaxSize
+      value: 113
+      objectReference: {fileID: 0}
+    - target: {fileID: 114712527793923106, guid: 456a11db52f4c50478e6da1c1b008f80,
+        type: 2}
+      propertyPath: m_FontData.m_HorizontalOverflow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114712527793923106, guid: 456a11db52f4c50478e6da1c1b008f80,
+        type: 2}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224228345350953382, guid: 456a11db52f4c50478e6da1c1b008f80,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -1137
+      objectReference: {fileID: 0}
+    - target: {fileID: 224228345350953382, guid: 456a11db52f4c50478e6da1c1b008f80,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -707
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 456a11db52f4c50478e6da1c1b008f80, type: 2}
   m_IsPrefabParent: 0
