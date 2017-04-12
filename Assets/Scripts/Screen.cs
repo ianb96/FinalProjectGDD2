@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Screen : MonoBehaviour {
 
@@ -10,13 +11,16 @@ public class Screen : MonoBehaviour {
 	public bool rcToHide;
 	
 	public bool isInteractable = false;
+	public GameObject defaultSelected;
 	Animator anim;
 	CanvasGroup cg;
+	EventSystem es;
 	
 	void Awake()
 	{
 		cg = GetComponent<CanvasGroup>();
 		anim = GetComponent<Animator>();
+		es = GameObject.FindGameObjectWithTag("EventSystem").GetComponent<EventSystem>();
 		// reset offset
 		GetComponent<RectTransform>().offsetMin = new Vector2(0,0);
 		GetComponent<RectTransform>().offsetMax = new Vector2(1,1);
@@ -36,6 +40,8 @@ public class Screen : MonoBehaviour {
 			anim.SetBool("Open", true);
 		else
 			cg.alpha = 1;
+		if (defaultSelected)
+			es.SetSelectedGameObject(defaultSelected);
 	}
 	/// Hide this screen
 	public void Hide()

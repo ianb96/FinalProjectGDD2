@@ -9,6 +9,7 @@ TagManager:
   - Level
   - LevelManager
   - Platform
+  - EventSystem
   layers:
   - Default
   - TransparentFX
