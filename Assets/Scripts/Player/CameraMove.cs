@@ -11,6 +11,7 @@ public class CameraMove : MonoBehaviour {
 	public float hOffset = 2;
 	[HideInInspector]
 	public float lastGroundHeight;
+	public bool useLastGroundHeight = true;
 	bool isShaking = false;
 	int levelLayer;
 	// TODO: dynamic zoom

@@ -51,6 +51,7 @@ public class Player : Damageable
     public ParticleSystem doubleJumpEffect;
     public SpriteRenderer lightHalo;
     public Image vignette;
+    public List<Light> lights;
     // int levelLayer;
     Rigidbody2D rb;
     Animator anim;
@@ -95,19 +96,20 @@ public class Player : Damageable
         isInWater = Physics2D.OverlapCircle(transform.position, 0.2f, 1 << LayerMask.NameToLayer("Water"));
 
         // gravity
-        if (grounded)
-        {
-            rb.AddForce(-0.05f * Vector2.up, ForceMode2D.Force);
-        }
-        else
-        {
-            rb.AddForce(grav * Vector2.up, ForceMode2D.Force);
-        }
+        // if (grounded)
+        // {
+        //     // rb.AddForce(-0.1f * Vector2.up, ForceMode2D.Force);
+        // }
+        // else
+        // {
+        // }
+        rb.AddForce(grav * Vector2.up, ForceMode2D.Force);
         anim.SetBool("Grounded", grounded);
 
-        if (transform.position.y < -50)
+        if (transform.position.y < -100)
         {
-            transform.position = new Vector3(transform.position.x, 20, 0);
+            transform.position = new Vector3(transform.position.x, 40, 0);
+            TakeDamage(1, gameObject);
         }
 
         if (!canAttack)
@@ -392,8 +394,9 @@ public class Player : Damageable
     public void UpdateHaloA()
     {
         float ratio = curHealth / maxHealth;
-        lightHalo.color = new Color(1,1,1, ratio * 0.5f);
-        vignette.color = new Color(0,0,0,1 - ratio * 0.75f);
+        lightHalo.color = new Color(1,1,1, ratio * 0.1f);
+        lights.ForEach((e)=>e.color = new Color(1,1,1, ratio * 0.5f));
+        vignette.color = new Color(0,0,0,1 - ratio * 0.75f + 0.1f);
     }
 
     void SetNotInvincible()
@@ -422,6 +425,11 @@ public class Player : Damageable
     {
         FullHeal();
     }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        OnCollisionStay2D(other);
+    }
     /// <summary>
     /// Sent when an incoming collider makes contact with this object's
     /// collider (2D physics only).
@@ -438,9 +446,20 @@ public class Player : Damageable
             // Debug.Log(dot);
             if (dot > 0.8f)
             {
+                cam.lastGroundHeight = transform.position.y;
+                if (contact.collider.CompareTag("Platform"))
+                {
+                    transform.Translate(contact.collider.GetComponent<MovingPlatform>().deltaMovement);
+                    //cam.lastGroundHeight = contact.collider.transform.position.y;
+                }
+                // if (grounded == false) {
+                //     if (cam.lastGroundHeight+20 > transform.position.y)
+                //     {
+                //         // TODO: fall damage?
+                //     }
+                // }
                 // hit the ground
                 grounded = true;
-                cam.lastGroundHeight = transform.position.y;
             }
             else if (dot > -0.2f && dot < 0.2f)
             {

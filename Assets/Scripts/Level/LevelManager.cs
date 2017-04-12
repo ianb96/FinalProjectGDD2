@@ -31,46 +31,65 @@ public class LevelManager : MonoBehaviour
 	/// </summary>
 	void Update()
 	{
-		if(Input.GetKeyDown("`"))
+		if(Input.GetKeyDown(KeyCode.Keypad1))
+		{
+			PrevLevel();
+		}
+        if(Input.GetKeyDown(KeyCode.Keypad2))
 		{
 			NextLevel();
+		}
+        if(Input.GetKeyDown(KeyCode.Keypad3))
+		{
+			MoveToNextCheckpoint();
+		}
+        if(Input.GetKeyDown(KeyCode.Keypad4))
+		{
+			ReloadLevel();
 		}
 	}
     public void NextLevel()
     {
+        curCheckpoint = 0;
         LoadLevel(curSceneIndex + 1);
+    }
+    public void PrevLevel()
+    {
+        if (curSceneIndex<1)
+            return;
+        curCheckpoint = 0;
+        LoadLevel(curSceneIndex - 1);
     }
     public void ReloadLevel()
     {
         LoadLevel(curSceneIndex);
     }
-    public void LoadLevel(int index)
+    public void LoadLevel(int sceneIndex)
     {
-        if (index > SceneManager.sceneCount)
+        if (sceneIndex > SceneManager.sceneCount)
         {
-            Debug.LogWarning("No scene " + index);
+            Debug.LogWarning("No scene " + sceneIndex);
             return;
         }
-        Debug.Log("Loading scene " + index);
-		curCheckpoint = 0;
+        Debug.Log("Loading scene " + sceneIndex);
         if (curSceneIndex != 0)
         {
             SceneManager.UnloadSceneAsync(curSceneIndex);
         }
-        if (index != 0)
+        if (sceneIndex != 0)
         {
-            StartCoroutine(LoadAndWait(index));
+            StartCoroutine(LoadAndWait(sceneIndex));
         }
     }
-    IEnumerator LoadAndWait(int index)
+    IEnumerator LoadAndWait(int sceneIndex)
     {
-        AsyncOperation loading = SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
+        AsyncOperation loading = SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive);
         while (!loading.isDone)
         {
             yield return null;
             //loading.progress
         }
-        curSceneIndex = index;
+        curSceneIndex = sceneIndex;
         player.Respawn();
     }
     public void ActivateCheckpoint(int index)

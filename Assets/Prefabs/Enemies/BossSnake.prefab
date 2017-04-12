@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 58096178978024470}
   - component: {fileID: 61310833261052020}
   - component: {fileID: 61687257978695268}
-  - component: {fileID: 114929991526760726}
+  - component: {fileID: 114577695969182568}
   m_Layer: 0
   m_Name: Bulb (1)
   m_TagString: Untagged
@@ -375,7 +375,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1673353092997890}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.101, y: 0.047999952, z: 0}
+  m_LocalPosition: {x: -0.075, y: 0.047999952, z: 0}
   m_LocalScale: {x: 0.015625, y: 0.018, z: 1.0188845}
   m_Children:
   - {fileID: 4455777629094398}
@@ -982,6 +982,17 @@ MonoBehaviour:
   showGUI: 0
   healthSlider: {fileID: 0}
   canTakeDamage: 1
+--- !u!114 &114577695969182568
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1673353092997890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb211af6848ab1a419cee26614763ab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114595049679792014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1012,22 +1023,6 @@ MonoBehaviour:
   targets:
   - {fileID: 1064632987930544}
   disableAfter: 1
---- !u!114 &114929991526760726
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1673353092997890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b81b488334082ec4eaa9b7d661d643a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 10
-  curHealth: 0
-  showGUI: 0
-  healthSlider: {fileID: 0}
-  canTakeDamage: 1
 --- !u!212 &212030275376957570
 SpriteRenderer:
   m_ObjectHideFlags: 1

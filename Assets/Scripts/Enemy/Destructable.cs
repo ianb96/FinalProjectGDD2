@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Destructable : Damageable {
-	Animator anim;
+	protected Animator anim;
 	void Awake()
 	{
 		anim = GetComponent<Animator>();

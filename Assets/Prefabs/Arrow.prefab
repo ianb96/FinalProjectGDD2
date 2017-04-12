@@ -157,6 +157,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   destroyAfterHit: 1
+  disableInstead: 0
+  duration: 0.3
   hitStop: 0
   hitStopTime: 0
   projectileSpeed: 10
@@ -172,8 +174,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1
+  curHealth: 0
   showGUI: 0
   healthSlider: {fileID: 0}
+  canTakeDamage: 1
 --- !u!212 &212302250430543692
 SpriteRenderer:
   m_ObjectHideFlags: 1

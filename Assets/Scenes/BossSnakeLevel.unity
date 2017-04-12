@@ -3718,7 +3718,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkpoints:
   - {fileID: 851147090}
-  nextLevelTrigger: {fileID: 0}
 --- !u!4 &2138852765
 Transform:
   m_ObjectHideFlags: 0

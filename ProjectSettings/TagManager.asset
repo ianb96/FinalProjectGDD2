@@ -8,6 +8,7 @@ TagManager:
   - ScreenManager
   - Level
   - LevelManager
+  - Platform
   layers:
   - Default
   - TransparentFX
