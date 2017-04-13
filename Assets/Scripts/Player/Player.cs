@@ -215,6 +215,7 @@ public class Player : Damageable
         if (hor < 0)
         {
             psprite.flipX = true;
+            //transform.localScale = new Vector3(-1,1,1);
         }
         else if (hor > 0 || rb.velocity.x > 0.01f)
         {

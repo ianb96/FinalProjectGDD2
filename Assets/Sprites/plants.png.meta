@@ -1,12 +1,13 @@
 fileFormatVersion: 2
 guid: 6161aa6b37f9b1645aa6d70a96c8aecc
-timeCreated: 1491621457
+timeCreated: 1492052495
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: plants_0
     21300002: plants_1
     21300004: plants_2
+    21300006: plants_3
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -111,6 +112,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: plants_3
+      rect:
+        serializedVersion: 2
+        x: 96
         y: 0
         width: 32
         height: 32

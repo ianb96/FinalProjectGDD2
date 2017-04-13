@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/main.unity
     guid: a054778055a087f4c9bf6b03cbe5c430
   - enabled: 1
+    path: Assets/Scenes/levelintro.unity
+    guid: 30ab76fca34f8bc409dc4ff51e6a5ec5
+  - enabled: 1
     path: Assets/Scenes/levelslightup.unity
     guid: 2d137fd868d20ef4c82202664079fe8e
   - enabled: 1
@@ -20,7 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/levelunderground.unity
     guid: f59b7ee177ca8f14e8c2b83a28157483
-  - enabled: 1
+  - enabled: 0
+    path: Assets/Scenes/levelcavern.unity
+    guid: d80eb760c34825240970ba5c81e0c245
+  - enabled: 0
     path: Assets/Scenes/leveltoskies.unity
     guid: 699e58075ec8e9247b7c0ab7bec025dc
   - enabled: 1

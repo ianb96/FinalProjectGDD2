@@ -540,14 +540,6 @@ Prefab:
       propertyPath: m_Name
       value: BottomFloor (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 4735355922711748, guid: 185adc263a8b13946a2f5975f09b1ad4, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 4.090856
-      objectReference: {fileID: 0}
-    - target: {fileID: 4735355922711748, guid: 185adc263a8b13946a2f5975f09b1ad4, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 115.298225
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 185adc263a8b13946a2f5975f09b1ad4, type: 2}
   m_IsPrefabParent: 0
