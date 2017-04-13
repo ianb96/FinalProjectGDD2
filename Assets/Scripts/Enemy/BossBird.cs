@@ -6,52 +6,40 @@ public class BossBird : Boss
 {
 
     //[HeaderAttribute("Bird")]
-    public float attackRange = 6;
-    public float Range = 6;
-    /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
-    /// </summary>
+    public GameObject bombPrefab;
+    public Transform bombSpawnPoint;
     void Update()
     {
         if (aggro)
         {
             float playerDist = transform.position.x - player.transform.position.x;
-            anim.SetFloat("Dist", playerDist);
-            anim.SetFloat("Speed", 0);
-            // anim.SetInteger("AttackType", 0);
-            if (playerDist < 0)
-            {
-                anim.SetTrigger("JumpBack");
-                anim.SetBool("Attack", false);
-            }
-            else if (playerDist <= attackRange)
-            {
-                // anim.SetInteger("AttackType", phase+1);
-                anim.SetBool("Attack", true);
-            }
-            else
-            {
-                anim.SetFloat("Speed", 1);
-                anim.SetBool("Attack", false);
-            }
-            // if (phase == 0)
-            // if (phase == 1)
+            // anim.SetFloat("Dist", playerDist);
+            // set position after bombs dropped?
         }
     }
-
+    public void DropBomb()
+    {
+        GameObject bomb = Instantiate(bombPrefab, bombSpawnPoint.position, bombSpawnPoint.rotation);
+        bomb.GetComponent<TriggerDamage>().damage = damage;
+    }
+    public void FinishDropping()
+    {
+        // move to a position to the right of the player?
+        // or just automatically go to a charge animation?
+        // or can animation do this with dist?
+        // or just translate to a certain point here?
+    }
     public override void OnHit(float amount, GameObject attacker)
     {
-        Debug.Log("hit! " + name + " for " + amount);
+        //Debug.Log("hit! " + name + " for " + amount);
         if (phase != 2 && curHealth / maxHealth < 0.5f)
         {
             phase = 2;
             anim.SetTrigger("Mad");
             // play sound
-            anim.SetFloat("MultSpeed", 1.5f);
+            // anim.SetFloat("MultSpeed", 1.5f);
+            // will this mess up end position?
+            // use a different attack animation entirely?
         }
-        // else if (curHealth / maxHealth < 0.75f)
-        // {
-        //     phase = 1;
-        // }
     }
 }

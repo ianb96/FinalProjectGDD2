@@ -58,6 +58,10 @@ public class Damageable : MonoBehaviour
             healthSlider.value = 1;
         }
     }
+    public void PermaInvincibility()
+    {
+        maxHealth = -1;
+    }
     public virtual void Die()
     {
         // nothing

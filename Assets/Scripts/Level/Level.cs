@@ -21,7 +21,7 @@ public class Level : MonoBehaviour {
 	void Start()
 	{
 		Debug.ClearDeveloperConsole();
-		checkpoints[0].levelBoundary.SetActive(true);
+		if (checkpoints[0].levelBoundary) checkpoints[0].levelBoundary.SetActive(true);
 		// checkpoints[0].prevLevelLoader.activated = true;
 		checkpoints[checkpoints.Count-1].nextLevelLoader.activated = true;
 		for (int i = 0; i < checkpoints.Count; i++)

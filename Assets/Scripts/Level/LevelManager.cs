@@ -30,28 +30,6 @@ public class LevelManager : MonoBehaviour
         if (loadSceneImmediately > 0)
             LoadLevel(loadSceneImmediately);
     }
-    /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
-    /// </summary>
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Keypad1))
-        {
-            StartPrevLevel();
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad2))
-        {
-            NextLevel();
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad3))
-        {
-            MoveToNextCheckpoint();
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad4))
-        {
-            ReloadLevel();
-        }
-    }
     public void NextLevel()
     {
         curCheckpoint = 0;
@@ -83,7 +61,7 @@ public class LevelManager : MonoBehaviour
             return;
         }
         Debug.Log("Loading scene " + sceneIndex);
-        if (curSceneIndex != 0 && curSceneIndex != sceneIndex)
+        if (curSceneIndex != 0 || curSceneIndex == sceneIndex)
         {
             SceneManager.UnloadSceneAsync(curSceneIndex);
         }

@@ -95,28 +95,6 @@ public class Player : Damageable
     /// Update is called every frame, if the MonoBehaviour is enabled.
     void Update()
     {
-        // cheats
-        if (Input.GetKeyDown(KeyCode.Keypad5))
-        {
-            TakeDamage(1000, gameObject);
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad6))
-        {
-            numJumps = numJumps == 200 ? 2 : 200;
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad7))
-        {
-            movingSwordDamage = 200;
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad8))
-        {
-            Time.timeScale = Time.timeScale < 1 ? 1 : 0.2f;
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad9))
-        {
-            maxHealth = -2;
-        }
-
         if (Time.timeScale == 0)
             return;
         //isInWater = Physics2D.OverlapCircle(transform.position, 0.2f, 1 << LayerMask.NameToLayer("Water"));

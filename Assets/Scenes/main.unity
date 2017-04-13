@@ -506,21 +506,6 @@ Prefab:
       propertyPath: vignette
       value: 
       objectReference: {fileID: 1768365890}
-    - target: {fileID: 198695896310893744, guid: 7b36630e2fd332849b9ad9754f38d4de,
-        type: 2}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198695896310893744, guid: 7b36630e2fd332849b9ad9754f38d4de,
-        type: 2}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198695896310893744, guid: 7b36630e2fd332849b9ad9754f38d4de,
-        type: 2}
-      propertyPath: randomSeed
-      value: 2100492488
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b36630e2fd332849b9ad9754f38d4de, type: 2}
   m_IsPrefabParent: 0

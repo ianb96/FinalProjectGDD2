@@ -31,8 +31,8 @@ public class Checkpoint : MonoBehaviour
 		if (other.CompareTag("Player"))
 		{
 			lm.ActivateCheckpoint(checkpointIndex);
-			// play animation
-			anim.SetBool("Light", true);
+			if (anim)
+				anim.SetBool("Light", true);
 		}
 	}
 	// public override void OnHit(float amount, GameObject attacker)

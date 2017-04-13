@@ -5,13 +5,14 @@ using UnityEngine;
 public class SwordFlipper : MonoBehaviour
 {
 
-    public Player player;
-    public Animator anim;
+    Player player;
+    Animator anim;
     float turningTimer = 0;
 
-    void Start()
+    void Awake()
     {
-
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        anim = player.GetComponent<Animator>();
     }
 
     void Update()
