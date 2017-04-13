@@ -95,6 +95,7 @@ public class Player : Damageable
     /// Update is called every frame, if the MonoBehaviour is enabled.
     void Update()
     {
+        // cheats
         if (Input.GetKeyDown(KeyCode.Keypad5))
         {
             TakeDamage(1000, gameObject);
@@ -118,18 +119,52 @@ public class Player : Damageable
 
         if (Time.timeScale == 0)
             return;
-        isInWater = Physics2D.OverlapCircle(transform.position, 0.2f, 1 << LayerMask.NameToLayer("Water"));
+        //isInWater = Physics2D.OverlapCircle(transform.position, 0.2f, 1 << LayerMask.NameToLayer("Water"));
 
         // gravity
         rb.AddForce(grav * Vector2.up, ForceMode2D.Force);
         anim.SetBool("Grounded", grounded);
-
+        // out of bounds
         if (transform.position.y < -100)
         {
             transform.position = new Vector3(transform.position.x, 40, 0);
             TakeDamage(1, gameObject);
         }
+        
+        
+        // dodge
+        if (dodgeTimer <= 0)
+        {
+            if (grounded && Input.GetButtonDown("Dodge"))// && rb.velocity.x<0)
+            {
+                rb.velocity = dodgeVel;
+                anim.SetBool("Dodging", true);
+                invincible = true;
+                canMove = false;
+                canAttack = false;
+                Invoke("GiveControl", 1f); // backup give control
+                psprite.flipX = false;
+            }
+        }
+        else
+        {
+            dodgeTimer -= Time.deltaTime;
+        }
 
+        bool canJump = (curJumps < numJumps - (grounded ? 1 : 0) || isInWater);
+        // jumping
+        if (Input.GetButtonDown("Jump") && canJump)
+        {
+            StartJump();
+        }
+        if (Input.GetButton("Jump"))
+        {
+            if (transform.position.y - jumpBaseHeight < holdJumpHeight )
+            {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + holdJumpSpeed * Time.deltaTime);
+            }
+        }
+        // attacking
         if (!canAttack)
             return;
 
@@ -259,39 +294,6 @@ public class Player : Damageable
             if (rb.velocity.y < -1f)
             {
                 anim.SetBool("Falling", true);
-            }
-        }
-
-        // dodge
-        if (dodgeTimer <= 0)
-        {
-            if (grounded && Input.GetButtonDown("Dodge"))// && rb.velocity.x<0)
-            {
-                rb.velocity = dodgeVel;
-                anim.SetBool("Dodging", true);
-                invincible = true;
-                canMove = false;
-                canAttack = false;
-                Invoke("GiveControl", 1f); // backup give control
-                psprite.flipX = false;
-            }
-        }
-        else
-        {
-            dodgeTimer -= Time.deltaTime;
-        }
-
-        bool canJump = (curJumps < numJumps - (grounded ? 1 : 0) || isInWater);
-        // jumping
-        if (Input.GetButtonDown("Jump") && canJump)
-        {
-            StartJump();
-        }
-        if (Input.GetButton("Jump"))
-        {
-            if (transform.position.y - jumpBaseHeight < holdJumpHeight )
-            {
-                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + holdJumpSpeed * Time.deltaTime);
             }
         }
     }

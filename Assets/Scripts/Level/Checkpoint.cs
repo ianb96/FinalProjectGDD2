@@ -7,6 +7,8 @@ public class Checkpoint : MonoBehaviour
 
 	public Transform spawnPosition;
 	public GameObject levelBoundary;
+	public TriggerNextLevel nextLevelLoader;
+	public TriggerNextLevel prevLevelLoader;
     LevelManager lm;
 	int checkpointIndex;
 	Animator anim;

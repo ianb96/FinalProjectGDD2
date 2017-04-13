@@ -565,7 +565,7 @@ MonoBehaviour:
   movementSpeed: 2.5
   attackRate: 0.75
   damage: 2
-  attackRange: 2
+  attackRange: 4
   knockbackForce: {x: 3, y: 2}
   hitboxes:
   - {fileID: 114253008780448100}

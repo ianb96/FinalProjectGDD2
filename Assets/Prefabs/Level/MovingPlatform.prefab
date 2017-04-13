@@ -165,10 +165,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c3dbb7d33b6cc846862414f82c907ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loop: 1
   fromPos: {fileID: 4495503864638034}
   toPos: {fileID: 4747418467966626}
   movementSpeed: 0.5
   deltaMovement: {x: 0, y: 0, z: 0}
+  startOffset: 0
 --- !u!212 &212050002295223628
 SpriteRenderer:
   m_ObjectHideFlags: 1

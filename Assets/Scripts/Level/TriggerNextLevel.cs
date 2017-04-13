@@ -6,26 +6,13 @@ public class TriggerNextLevel : MonoBehaviour
 {
 
     public bool activated = true;
-    public float delay = 5f;
-    public float delayTimer = 0;
+    public bool goToPreviousLevel = false;
     LevelManager lm;
 
 
     void Awake()
     {
         lm = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
-        // activated = false;
-        delayTimer = delay;
-    }
-    /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
-    /// </summary>
-    void Update()
-    {
-        if (delayTimer > 0)
-        {
-            delayTimer -= Time.deltaTime;
-        }
     }
 
     /// <summary>
@@ -33,14 +20,20 @@ public class TriggerNextLevel : MonoBehaviour
     /// object (2D physics only).
     /// </summary>
     /// <param name="other">The other Collider2D involved in this collision.</param>
-    void OnTriggerStay2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (activated && delayTimer <= 0)
+        if (activated)
         {
             if (other.CompareTag("Player"))
             {
-                lm.NextLevel();
-                delayTimer = delay;
+                if (goToPreviousLevel)
+                {
+                    lm.PrevLevel();
+                }
+                else
+                {
+                    lm.NextLevel();
+                }
             }
         }
     }

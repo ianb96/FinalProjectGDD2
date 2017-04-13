@@ -6,6 +6,7 @@ public class CameraMove : MonoBehaviour {
 
 	public bool follow = true;
 	public Transform target;
+	// public bool noSmoothing = false;
 	public float groundDetachHeight = 4;
 	public float vOffset = 2;
 	public float hOffset = 2;
@@ -30,7 +31,10 @@ public class CameraMove : MonoBehaviour {
         float nCamPosy = target.transform.position.y + vOffset;
         if (downhit.collider)
         {
-            nCamPosy = Mathf.Lerp(transform.position.y, lastGroundHeight + vOffset, 20 * Time.deltaTime);
+			if (transform.position.y >= lastGroundHeight)
+			{
+	            nCamPosy = Mathf.Lerp(transform.position.y, lastGroundHeight + vOffset, 30 * Time.deltaTime);
+			}
         }
         transform.position = new Vector3(target.transform.position.x + hOffset, nCamPosy, -10);
 	}

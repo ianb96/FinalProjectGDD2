@@ -33,7 +33,7 @@ public class LevelManager : MonoBehaviour
 	{
 		if(Input.GetKeyDown(KeyCode.Keypad1))
 		{
-			PrevLevel();
+			StartPrevLevel();
 		}
         if(Input.GetKeyDown(KeyCode.Keypad2))
 		{
@@ -53,11 +53,18 @@ public class LevelManager : MonoBehaviour
         curCheckpoint = 0;
         LoadLevel(curSceneIndex + 1);
     }
-    public void PrevLevel()
+    public void StartPrevLevel()
     {
         if (curSceneIndex<1)
             return;
         curCheckpoint = 0;
+        LoadLevel(curSceneIndex - 1);
+    }
+    public void PrevLevel()
+    {
+        if (curSceneIndex<1)
+            return;
+        curCheckpoint = -1;
         LoadLevel(curSceneIndex - 1);
     }
     public void ReloadLevel()
@@ -111,8 +118,10 @@ public class LevelManager : MonoBehaviour
         Level curLevel = GameObject.FindGameObjectWithTag("Level").GetComponent<Level>();
         if (curCheckpoint >= curLevel.checkpoints.Count)
         {
-            Debug.LogError("Loaded incorrect checkpoint! " + curCheckpoint);
-			return null;
+            Debug.Log("Loaded incorrect checkpoint! " + curCheckpoint);
+            return null;
+        } else if (curCheckpoint<0) {
+            curCheckpoint = curLevel.checkpoints.Count-1;
         }
         return curLevel.checkpoints[curCheckpoint].spawnPosition;
     }
