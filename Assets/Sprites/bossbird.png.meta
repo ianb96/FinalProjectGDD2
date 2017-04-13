@@ -1,0 +1,196 @@
+fileFormatVersion: 2
+guid: 4f54e739426ab9b458b7731f7ee80d01
+timeCreated: 1492105028
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: bossbird_head
+    21300002: bossbird_jaw
+    21300004: bossbird_body
+    21300006: bossbird_wing2
+    21300008: bossbird_leg
+    21300010: bossbird_tail
+    21300012: bossbird_wing1
+    21300014: bossbird_neck
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 64
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: bossbird_head
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 56
+        width: 19
+        height: 7
+      alignment: 9
+      pivot: {x: 0.9761411, y: 0.034142084}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: bossbird_jaw
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 49
+        width: 19
+        height: 3
+      alignment: 9
+      pivot: {x: 0.5775113, y: 0.92077637}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: bossbird_body
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 32
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: bossbird_wing2
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 21
+        width: 17
+        height: 10
+      alignment: 9
+      pivot: {x: 0.06684847, y: 0.91025656}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: bossbird_leg
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 0
+        width: 14
+        height: 18
+      alignment: 9
+      pivot: {x: 0.46994463, y: 0.9967496}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: bossbird_tail
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 9
+        width: 21
+        height: 8
+      alignment: 9
+      pivot: {x: 0.119298115, y: 0.78928363}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: bossbird_wing1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 34
+        width: 15
+        height: 12
+      alignment: 9
+      pivot: {x: -0.0119438525, y: 0.85}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: bossbird_neck
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 53
+        width: 7
+        height: 9
+      alignment: 9
+      pivot: {x: 0.5150277, y: 0.020783318}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

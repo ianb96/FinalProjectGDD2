@@ -400,7 +400,7 @@ public class Player : Damageable
 
     public override void OnHit(float amount, GameObject attacker)
     {
-        Debug.Log("hit by " + attacker.name + " for " + amount);
+        //Debug.Log("hit by " + attacker.name + " for " + amount);
         UpdateHaloA();
         anim.SetTrigger("Hit");
         walkTimer = walkDur;
