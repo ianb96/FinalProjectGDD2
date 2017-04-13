@@ -28,10 +28,10 @@ public class EnemyAI : Damageable
     {
         base.Start();
         attackTimer = Random.Range(0f, attackRate);
-        hitboxes.ForEach((hb)=>hb.damage = damage);
+        hitboxes.ForEach((hb) => hb.damage = damage);
         defScale = fliper.localScale;
     }
-    
+
     public virtual void Update()
     {
         if (attackTimer > 0)

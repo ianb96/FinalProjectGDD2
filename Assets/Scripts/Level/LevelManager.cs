@@ -1,16 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 /// Manages the current scene
 public class LevelManager : MonoBehaviour
 {
 
-    [ContextMenuItemAttribute("MoveToNextCheckpoint","MoveToNextCheckpoint")]
+    [ContextMenuItemAttribute("MoveToNextCheckpoint", "MoveToNextCheckpoint")]
     public bool RCToNextCP;
     public int loadSceneImmediately = -1;
     public Screen loadingScreen;
+    Slider loadingSlider;
+    public float minLoadingTime = 1;
     int curSceneIndex = 0;
     int curCheckpoint = 0;
     Player player;
@@ -18,36 +21,37 @@ public class LevelManager : MonoBehaviour
     /// Awake is called when the script instance is being loaded.
     void Awake()
     {
+        loadingSlider = loadingScreen.GetComponentInChildren<Slider>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     void Start()
     {
-        if (loadSceneImmediately>0)
+        if (loadSceneImmediately > 0)
             LoadLevel(loadSceneImmediately);
     }
-	/// <summary>
-	/// Update is called every frame, if the MonoBehaviour is enabled.
-	/// </summary>
-	void Update()
-	{
-		if(Input.GetKeyDown(KeyCode.Keypad1))
-		{
-			StartPrevLevel();
-		}
-        if(Input.GetKeyDown(KeyCode.Keypad2))
-		{
-			NextLevel();
-		}
-        if(Input.GetKeyDown(KeyCode.Keypad3))
-		{
-			MoveToNextCheckpoint();
-		}
-        if(Input.GetKeyDown(KeyCode.Keypad4))
-		{
-			ReloadLevel();
-		}
-	}
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            StartPrevLevel();
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            NextLevel();
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            MoveToNextCheckpoint();
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad4))
+        {
+            ReloadLevel();
+        }
+    }
     public void NextLevel()
     {
         curCheckpoint = 0;
@@ -55,14 +59,14 @@ public class LevelManager : MonoBehaviour
     }
     public void StartPrevLevel()
     {
-        if (curSceneIndex<1)
+        if (curSceneIndex < 1)
             return;
         curCheckpoint = 0;
         LoadLevel(curSceneIndex - 1);
     }
     public void PrevLevel()
     {
-        if (curSceneIndex<1)
+        if (curSceneIndex < 1)
             return;
         curCheckpoint = -1;
         LoadLevel(curSceneIndex - 1);
@@ -79,7 +83,7 @@ public class LevelManager : MonoBehaviour
             return;
         }
         Debug.Log("Loading scene " + sceneIndex);
-        if (curSceneIndex != 0 && curSceneIndex!=sceneIndex)
+        if (curSceneIndex != 0 && curSceneIndex != sceneIndex)
         {
             SceneManager.UnloadSceneAsync(curSceneIndex);
         }
@@ -90,16 +94,24 @@ public class LevelManager : MonoBehaviour
     }
     IEnumerator LoadAndWait(int sceneIndex)
     {
-        AsyncOperation loading = SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive);
         loadingScreen.Show();
+        AsyncOperation loading = SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive);
         while (!loading.isDone)
         {
             yield return null;
-            //loading.progress
+            if (loadingSlider) loadingSlider.value = loading.progress;
         }
-        loadingScreen.Hide();
         curSceneIndex = sceneIndex;
         player.Respawn();
+        yield return null;
+        float waitTime = minLoadingTime;
+        while (waitTime > 0)
+        {
+            waitTime -= Time.unscaledDeltaTime;
+            if (loadingSlider) loadingSlider.value = minLoadingTime - waitTime;
+            yield return null;
+        }
+        loadingScreen.Hide();
     }
     public void ActivateCheckpoint(int index)
     {
@@ -121,7 +133,9 @@ public class LevelManager : MonoBehaviour
             curSceneIndex = PlayerPrefs.GetInt("Level");
             curCheckpoint = PlayerPrefs.GetInt("Checkpoint");
             ReloadLevel();
-        } else {
+        }
+        else
+        {
             Debug.Log("No saved data!");
             curCheckpoint = 0;
             LoadLevel(1);
@@ -143,8 +157,10 @@ public class LevelManager : MonoBehaviour
         {
             Debug.Log("Loaded incorrect checkpoint! " + curCheckpoint);
             return null;
-        } else if (curCheckpoint<0) {
-            curCheckpoint = curLevel.checkpoints.Count-1;
+        }
+        else if (curCheckpoint < 0)
+        {
+            curCheckpoint = curLevel.checkpoints.Count - 1;
         }
         return curLevel.checkpoints[curCheckpoint].spawnPosition;
     }

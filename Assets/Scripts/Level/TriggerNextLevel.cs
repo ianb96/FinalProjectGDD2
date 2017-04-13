@@ -36,7 +36,7 @@ public class TriggerNextLevel : MonoBehaviour
         {
             if (other.CompareTag("Player"))
             {
-                if (delay<=0)
+                if (delay <= 0)
                 {
                     delay = 1;
                     if (goToPreviousLevel)

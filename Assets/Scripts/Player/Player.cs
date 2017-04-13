@@ -102,7 +102,7 @@ public class Player : Damageable
         }
         if (Input.GetKeyDown(KeyCode.Keypad6))
         {
-            numJumps = numJumps==200?2:200;
+            numJumps = numJumps == 200 ? 2 : 200;
         }
         if (Input.GetKeyDown(KeyCode.Keypad7))
         {
@@ -130,8 +130,8 @@ public class Player : Damageable
             transform.position = new Vector3(transform.position.x, 40, 0);
             TakeDamage(1, gameObject);
         }
-        
-        
+
+
         // dodge
         if (dodgeTimer <= 0)
         {
@@ -159,7 +159,7 @@ public class Player : Damageable
         }
         if (Input.GetButton("Jump"))
         {
-            if (transform.position.y - jumpBaseHeight < holdJumpHeight )
+            if (transform.position.y - jumpBaseHeight < holdJumpHeight)
             {
                 rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + holdJumpSpeed * Time.deltaTime);
             }
@@ -179,7 +179,7 @@ public class Player : Damageable
 
             // TODO: in-air attack
             // if running increase speed / damage ?
-            anim.SetFloat("SwingModifier", walkTimer<0?2:1);
+            anim.SetFloat("SwingModifier", walkTimer < 0 ? 2 : 1);
             //if (grounded || isInWater)
             // else if (!downhit.collider)
             // {
@@ -207,7 +207,7 @@ public class Player : Damageable
             Move();
         }
     }
-    
+
     /// Get input and move the player with rigidbody
     void Move()
     {
@@ -418,9 +418,9 @@ public class Player : Damageable
     public void UpdateHaloA()
     {
         float ratio = curHealth / maxHealth;
-        lightHalo.color = new Color(1,1,1, ratio * 0.1f);
-        lights.ForEach((e)=>e.color = new Color(1,1,1, ratio * 0.5f));
-        vignette.color = new Color(0,0,0,1 - ratio * 0.75f + 0.1f);
+        lightHalo.color = new Color(1, 1, 1, ratio * 0.1f);
+        lights.ForEach((e) => e.color = new Color(1, 1, 1, ratio * 0.5f));
+        vignette.color = new Color(0, 0, 0, 1 - ratio * 0.75f + 0.1f);
     }
 
     void SetNotInvincible()
@@ -443,6 +443,7 @@ public class Player : Damageable
         anim.SetBool("Dead", false);
         transform.position = lm.GetCheckpoint().position;
         grounded = false;
+        cam.LevelLoaded();
         // animation?
     }
     public void ActivatedCheckpoint()
@@ -471,10 +472,11 @@ public class Player : Damageable
             if (dot > 0.8f)
             {
                 // fall damage
-                if (!grounded && Time.timeSinceLevelLoad>2) {
+                if (!grounded && Time.timeSinceLevelLoad > 2)
+                {
                     if (cam.lastGroundHeight - 50 > transform.position.y)
                     {
-                        TakeDamage(100, lm.gameObject);       
+                        TakeDamage(100, lm.gameObject);
                     }
                 }
                 cam.lastGroundHeight = transform.position.y;

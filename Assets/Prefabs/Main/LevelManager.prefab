@@ -54,3 +54,4 @@ MonoBehaviour:
   RCToNextCP: 0
   loadSceneImmediately: -1
   loadingScreen: {fileID: 0}
+  minLoadingTime: 0.2

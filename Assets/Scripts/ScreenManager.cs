@@ -25,40 +25,40 @@ public class ScreenManager : MonoBehaviour
             TogglePause();
         }
     }
-	/// show the screen
+    /// show the screen
     public void ShowScreen(Screen newScreen)
     {
         newScreen.SMShow();
         newScreen.transform.SetAsLastSibling();
         // add to list?
     }
-	/// hide the screen
+    /// hide the screen
     public void HideScreen(Screen newScreen)
     {
         newScreen.Hide();
     }
-	public void TogglePause()
-	{
-		if (paused)
-		{
-			ShowScreen(pauseScreen);
-			Time.timeScale = 0;
-		}
-		else
-		{
-			HideScreen(pauseScreen);
-			Time.timeScale = 1;
-		}
-		paused = !paused;
-	}
+    public void TogglePause()
+    {
+        if (paused)
+        {
+            ShowScreen(pauseScreen);
+            Time.timeScale = 0;
+        }
+        else
+        {
+            HideScreen(pauseScreen);
+            Time.timeScale = 1;
+        }
+        paused = !paused;
+    }
     public void Exit()
     {
-         #if UNITY_EDITOR
-         UnityEditor.EditorApplication.isPlaying = false;
-         #elif UNITY_WEBPLAYER
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#elif UNITY_WEBPLAYER
          // Application.OpenURL(webplayerQuitURL);
-         #else
+#else
          Application.Quit();
-         #endif
+#endif
     }
 }
