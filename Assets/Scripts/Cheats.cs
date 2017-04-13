@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class Cheats : MonoBehaviour {
 
+	public bool codeEnabled = true;
 	bool cheatsEnabled;
 	int codeEntryProgress = 0;
 	Player player;
 	LevelManager lm;
 
 	void Awake () {
-// #if UNITY_EDITOR
-		// cheatsEnabled = true;
-// #else
 		cheatsEnabled = false;
-// #endif
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();		
 		lm = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
 	}
@@ -22,6 +19,8 @@ public class Cheats : MonoBehaviour {
 	void Update () {
 		if (!cheatsEnabled)
 		{
+			if (!codeEnabled)
+				return;
 			// check for a code of ```
 			if (Input.GetKeyDown("`"))
 			{

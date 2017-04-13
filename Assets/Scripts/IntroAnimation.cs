@@ -6,23 +6,42 @@ public class IntroAnimation : MonoBehaviour {
 
 
 	public TextMesh text;
+	public GameObject groundSword;
+	public GameObject mustGetSwordWall;
 	Player player;
+	GameObject playerSword;
+	GameObject playerArms; 
 
-	/// <summary>
-	/// Awake is called when the script instance is being loaded.
-	/// </summary>
 	void Awake()
 	{
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+		playerSword = player.transform.FindChild("Sword").gameObject;
 	}
 
-	/// <summary>
-	/// Sent when another object enters a trigger collider attached to this
-	/// object (2D physics only).
-	/// </summary>
-	/// <param name="other">The other Collider2D involved in this collision.</param>
+	void Start()
+	{
+		playerSword.SetActive(false);
+		// TODO enable temporary arms
+		groundSword.SetActive(true);
+		text.gameObject.SetActive(false);
+		mustGetSwordWall.SetActive(true);
+	}
+
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		
+		text.gameObject.SetActive(true);
+		// Fade in instead
+	}
+
+	void OnTriggerStay2D(Collider2D other)
+	{
+		if (Input.GetButtonDown("Attack"))
+		{
+			// do an animation and wait for it
+			playerSword.SetActive(true);
+			groundSword.SetActive(false);
+			text.gameObject.SetActive(false);
+			mustGetSwordWall.SetActive(false);
+		}
 	}
 }
