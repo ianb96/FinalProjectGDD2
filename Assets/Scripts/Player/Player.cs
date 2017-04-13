@@ -470,18 +470,19 @@ public class Player : Damageable
             // Debug.Log(dot);
             if (dot > 0.8f)
             {
+                // fall damage
+                if (!grounded && Time.timeSinceLevelLoad>2) {
+                    if (cam.lastGroundHeight - 50 > transform.position.y)
+                    {
+                        TakeDamage(100, lm.gameObject);       
+                    }
+                }
                 cam.lastGroundHeight = transform.position.y;
                 if (contact.collider.CompareTag("Platform"))
                 {
                     transform.Translate(contact.collider.GetComponent<MovingPlatform>().deltaMovement);
                     //cam.lastGroundHeight = contact.collider.transform.position.y;
                 }
-                // if (grounded == false) {
-                //     if (cam.lastGroundHeight+20 > transform.position.y)
-                //     {
-                //         // TODO: fall damage?
-                //     }
-                // }
                 // hit the ground
                 grounded = true;
             }

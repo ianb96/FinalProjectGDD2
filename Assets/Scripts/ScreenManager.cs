@@ -51,4 +51,14 @@ public class ScreenManager : MonoBehaviour
 		}
 		paused = !paused;
 	}
+    public void Exit()
+    {
+         #if UNITY_EDITOR
+         UnityEditor.EditorApplication.isPlaying = false;
+         #elif UNITY_WEBPLAYER
+         // Application.OpenURL(webplayerQuitURL);
+         #else
+         Application.Quit();
+         #endif
+    }
 }

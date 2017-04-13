@@ -26,9 +26,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/levelcavern.unity
     guid: d80eb760c34825240970ba5c81e0c245
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/leveltoskies.unity
     guid: 699e58075ec8e9247b7c0ab7bec025dc
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BossSnakeLevel.unity
     guid: 20d50826fed89f345a75ac37b43df4eb

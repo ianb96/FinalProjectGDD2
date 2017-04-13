@@ -7,6 +7,7 @@ public class TriggerNextLevel : MonoBehaviour
 
     public bool activated = true;
     public bool goToPreviousLevel = false;
+    float delay = 0;
     LevelManager lm;
 
 
@@ -14,7 +15,16 @@ public class TriggerNextLevel : MonoBehaviour
     {
         lm = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
     }
-
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    void Update()
+    {
+        // if (activated && delay>0)
+        // {
+        //     delay-=Time.deltaTime;
+        // }
+    }
     /// <summary>
     /// Sent when another object enters a trigger collider attached to this
     /// object (2D physics only).
@@ -26,13 +36,17 @@ public class TriggerNextLevel : MonoBehaviour
         {
             if (other.CompareTag("Player"))
             {
-                if (goToPreviousLevel)
+                if (delay<=0)
                 {
-                    lm.PrevLevel();
-                }
-                else
-                {
-                    lm.NextLevel();
+                    delay = 1;
+                    if (goToPreviousLevel)
+                    {
+                        lm.PrevLevel();
+                    }
+                    else
+                    {
+                        lm.NextLevel();
+                    }
                 }
             }
         }

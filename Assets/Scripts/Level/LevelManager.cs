@@ -79,7 +79,7 @@ public class LevelManager : MonoBehaviour
             return;
         }
         Debug.Log("Loading scene " + sceneIndex);
-        if (curSceneIndex != 0)
+        if (curSceneIndex != 0 && curSceneIndex!=sceneIndex)
         {
             SceneManager.UnloadSceneAsync(curSceneIndex);
         }
@@ -91,11 +91,13 @@ public class LevelManager : MonoBehaviour
     IEnumerator LoadAndWait(int sceneIndex)
     {
         AsyncOperation loading = SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive);
+        loadingScreen.Show();
         while (!loading.isDone)
         {
             yield return null;
             //loading.progress
         }
+        loadingScreen.Hide();
         curSceneIndex = sceneIndex;
         player.Respawn();
     }
@@ -112,9 +114,30 @@ public class LevelManager : MonoBehaviour
         PlayerPrefs.SetInt("Checkpoint", curCheckpoint);
         // anything else?
     }
+    public void LoadSavedGame()
+    {
+        if (PlayerPrefs.HasKey("Level"))
+        {
+            curSceneIndex = PlayerPrefs.GetInt("Level");
+            curCheckpoint = PlayerPrefs.GetInt("Checkpoint");
+            ReloadLevel();
+        } else {
+            Debug.Log("No saved data!");
+            curCheckpoint = 0;
+            LoadLevel(1);
+        }
+    }
     /// returns the spawn position of the current checkpoint of the current level
     public Transform GetCheckpoint()
     {
+        if (!GameObject.FindGameObjectWithTag("Level"))
+        {
+            if (curSceneIndex != 0)
+            {
+                Debug.LogWarning("No Checkpoint!");
+            }
+            return player.transform;
+        }
         Level curLevel = GameObject.FindGameObjectWithTag("Level").GetComponent<Level>();
         if (curCheckpoint >= curLevel.checkpoints.Count)
         {

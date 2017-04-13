@@ -51,5 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd79d70d1f1d60d46ae962cad8eb3a0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadSceneImmediately: 1
+  RCToNextCP: 0
+  loadSceneImmediately: -1
   loadingScreen: {fileID: 0}
