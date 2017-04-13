@@ -224,7 +224,7 @@ public class Player : Damageable
             }
             if (desiredSpeed.x <= targetSpeed)
             {
-                float attackModifier = ((hor < 0 && attacking) || anim.GetBool("Swing") ? 0.4f : 1f);
+                float attackModifier = ((hor < 0 && attacking) ? 0.4f : 1f);
                 desiredSpeed.x += hor * targetSpeed * attackModifier;
             }
         }
