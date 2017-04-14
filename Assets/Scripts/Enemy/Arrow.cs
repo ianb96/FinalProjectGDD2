@@ -6,8 +6,11 @@ public class Arrow : TriggerDamage {
 	public float projectileSpeed = 10;
 	Rigidbody2D rb;
 
-	void Start () {
+	void Awake()
+	{
 		rb = GetComponent<Rigidbody2D>();
+	}
+	void Start () {
 		rb.velocity = transform.right*projectileSpeed;
 	}
 	/// <summary>

@@ -32,6 +32,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/levelbosssnake.unity
     guid: 20d50826fed89f345a75ac37b43df4eb
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/levelbossbird.unity
     guid: a182a5a54cb6ef6458e690ba0b991d39

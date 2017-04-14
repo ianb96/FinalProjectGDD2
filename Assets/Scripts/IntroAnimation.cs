@@ -32,7 +32,11 @@ public class IntroAnimation : MonoBehaviour {
 		text.gameObject.SetActive(true);
 		// Fade in instead
 	}
-
+	void OnDisable()
+	{
+		// just in case
+		playerSword.SetActive(true);
+	}
 	void OnTriggerStay2D(Collider2D other)
 	{
 		if (Input.GetButtonDown("Attack"))

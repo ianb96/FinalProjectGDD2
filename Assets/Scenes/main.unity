@@ -326,7 +326,7 @@ Prefab:
     - target: {fileID: 224139510508799146, guid: 456a11db52f4c50478e6da1c1b008f80,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 224062325189488456, guid: 456a11db52f4c50478e6da1c1b008f80,
         type: 2}
@@ -346,7 +346,7 @@ Prefab:
     - target: {fileID: 224062325189488456, guid: 456a11db52f4c50478e6da1c1b008f80,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -74.333336
       objectReference: {fileID: 0}
     - target: {fileID: 224126709193091884, guid: 456a11db52f4c50478e6da1c1b008f80,
         type: 2}
@@ -366,7 +366,7 @@ Prefab:
     - target: {fileID: 224126709193091884, guid: 456a11db52f4c50478e6da1c1b008f80,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -133.66667
       objectReference: {fileID: 0}
     - target: {fileID: 224174877021204966, guid: 456a11db52f4c50478e6da1c1b008f80,
         type: 2}
@@ -392,6 +392,11 @@ Prefab:
         type: 2}
       propertyPath: m_Color.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114625115082515732, guid: 456a11db52f4c50478e6da1c1b008f80,
+        type: 2}
+      propertyPath: loadInitialScreen
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 456a11db52f4c50478e6da1c1b008f80, type: 2}

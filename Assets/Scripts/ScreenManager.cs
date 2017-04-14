@@ -5,6 +5,7 @@ using UnityEngine;
 public class ScreenManager : MonoBehaviour
 {
 
+    public bool loadInitialScreen = true;
     public Screen initialScreen;
     public Screen pauseScreen;
     bool paused = false;
@@ -12,7 +13,7 @@ public class ScreenManager : MonoBehaviour
 
     void Start()
     {
-        if (initialScreen)
+        if (loadInitialScreen && initialScreen)
         {
             ShowScreen(initialScreen);
         }
