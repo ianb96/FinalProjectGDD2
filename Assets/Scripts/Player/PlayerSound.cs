@@ -19,4 +19,12 @@ public class PlayerSound : MonoBehaviour
     {
 		// src.PlayOneShot(attackChargeUpSound);
     }
+    public void PlayWalkSound()
+    {
+
+    }
+    public void PlaySwingSound()
+    {
+        
+    }
 }

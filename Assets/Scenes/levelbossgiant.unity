@@ -1114,6 +1114,53 @@ Transform:
   m_PrefabParentObject: {fileID: 4069622325230654, guid: 4bad24b77e5877842a7b52ac05e3e884,
     type: 2}
   m_PrefabInternal: {fileID: 1450201035}
+--- !u!1001 &1554081772
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4394847983564066, guid: 6ad31502619627340bdcbeffa78cd59f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4394847983564066, guid: 6ad31502619627340bdcbeffa78cd59f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4394847983564066, guid: 6ad31502619627340bdcbeffa78cd59f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4394847983564066, guid: 6ad31502619627340bdcbeffa78cd59f, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4394847983564066, guid: 6ad31502619627340bdcbeffa78cd59f, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4394847983564066, guid: 6ad31502619627340bdcbeffa78cd59f, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4394847983564066, guid: 6ad31502619627340bdcbeffa78cd59f, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4394847983564066, guid: 6ad31502619627340bdcbeffa78cd59f, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 82689142251146276, guid: 6ad31502619627340bdcbeffa78cd59f,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b2c9c1934688f0b488fc0a47f19320bc, type: 3}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 6ad31502619627340bdcbeffa78cd59f, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1607499308
 Prefab:
   m_ObjectHideFlags: 0
