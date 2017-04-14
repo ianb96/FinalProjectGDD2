@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class ScreenManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class ScreenManager : MonoBehaviour
     public bool loadInitialScreen = true;
     public Screen initialScreen;
     public Screen pauseScreen;
+    public AudioMixer am;
     bool paused = false;
     // List<Screen> curScreens;
 
@@ -61,5 +63,13 @@ public class ScreenManager : MonoBehaviour
 #else
          Application.Quit();
 #endif
+    }
+    public void SetMusicVolume(float value)
+    {
+        am.SetFloat("VolumeMusic", value);
+    }
+    public void SetSfxVolume(float value)
+    {
+        am.SetFloat("VolumeSfx", value);
     }
 }

@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
     public bool RCToNextCP;
     public int loadSceneImmediately = -1;
     public Screen loadingScreen;
+    public Screen endGameScreen;
     Slider loadingSlider;
     public float minLoadingTime = 1;
     int curSceneIndex = 0;
@@ -58,6 +59,12 @@ public class LevelManager : MonoBehaviour
         if (sceneIndex > SceneManager.sceneCountInBuildSettings)
         {
             Debug.LogWarning("No scene " + sceneIndex);
+            return;
+        }
+        if (sceneIndex == SceneManager.sceneCountInBuildSettings)
+        {
+            endGameScreen.Show();
+            // play sfx?
             return;
         }
         Debug.Log("Loading scene " + sceneIndex);
