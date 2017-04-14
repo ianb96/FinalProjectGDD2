@@ -95,6 +95,8 @@ public class Player : Damageable
     /// Update is called every frame, if the MonoBehaviour is enabled.
     void Update()
     {
+        // if (curHealth <= 0)
+        //     Time.timeScale = 0;
         if (Time.timeScale == 0)
             return;
         //isInWater = Physics2D.OverlapCircle(transform.position, 0.2f, 1 << LayerMask.NameToLayer("Water"));
@@ -108,7 +110,18 @@ public class Player : Damageable
             transform.position = new Vector3(transform.position.x, 40, 0);
             TakeDamage(1, gameObject);
         }
-
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            showGUI = !showGUI;
+            if (showGUI)
+            {
+                playerScreen.Hide();
+            }
+            else
+            {
+                playerScreen.Show();
+            }
+        }
 
         // dodge
         if (dodgeTimer <= 0)
@@ -173,6 +186,7 @@ public class Player : Damageable
         {
             anim.SetBool("Charging", false);
         }
+
     }
 
     /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.

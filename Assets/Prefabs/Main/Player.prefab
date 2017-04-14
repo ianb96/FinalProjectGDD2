@@ -1260,7 +1260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 8
   curHealth: 0
-  showGUI: 0
+  showGUI: 1
   healthSlider: {fileID: 0}
   canTakeDamage: 1
   playerScreen: {fileID: 0}

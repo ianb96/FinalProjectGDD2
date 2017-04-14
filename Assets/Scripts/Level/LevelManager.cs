@@ -80,6 +80,7 @@ public class LevelManager : MonoBehaviour
     IEnumerator LoadAndWait(int sceneIndex)
     {
         loadingScreen.Show();
+        Time.timeScale = 0;
         AsyncOperation loading = SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive);
         while (!loading.isDone)
         {
@@ -96,6 +97,7 @@ public class LevelManager : MonoBehaviour
             if (loadingSlider) loadingSlider.value = minLoadingTime - waitTime;
             yield return null;
         }
+        Time.timeScale = 1;
         loadingScreen.Hide();
     }
     public void ActivateCheckpoint(int index)

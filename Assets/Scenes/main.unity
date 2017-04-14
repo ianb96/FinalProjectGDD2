@@ -303,7 +303,7 @@ Prefab:
     - target: {fileID: 224139510508799146, guid: 456a11db52f4c50478e6da1c1b008f80,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224126709193091884, guid: 456a11db52f4c50478e6da1c1b008f80,
         type: 2}
@@ -323,7 +323,7 @@ Prefab:
     - target: {fileID: 224126709193091884, guid: 456a11db52f4c50478e6da1c1b008f80,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -104
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224703874251206224, guid: 456a11db52f4c50478e6da1c1b008f80,
         type: 2}
@@ -343,7 +343,7 @@ Prefab:
     - target: {fileID: 224703874251206224, guid: 456a11db52f4c50478e6da1c1b008f80,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224062325189488456, guid: 456a11db52f4c50478e6da1c1b008f80,
         type: 2}
@@ -363,7 +363,7 @@ Prefab:
     - target: {fileID: 224062325189488456, guid: 456a11db52f4c50478e6da1c1b008f80,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -74.333336
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224642804152491866, guid: 456a11db52f4c50478e6da1c1b008f80,
         type: 2}
@@ -383,7 +383,11 @@ Prefab:
     - target: {fileID: 224642804152491866, guid: 456a11db52f4c50478e6da1c1b008f80,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -133.66667
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1548852641336086, guid: 456a11db52f4c50478e6da1c1b008f80, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 456a11db52f4c50478e6da1c1b008f80, type: 2}
@@ -394,6 +398,18 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 362136492}
   m_Script: {fileID: 11500000, guid: 074ed879c02b3ed4cbf81b8b83b9a2ef, type: 3}
+--- !u!114 &362136494 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114112718284868926, guid: 456a11db52f4c50478e6da1c1b008f80,
+    type: 2}
+  m_PrefabInternal: {fileID: 362136492}
+  m_Script: {fileID: 11500000, guid: 074ed879c02b3ed4cbf81b8b83b9a2ef, type: 3}
+--- !u!114 &362136495 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114189421595836854, guid: 456a11db52f4c50478e6da1c1b008f80,
+    type: 2}
+  m_PrefabInternal: {fileID: 362136492}
+  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &459156226
 Prefab:
   m_ObjectHideFlags: 0
@@ -564,6 +580,21 @@ Prefab:
       propertyPath: vignette
       value: 
       objectReference: {fileID: 1768365890}
+    - target: {fileID: 114825856443809030, guid: 7b36630e2fd332849b9ad9754f38d4de,
+        type: 2}
+      propertyPath: playerScreen
+      value: 
+      objectReference: {fileID: 362136494}
+    - target: {fileID: 114825856443809030, guid: 7b36630e2fd332849b9ad9754f38d4de,
+        type: 2}
+      propertyPath: healthSlider
+      value: 
+      objectReference: {fileID: 362136495}
+    - target: {fileID: 114825856443809030, guid: 7b36630e2fd332849b9ad9754f38d4de,
+        type: 2}
+      propertyPath: maxHealth
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b36630e2fd332849b9ad9754f38d4de, type: 2}
   m_IsPrefabParent: 0
